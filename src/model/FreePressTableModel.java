@@ -2,16 +2,11 @@ package model;
 
 import dao.BatchManager;
 import dao.PressManager;
-import dao.StockManager;
 import entity.Batch;
 import entity.Press;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-/**
- *
- * @author badaroux
- */
 public class FreePressTableModel extends AbstractTableModel {
 
     ArrayList<String> columnName = new ArrayList<>();
@@ -26,12 +21,16 @@ public class FreePressTableModel extends AbstractTableModel {
     public void launch(Batch batch)
     {
         dao.BatchManager.end(batch);
-        pressList.remove(this);
-        batchList.remove(batch);
-
-        //TODO MAJ TABLEAU    
+        
+        refresh();
+        
     }
-    
+   
+    public void refresh()
+    {
+        pressList = PressManager.fillBusyPressList();
+        batchList = BatchManager.fillListEndBatch();
+    }
 
     
     @Override

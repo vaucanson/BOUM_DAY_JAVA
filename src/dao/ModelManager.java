@@ -51,7 +51,7 @@ public abstract class ModelManager
         }
         catch(SQLException ex)
         {
-            Logger.getLogger(BatchManager.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         
         return mod;
@@ -78,9 +78,9 @@ public abstract class ModelManager
                 
                 ResultSet rs = st.executeQuery("SELECT * FROM MODEL ORDER BY NAME ");
                 
-                if (rs.next())
+                while (rs.next())
                 {
-                   mList.add(new Model(rs.getString(1), rs.getInt(2)));
+                   mList.add(new Model(rs.getString(1), rs.getFloat(2)));
                 }
                 st.close();
             }
@@ -106,9 +106,8 @@ public abstract class ModelManager
         }
         catch(SQLException ex)
         {
-            Logger.getLogger(BatchManager.class.getName()).log(Level.SEVERE, null, ex);
+           ex.printStackTrace();
         }
-        
         return mList;
       }
       

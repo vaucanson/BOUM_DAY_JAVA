@@ -70,7 +70,7 @@ public class StockManager {
         }
         catch(SQLException ex)
         {
-            Logger.getLogger(BatchManager.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return liste;
     }
@@ -116,7 +116,7 @@ public class StockManager {
         }
         catch(SQLException ex)
         {
-            Logger.getLogger(BatchManager.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         
         

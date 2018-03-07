@@ -5,6 +5,7 @@
  */
 package view.frame;
 
+import entity.Press;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
 import view.panel.HomePanel;
@@ -13,6 +14,9 @@ import view.panel.HomePanel;
 public class MainFrame extends javax.swing.JFrame {
 
     private JPanel mainPanel;
+    private Press currentPress;
+
+
     
     
     public MainFrame() {
@@ -29,6 +33,13 @@ public class MainFrame extends javax.swing.JFrame {
         this.validate();
     }
     
+        public Press getCurrentPress() {
+        return currentPress;
+    }
+
+    public void setCurrentPress(Press currentPress) {
+        this.currentPress = currentPress;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

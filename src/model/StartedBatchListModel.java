@@ -36,7 +36,7 @@ public class StartedBatchListModel extends AbstractListModel<Batch> {
     {
         dao.BatchManager.start(batch, press);   
         bList.remove(batch);
-         fireIntervalAdded(bList, bList.size() - 1, bList.size() - 1);
+        fireIntervalAdded(bList, bList.size() - 1, bList.size() - 1);
     }
     
     public void add(Batch p)

@@ -9,7 +9,6 @@ import dao.PieceManager;
 import entity.Piece;
 import view.frame.popup.CancelControlerPopUpFrame;
 import view.frame.MainFrame;
-import view.frame.popup.ValidationControlerPopUpFrame;
 
 /**
  *
@@ -20,10 +19,17 @@ public class ControlerPanel extends StylePanel {
 
    private MainFrame parent;
    
-    public ControlerPanel(MainFrame parent) {
+    public ControlerPanel(MainFrame frame) {
         initComponents();
         setVisible(true);
-        this.parent = parent;
+        this.parent = frame;
+        
+      
+       if (parent.getCurrentPress() != null)
+       {
+           System.out.println("coucou");
+        labTitle.setText(Integer.toString(parent.getCurrentPress().getId()));
+       }
     }
 
 

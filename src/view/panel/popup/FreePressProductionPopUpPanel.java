@@ -6,7 +6,6 @@
 package view.panel.popup;
 
 import entity.Batch;
-import entity.Press;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.FreePressTableModel;
@@ -20,7 +19,7 @@ public class FreePressProductionPopUpPanel extends StylePanel {
 
     private JFrame parent;
     private FreePressTableModel fptm = new FreePressTableModel();
-    
+
     public FreePressProductionPopUpPanel(JFrame frame) {
         initComponents();
         this.setVisible(true);
@@ -79,24 +78,26 @@ public class FreePressProductionPopUpPanel extends StylePanel {
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
         ConfirmStart();
     }//GEN-LAST:event_buttonValidateActionPerformed
-private void ConfirmStart()
-    {   
-       if (JOptionPane.showConfirmDialog(null,"Libérer la presse ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-       {
-          int row = tablePressBatch.getSelectedRow();
-          int column = tablePressBatch.getSelectedColumn();
-          
-          if (tablePressBatch.getValueAt(row, column).getClass() == Press.class)
-          {
-                JOptionPane.showMessageDialog(null, "Merci de selectionner une celulle 'lot' et non pas une presse");
-          }
-          else
-          {
-                fptm.launch((Batch) tablePressBatch.getValueAt(row, column));
-                fptm.fireTableDataChanged();
-          }
- 
-       }            
+    private void ConfirmStart() {
+        int row = tablePressBatch.getSelectedRow();
+        int column = tablePressBatch.getSelectedColumn();
+
+        if (row == -1) {
+            JOptionPane.showMessageDialog(null, "Merci de selectionner une celulle lot");
+        } else {
+
+            System.out.println(row);
+            if (JOptionPane.showConfirmDialog(null, "Libérer la presse ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+                if (tablePressBatch.getValueAt(row, column).getClass() != Batch.class) {
+                    JOptionPane.showMessageDialog(null, "Merci de selectionner une celulle lot");
+                } else {
+                    fptm.launch((Batch) tablePressBatch.getValueAt(row, column));
+                    JOptionPane.showMessageDialog(null, "Le lot a bien été affecté");
+                    fptm.fireTableDataChanged();
+                }
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

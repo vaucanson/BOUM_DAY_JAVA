@@ -2,15 +2,18 @@ package model;
 
 import entity.Stock;
 import java.util.List;
+import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author boilleau
  */
-public class StockTableModel extends AbstractTableModel
+public class StockTableModel extends AbstractTableModel implements ListDataListener
 {
     private List<Stock> stockList;  // la liste de stocks
+    private List<String> columnNames; // la liste des noms de colonnes
     
     /**
      * Nombre de lignes
@@ -29,7 +32,7 @@ public class StockTableModel extends AbstractTableModel
     @Override
     public int getColumnCount() 
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.columnNames.size();
     }
 
     /**
@@ -56,5 +59,36 @@ public class StockTableModel extends AbstractTableModel
         }
         return valeur;
     }
-    
+
+    /**
+     * Sur événement d'ajout d'un intervalle.
+     * Déclenche l'événement lignes insérées
+     * @param e un ListDataEvent
+     */
+    @Override
+    public void intervalAdded(ListDataEvent e) {
+	this.fireTableRowsInserted(0, this.getRowCount());
+    }
+
+    /**
+     * Sur événement de suppression d'un intervalle.
+     * Déclenche l'événement lignes supprimées.
+     * @param e 
+     */
+    @Override
+    public void intervalRemoved(ListDataEvent e) {
+	this.fireTableRowsDeleted(0, this.getRowCount());
+    }
+
+    /**
+     * Sur événement de changement de contenu.
+     * Déclenche l'événement lignes modifiées
+     * @param e 
+     */
+    @Override
+    public void contentsChanged(ListDataEvent e) {
+	this.fireTableRowsUpdated(0, this.getRowCount());
+    }
+
+   
 }

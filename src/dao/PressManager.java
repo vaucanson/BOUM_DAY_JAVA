@@ -60,7 +60,7 @@ public class PressManager {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(PressManager.class.getName()).log(Level.SEVERE, null, ex);
+          ex.printStackTrace();
 
         }
         return pressList;
@@ -99,7 +99,7 @@ public class PressManager {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(PressManager.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
 
         }
         return busyPressList;
@@ -143,7 +143,7 @@ public class PressManager {
 
         } catch (SQLException ex) {
 
-            Logger.getLogger(PressManager.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
 
         }
         return id;
@@ -186,7 +186,7 @@ public class PressManager {
 
         } catch (SQLException ex) {
 
-            Logger.getLogger(PressManager.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
             ret = false;
         }
         return ret;

@@ -5,15 +5,16 @@
  */
 package view.panel;
 
+import entity.Category;
 import entity.Model;
 import javax.swing.JCheckBox;
-import model.ListPressModel;
 import model.AllBatchListModel;
+import model.CategoryComboModel;
 import model.ModelComboModel;
 import model.StockUnderLimitTableModel;
+import renderer.CategoryComboRenderer;
 import renderer.ModelComboRenderer;
 import renderer.StockUnderLimitButtonRenderer;
-import view.frame.popup.LaunchBatchWorkshopPopUpFrame;
 import view.panel.StylePanel;
 import view.frame.MainFrame;
 
@@ -40,7 +41,7 @@ public class WorkshopPanel extends StylePanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableStockUnderLimit = new javax.swing.JTable();
         javax.swing.JComboBox<Model> comboModel = new javax.swing.JComboBox<>();
-        comboCategory = new javax.swing.JComboBox();
+        comboCategory = new javax.swing.JComboBox<Category>();
         labQuantitytitle = new javax.swing.JLabel();
         labLimitsTitle = new javax.swing.JLabel();
         labQuantity = new javax.swing.JLabel();
@@ -58,8 +59,8 @@ public class WorkshopPanel extends StylePanel {
         jScrollPane1.setViewportView(tableStockUnderLimit);
 
         comboModel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboModel.setModel(new ModelComboModel());
         comboModel.setPreferredSize(new java.awt.Dimension(32, 60));
+        comboModel.setModel(new ModelComboModel());
         comboModel.setRenderer(new ModelComboRenderer());
         comboModel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +69,8 @@ public class WorkshopPanel extends StylePanel {
         });
 
         comboCategory.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        comboCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "catégorie" }));
+        comboCategory.setModel(new CategoryComboModel());
+        comboCategory.setRenderer(new CategoryComboRenderer());
 
         labQuantitytitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labQuantitytitle.setText("Quantité en stock :");
@@ -94,9 +96,9 @@ public class WorkshopPanel extends StylePanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(comboModel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboCategory, 0, 161, Short.MAX_VALUE))
-                        .addGap(316, 316, 316)
+                            .addComponent(comboCategory, 0, 228, Short.MAX_VALUE)
+                            .addComponent(comboModel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(249, 249, 249)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labQuantitytitle))
@@ -139,7 +141,7 @@ public class WorkshopPanel extends StylePanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonResearch;
-    private javax.swing.JComboBox comboCategory;
+    private javax.swing.JComboBox<Category> comboCategory;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labLimits;
     private javax.swing.JLabel labLimitsTitle;

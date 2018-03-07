@@ -8,7 +8,6 @@ package model;
 import dao.BatchManager;
 import dao.StockManager;
 import entity.Stock;
-import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 

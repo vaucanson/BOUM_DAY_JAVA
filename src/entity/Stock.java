@@ -45,5 +45,6 @@ public class Stock {
     public int getQuantity() {
         return quantity;
     }
+
     
 }

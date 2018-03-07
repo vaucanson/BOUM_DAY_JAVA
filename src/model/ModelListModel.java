@@ -27,24 +27,6 @@ public class ModelListModel extends AbstractListModel<Model> {
     public Model getElementAt(int index) {
         return mList.get(index);
     }
-    
-    
-    public void add(Model mod)
-    {
-        if (mod != null)
-        {
-            mList.add(mod);
-            fireIntervalAdded(mList, mList.size()-1, mList.size()-1);
-        }
-    }
-    
-    public void remove (Model mod)
-    {
-        if (mod != null)
-        {
-            mList.remove(mod);
-            fireIntervalRemoved(mList, mList.size()-1, mList.size()-1);
-        }
-    }
+   
     
 }

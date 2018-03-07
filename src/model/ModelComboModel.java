@@ -19,18 +19,5 @@ public class ModelComboModel extends ModelListModel implements ComboBoxModel<Mod
     @Override
     public Object getSelectedItem() {
         return selected;
-    }
-    
-     @Override
-    public void remove(Model mod) {
-        super.remove(mod); //To change body of generated methods, choose Tools | Templates.
-        
-    }
-
-    @Override
-    public void add(Model mod) {
-        super.add(mod); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
+    }    
 }

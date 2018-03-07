@@ -123,5 +123,102 @@ public class StockManager {
         return listStock;
     }
     
+    public static int getQuantity(String model, String category)
+    {
+        
+        int quantity = 0;
+        
+        try
+        {
+            
+            Connection c;
+            c = Connexion.getInstance("badaroux", "badaroux");
+            
+            try
+            {
+                Statement st = c.createStatement();
+                
+                ResultSet rs = st.executeQuery("SELECT QUANTITY FROM STOCK WHERE MODEL = '" + model + "' AND CATEGORY = '" + category + "'");
+               
+                
+                if (rs.next())
+                {
+                    quantity = rs.getInt(1);
+                }
+                st.close();
+            }
+            catch (SQLException ex)
+            {
+                ex.printStackTrace();
+            }
+            finally
+            {
+                try
+                {
+                    c.close();
+                }
+                catch (SQLException ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        catch(SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        
+        
+        return quantity;
+    }
+    
+    public static int getLimit(String model, String category)
+    {
+        
+        int limit = 0;
+        
+        try
+        {
+            
+            Connection c;
+            c = Connexion.getInstance("badaroux", "badaroux");
+            
+            try
+            {
+                Statement st = c.createStatement();
+                
+                ResultSet rs = st.executeQuery("SELECT LIMIT FROM STOCK WHERE MODEL = '" + model + "' AND CATEGORY = '" + category + "'");
+               
+                
+                if (rs.next())
+                {
+                    limit = rs.getInt(1);
+                }
+                st.close();
+            }
+            catch (SQLException ex)
+            {
+                ex.printStackTrace();
+            }
+            finally
+            {
+                try
+                {
+                    c.close();
+                }
+                catch (SQLException ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        catch(SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        
+        
+        return limit;
+    }
 }
 

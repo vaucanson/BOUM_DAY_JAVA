@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="116" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="buttonRemove" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonAdd" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="167" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="labelNewModel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="labelLimit" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="labelDiametre" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelName" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="labelSmall" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="labelMedium" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelBig" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="textBig" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textMedium" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textSmall" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textName" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textDiametre" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="buttonOK" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="329" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+                      <Component id="buttonAdd" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      <Component id="buttonRemove" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="labelNewModel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textName" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelDiametre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textDiametre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                      <Component id="labelLimit" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelSmall" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textSmall" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelMedium" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textMedium" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelBig" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textBig" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+              <Component id="buttonOK" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="116" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JList" name="listModel">
+          <Properties>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+              <StringArray count="5">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+                <StringItem index="4" value="Item 5"/>
+              </StringArray>
+            </Property>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="buttonAdd">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ajouter"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonRemove">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Supprimer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelNewModel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nouveau Mod&#xe8;le&#xa0;:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="nom&#xa0;:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelDiametre">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="diam&#xe8;tre&#xa0;:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelLimit">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Seuil par cat&#xe9;gorie&#xa0;:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelSmall">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="petit"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelMedium">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="moyen"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelBig">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="grand"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="textName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;nom&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="textDiametre">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;diam&#xe8;tre&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="textSmall">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;petit&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="textMedium">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;moyen&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="textBig">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;grand&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonOK">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ajouter mod&#xe8;le"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

@@ -105,10 +105,6 @@ public abstract class CategoryManager {
           
             ex.printStackTrace();
         }
-        for (int i = 0; i < cList.size(); i++)
-        {
-            System.out.println(cList.get(i).getName());
-        }
         return cList;
     }
               

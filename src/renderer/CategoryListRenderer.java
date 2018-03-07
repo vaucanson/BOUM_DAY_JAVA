@@ -1,5 +1,6 @@
 package renderer;
 
+import entity.Category;
 import entity.Model;
 import java.awt.Color;
 import java.awt.Component;
@@ -11,11 +12,11 @@ import javax.swing.ListCellRenderer;
  *
  * @author mattar
  */
-public class ModelListRenderer implements ListCellRenderer<Model>{
-    
-    @Override
-    public Component getListCellRendererComponent(JList<? extends Model> list, Model mod, int index, boolean isSelected, boolean cellHasFocus) {
-        JLabel lab = new JLabel(mod.getName());
+public class CategoryListRenderer implements ListCellRenderer<Category> {
+
+   
+    public Component getListCellRendererComponent(JList<? extends Category> list, Category cat, int index, boolean isSelected, boolean cellHasFocus) {
+        JLabel lab = new JLabel(cat.getName());
         lab.setOpaque(true);
        
         if (isSelected)
@@ -25,4 +26,7 @@ public class ModelListRenderer implements ListCellRenderer<Model>{
         
         return lab;
     }
+
+   
+    
 }

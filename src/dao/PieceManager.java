@@ -50,7 +50,7 @@ public abstract class PieceManager {
         } 
         catch (SQLException ex) 
         {
-            Logger.getLogger(PieceManager.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
          
     }
@@ -79,7 +79,7 @@ public abstract class PieceManager {
         } 
         catch (SQLException ex) 
         {
-            Logger.getLogger(PieceManager.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         return newPiece;
     }

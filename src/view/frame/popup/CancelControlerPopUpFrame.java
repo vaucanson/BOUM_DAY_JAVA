@@ -5,39 +5,46 @@
  */
 package view.frame.popup;
 
-import java.awt.GridLayout;
+import entity.Batch;
+import entity.Press;
 import view.panel.popup.CancelControlerPopUpPanel;
 
-/**
- *
- * @author badaroux
- */
 public class CancelControlerPopUpFrame extends StylePopUpFrame {
 
-    /**
-     * Creates new form CancelControlerPopUp
-     */
    private CancelControlerPopUpPanel ccpup = new CancelControlerPopUpPanel(this);
    private static CancelControlerPopUpFrame instance;
+   private Press press;
 
-    
-    private CancelControlerPopUpFrame() {
+   
+    private CancelControlerPopUpFrame(Press p) {
        super();
        add(ccpup);
+       press = p;
     }
  
-    public static CancelControlerPopUpFrame getInstance()
+    public static CancelControlerPopUpFrame getInstance(Press p)
     {
+        
         if (instance == null || !instance.isVisible())
         {
             synchronized (CancelControlerPopUpFrame.class)
             {
                 if (instance == null || !instance.isVisible())
-                    instance = new CancelControlerPopUpFrame();
+                    instance = new CancelControlerPopUpFrame(p);
             }
         } 
         return instance;
     }
+    
+    public  Press getPress() {
+    return press;
+    }
+
+    public void setPress(Press p) {
+        this.press = p;
+    }
+    
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -59,41 +66,6 @@ public class CancelControlerPopUpFrame extends StylePopUpFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CancelControlerPopUpFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CancelControlerPopUpFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CancelControlerPopUpFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CancelControlerPopUpFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CancelControlerPopUpFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

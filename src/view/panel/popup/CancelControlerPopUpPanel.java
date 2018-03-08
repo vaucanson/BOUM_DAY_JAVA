@@ -6,6 +6,7 @@
 package view.panel.popup;
 
 import javax.swing.JFrame;
+import view.frame.popup.CancelControlerPopUpFrame;
 import view.panel.StylePanel;
 
 /**
@@ -50,6 +51,11 @@ public class CancelControlerPopUpPanel extends StylePanel {
 
         buttonValidate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         buttonValidate.setText("Valider");
+        buttonValidate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonValidateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -79,6 +85,12 @@ public class CancelControlerPopUpPanel extends StylePanel {
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         parent.dispose();
     }//GEN-LAST:event_buttonCancelActionPerformed
+
+    private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
+        dao.BatchManager.stop(((CancelControlerPopUpFrame) parent).getPress());
+        System.err.println(((CancelControlerPopUpFrame) parent).getPress().getId());
+        parent.dispose();
+    }//GEN-LAST:event_buttonValidateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

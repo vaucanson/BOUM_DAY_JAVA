@@ -5,7 +5,7 @@
  */
 package view.frame;
 
-import entity.Press;
+import entity.Batch;
 import java.awt.GridLayout;
 import javax.swing.JPanel;
 import view.panel.HomePanel;
@@ -14,7 +14,7 @@ import view.panel.HomePanel;
 public class MainFrame extends javax.swing.JFrame {
 
     private JPanel mainPanel;
-    private Press currentPress;
+    private Batch currentBatch;
 
 
     
@@ -30,15 +30,16 @@ public class MainFrame extends javax.swing.JFrame {
     {
         mainPanel = panel;
         this.setContentPane(mainPanel);
-        this.validate();
+        this.validate();  
     }
     
-        public Press getCurrentPress() {
-        return currentPress;
-    }
+    
+    public Batch getCurrentPress() {
+    return currentBatch;
+}
 
-    public void setCurrentPress(Press currentPress) {
-        this.currentPress = currentPress;
+    public void setCurrentPress(Batch batch) {
+        this.currentBatch = batch;
     }
 
     @SuppressWarnings("unchecked")

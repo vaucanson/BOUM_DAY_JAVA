@@ -10,8 +10,6 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import tool.Connexion;
 
 /**
@@ -75,6 +73,10 @@ public class StockManager {
         return liste;
     }
     
+    /**
+     * Renvoie la liste des noms de colonnes
+     * @return un tableau de chaînes
+     */
     public static ArrayList<String> colonnesStock()
     {
         ArrayList<String> listStock = new ArrayList<String>();
@@ -121,6 +123,60 @@ public class StockManager {
         
         
         return listStock;
+    }
+    
+    /**
+     * Crée un tableau de Stocks contenant tous les stocks
+     * @return un ArrayList de Stocks
+     */
+    public static ArrayList<Stock> getAllStocks()
+    {
+        ArrayList<Stock> retour = new ArrayList();
+        try
+        {
+            Connection c;
+            c = Connexion.getInstance("badaroux", "badaroux");
+            
+            try
+            {
+                Statement st = c.createStatement();
+                
+                ResultSet rs = st.executeQuery("SELECT * FROM STOCKUNDERLIMIT");
+                ResultSetMetaData rsmd = rs.getMetaData();
+                
+                while (rs.next())
+                {   
+                    Model model = ModelManager.getModel(rs.getString(1));
+                    Category category = CategoryManager.getCategory(rs.getString(2));
+                    int quantity = rs.getInt(3);
+                    int limit = rs.getInt(4);
+                    
+                    Stock stock = new Stock(model, category, quantity, limit);
+                    retour.add(stock);
+                }
+                st.close();
+            }
+            catch (SQLException ex)
+            {
+                ex.printStackTrace();
+            }
+            finally
+            {
+                try
+                {
+                    c.close();
+                }
+                catch (SQLException ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        catch(SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+        return retour;
     }
     
     public static int getQuantity(String model, String category)

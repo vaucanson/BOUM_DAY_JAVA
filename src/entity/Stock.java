@@ -16,6 +16,13 @@ public class Stock {
     private int limit;
     private int quantity;
     
+    /**
+     * Constructeur 
+     * @param model
+     * @param category
+     * @param quantity
+     * @param limit 
+     */
     public Stock (Model model, Category category, int quantity, int limit)
     {
         this.category = category;
@@ -44,6 +51,11 @@ public class Stock {
 
     public int getQuantity() {
         return quantity;
+    }
+    
+    public boolean isLimitReached()
+    {
+        return (this.getQuantity() < this.getLimit());
     }
 
     

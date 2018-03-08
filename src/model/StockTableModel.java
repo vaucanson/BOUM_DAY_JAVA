@@ -1,6 +1,8 @@
 package model;
 
+import dao.StockManager;
 import entity.Stock;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
@@ -14,6 +16,17 @@ public class StockTableModel extends AbstractTableModel implements ListDataListe
 {
     private List<Stock> stockList;  // la liste de stocks
     private List<String> columnNames; // la liste des noms de colonnes
+    
+    /**
+     * Constructeur
+     */
+    public StockTableModel()
+    {
+        super();
+        this.stockList = StockManager.getAllStocks();
+        
+        this.columnNames = StockManager.colonnesStock();
+    }
     
     /**
      * Nombre de lignes
@@ -55,6 +68,12 @@ public class StockTableModel extends AbstractTableModel implements ListDataListe
                 break;
         case 2:
                 valeur = stock.getQuantity();
+                break;
+        case 3:
+                valeur = stock.getLimit();
+                break;
+        case 4:
+                valeur = stock.isLimitReached();
                 break;
         }
         return valeur;

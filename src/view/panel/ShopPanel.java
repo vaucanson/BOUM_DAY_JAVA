@@ -7,6 +7,7 @@ package view.panel;
 
 import view.frame.popup.ShopHistoryPopUpFrame;
 import javax.swing.JOptionPane;
+import model.StockTableModel;
 import view.frame.MainFrame;
 
 /**
@@ -62,10 +63,10 @@ public class ShopPanel extends StylePanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        comboCategory = new javax.swing.JComboBox<>();
+        comboCategory = new javax.swing.JComboBox<String>();
         buttonAddStock = new javax.swing.JButton();
         buttonRemoveStock = new javax.swing.JButton();
-        comboModel = new javax.swing.JComboBox<>();
+        comboModel = new javax.swing.JComboBox<String>();
         jSpinner1 = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         buttonHistory = new javax.swing.JButton();
@@ -75,7 +76,7 @@ public class ShopPanel extends StylePanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Gestion du Stock");
 
-        comboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categorie", "Petit", "Moyen", "Grand" }));
+        comboCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categorie", "Petit", "Moyen", "Grand" }));
 
         buttonAddStock.setText("Ajouter au Stock");
         buttonAddStock.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +92,7 @@ public class ShopPanel extends StylePanel {
             }
         });
 
-        comboModel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "modèle", "modele 3", "modele 4", "modele 5", "modele 6", " " }));
+        comboModel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "modèle", "modele 3", "modele 4", "modele 5", "modele 6", " " }));
 
         jLabel2.setText("Nombre de Caisses :");
 
@@ -102,23 +103,7 @@ public class ShopPanel extends StylePanel {
             }
         });
 
-        tabStock.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Modèle", "Catégorie", "Nombre de Caisses"
-            }
-        ));
+        tabStock.setModel(new StockTableModel());
         jScrollPane1.setViewportView(tabStock);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

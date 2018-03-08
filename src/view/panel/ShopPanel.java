@@ -7,6 +7,12 @@ package view.panel;
 
 import view.frame.popup.ShopHistoryPopUpFrame;
 import javax.swing.JOptionPane;
+import model.CrateTableModel;
+import model.ModelComboModel;
+import renderer.CrateTableBooleanRenderer;
+import renderer.CrateTableIntegerRenderer;
+import renderer.CrateTableStringRenderer;
+import renderer.ModelComboRenderer;
 import view.frame.MainFrame;
 
 /**
@@ -62,10 +68,10 @@ public class ShopPanel extends StylePanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        comboCategory = new javax.swing.JComboBox<>();
+        comboCategory = new javax.swing.JComboBox<String>();
         buttonAddStock = new javax.swing.JButton();
         buttonRemoveStock = new javax.swing.JButton();
-        comboModel = new javax.swing.JComboBox<>();
+        comboModel = new javax.swing.JComboBox<String>();
         jSpinner1 = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         buttonHistory = new javax.swing.JButton();
@@ -75,7 +81,7 @@ public class ShopPanel extends StylePanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Gestion du Stock");
 
-        comboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categorie", "Petit", "Moyen", "Grand" }));
+        comboCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categorie", "Petit", "Moyen", "Grand" }));
 
         buttonAddStock.setText("Ajouter au Stock");
         buttonAddStock.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +97,8 @@ public class ShopPanel extends StylePanel {
             }
         });
 
-        comboModel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "modèle", "modele 3", "modele 4", "modele 5", "modele 6", " " }));
+        comboModel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "modèle", "modele 3", "modele 4", "modele 5", "modele 6", " " }));
+        comboModel.setSelectedItem(new ModelComboModel());
 
         jLabel2.setText("Nombre de Caisses :");
 
@@ -102,23 +109,10 @@ public class ShopPanel extends StylePanel {
             }
         });
 
-        tabStock.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Modèle", "Catégorie", "Nombre de Caisses"
-            }
-        ));
+        tabStock.setModel(new model.CrateTableModel());
+        tabStock.setDefaultRenderer(String.class, new renderer.CrateTableStringRenderer());
+        tabStock.setDefaultRenderer(Boolean.class, new renderer.CrateTableBooleanRenderer());
+        tabStock.setDefaultRenderer(Integer.class, new renderer.CrateTableIntegerRenderer());
         jScrollPane1.setViewportView(tabStock);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -126,58 +120,51 @@ public class ShopPanel extends StylePanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonRemoveStock)
-                    .addComponent(buttonAddStock))
-                .addGap(58, 58, 58))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(buttonHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
+                        .addContainerGap()
                         .addComponent(comboModel, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(296, 296, 296)
-                        .addComponent(jLabel1)))
-                .addContainerGap(228, Short.MAX_VALUE))
+                        .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)
+                                .addComponent(buttonAddStock)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonRemoveStock)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(buttonAddStock, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
                     .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(buttonAddStock, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonRemoveStock, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonRemoveStock, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                 .addGap(2, 2, 2))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAddStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddStockActionPerformed
-        ConfirmAddStock();
+        ConfirmAddStock(); 
     }//GEN-LAST:event_buttonAddStockActionPerformed
 
     private void buttonRemoveStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveStockActionPerformed

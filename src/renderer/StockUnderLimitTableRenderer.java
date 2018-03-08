@@ -5,11 +5,9 @@
 */
 package renderer;
 
-import dao.BatchManager;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;

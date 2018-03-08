@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
 /**
- *
+ * permet de créer un modèle de liste d'objets Stock
+ * les objets Stock contenus dans cette liste sont issus de la view BDD "StockUnderLimit"
+ * Il ne s'agit pas de tout ce qui est contenu dans la table Stock, seulement ce qui est en quantité insuffisante
  * @author mattar
  */
 public class StockUnderLimitListModel extends AbstractListModel<Stock> {

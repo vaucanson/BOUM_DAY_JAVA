@@ -5,8 +5,9 @@
  */
 package view.panel;
 
+import entity.Batch;
 import entity.Press;
-import model.ListPressModel;
+import model.ListBatchState2or3Model;
 import view.frame.MainFrame;
 
 /**
@@ -17,7 +18,7 @@ public class ChoosePressControlePanel extends StylePanel {
 
     private MainFrame parent;
     private ControlerPanel cp;
-    private model.ListPressModel pm = new ListPressModel();
+    private ListBatchState2or3Model lbpm = new ListBatchState2or3Model();
 
     
     public ChoosePressControlePanel(MainFrame parent) {
@@ -33,15 +34,15 @@ public class ChoosePressControlePanel extends StylePanel {
 
         labTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listPress = new javax.swing.JList();
+        listBatch = new javax.swing.JList();
         buttonValidate = new javax.swing.JButton();
 
         labTitle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labTitle.setText("Veuillez selectionner la presse dans laquelle vous opérez : ");
 
-        listPress.setModel(pm);
-        jScrollPane1.setViewportView(listPress);
+        listBatch.setModel(lbpm);
+        jScrollPane1.setViewportView(listBatch);
 
         buttonValidate.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         buttonValidate.setText("Valider");
@@ -87,9 +88,12 @@ public class ChoosePressControlePanel extends StylePanel {
 
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
         
-        parent.setCurrentPress((Press) listPress.getSelectedValue());
-       
+        
+        parent.setCurrentPress((Batch) listBatch.getSelectedValue());
         parent.changePanel(cp);
+        cp.initControl();
+        
+        
     }//GEN-LAST:event_buttonValidateActionPerformed
 
 
@@ -97,6 +101,6 @@ public class ChoosePressControlePanel extends StylePanel {
     private javax.swing.JButton buttonValidate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labTitle;
-    private javax.swing.JList listPress;
+    private javax.swing.JList listBatch;
     // End of variables declaration//GEN-END:variables
 }

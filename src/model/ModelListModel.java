@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
 /**
- *
+ *  permet de créer un modèle de liste d'objets Model
  * @author mattar
  */
 public class ModelListModel extends AbstractListModel<Model> {

@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import tool.Connexion;
 
@@ -20,8 +19,6 @@ import tool.Connexion;
  */
 public class BatchManager {
     /*
-    procedure initBatch
-    procedure endBatch
     procedure stopBatch
        
     */
@@ -194,6 +191,55 @@ public class BatchManager {
         } 
     }
     
+    public static void stop (Press p)
+    {
+ try {
+            Connection c = Connexion.getInstance("badaroux", "badaroux");
+
+            try {
+
+                CallableStatement cs = c.prepareCall("{?=call stopBatch (?, ?)}");
+              
+                cs.setInt(2, p.getId());
+
+                cs.registerOutParameter(1, java.sql.Types.INTEGER);
+                cs.registerOutParameter(3, java.sql.Types.VARCHAR);
+
+                cs.execute();
+                
+                int ret = cs.getInt(1);
+                String msg = cs.getString(3);
+                
+                if (ret == 0)
+                {
+                    System.out.println(msg);
+                }
+                else
+                {
+                    
+                }
+                  
+            } catch (Exception e) {
+                e.printStackTrace();
+               
+            } finally {
+                if (c != null) {
+                    try {
+                        c.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                       
+                    }
+                }
+            }
+
+        } catch (SQLException ex) {
+
+      
+            ex.printStackTrace();
+            
+        } 
+    }
     
     public static ArrayList<Batch> fillList()
     {
@@ -336,6 +382,53 @@ public class BatchManager {
         return liste;
     }
     
+    public static ArrayList<Batch> fillListStopBatch()
+    {
+           ArrayList<Batch> liste = new ArrayList<>();
+        try
+        {
+ 
+            Connection c;
+            c = Connexion.getInstance("badaroux", "badaroux");
+            
+            try
+            {
+                Statement st = c.createStatement();
+                
+                ResultSet rs = st.executeQuery("SELECT * FROM BATCH  WHERE state = 3 OR state = 2");
+                
+                while (rs.next())
+                {
+                    liste.add(new Batch(rs.getShort(1), rs.getDate(2), rs.getShort(3), rs.getShort(4), rs.getShort(5), rs.getString(6)));
+                    
+                }
+                st.close();
+            }
+            catch(Exception ex)
+            {
+                ex.printStackTrace();
+            }
+            finally
+            {
+                try
+                {
+                    c.close();
+                }
+                catch(SQLException ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+            
+        }
+        catch(SQLException ex)
+        {
+           
+            ex.printStackTrace();
+        }
+        return liste;
+    }
+    
     public static ArrayList<Batch> loadBatch()
     {
            ArrayList<Batch> liste = new ArrayList<>();
@@ -433,4 +526,59 @@ public class BatchManager {
         }
         return result;
     }
+    
+    public static Press getOne(Batch batch)
+    {
+        Press press = null;
+       
+                try
+            {
+
+                Connection c;
+                c = Connexion.getInstance("badaroux", "badaroux");
+
+                try
+                {
+                    Statement st = c.createStatement();
+
+                    ResultSet rs = st.executeQuery("SELECT * FROM BATCH JOIN PRESS on batch.press = press.id WHERE press.id ='" + batch.getId() +"'");
+
+                    if (rs.next())
+                    {
+                        press = new Press(rs.getShort(1));  
+                    }
+
+                    st.close();
+                }
+                catch(Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+                finally
+                {
+                    try
+                    {
+                        c.close();
+                    }
+                    catch(SQLException ex)
+                    {
+                        ex.printStackTrace();
+                    }
+                }
+
+            }
+            catch(SQLException ex)
+            {
+
+                ex.printStackTrace();
+            }
+
+            return press;
+    }
+        
+
 }
+
+
+
+

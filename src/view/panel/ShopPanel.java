@@ -5,13 +5,29 @@
  */
 package view.panel;
 
+import dao.StockManager;
+import entity.Category;
+import entity.Model;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import view.frame.popup.ShopHistoryPopUpFrame;
 import javax.swing.JOptionPane;
-import model.StockTableModel;
+import model.CategoryComboModel;
 import model.ModelComboModel;
-import renderer.StockTableBooleanRenderer;
-import renderer.StockTableIntegerRenderer;
-import renderer.CrateTableStringRenderer;
+import model.StockTableModel;
+import renderer.CategoryComboRenderer;
 import renderer.ModelComboRenderer;
 import view.frame.MainFrame;
 
@@ -22,42 +38,97 @@ import view.frame.MainFrame;
 public class ShopPanel extends StylePanel {
 
     private MainFrame parent;
+    private String logFileName;
     
     public ShopPanel(MainFrame parent) {
         initComponents();
         setVisible(true);
         this.parent = parent;
+        
+        this.logFileName = "stock_movements.log";
     }
-
     
-    private void ConfirmAddStock()
+    /**
+     * Récupère les valeurs entrées par l'utilisateur et met à jour la quantité.
+     */
+    private void changeStock()
     {
-        
-       if (JOptionPane.showConfirmDialog(null,"Confirmer l'ajout au stock ??", "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+        if (JOptionPane.showConfirmDialog(null,"Confirmez-vous ?", "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
        {
-           
-       }
-       else
-       {
-           
+            int quantity = (int) this.crateNumberSpinner.getValue();
+            String model = ((Model) this.comboModel.getSelectedItem()).getName();
+            String category = ((Category) this.comboCategory.getSelectedItem()).getName();
+
+            ((StockTableModel) this.tabStock.getModel()).changeQuantity(model, category, quantity);  
+
+            // écriture dans l'historique
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String record = String.format("%s\t%s\t%s\t%d\n", dateFormat.format(date), model, category, quantity);
+            
+            this.writeHistory(record);
        }
     }
-   
-    private void ConfirmRemoveStock()
+    
+    
+    private void showHistory()
     {
+        FileInputStream fis = null;
+        try 
+        {
+            fis = new FileInputStream(this.logFileName);
+        } 
+        catch (FileNotFoundException ex) 
+        {
+            Logger.getLogger(ShopPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try 
+        {  
+            ObjectInputStream ois = new ObjectInputStream(fis);
+        } 
+        catch (IOException ex) 
+        {
+            Logger.getLogger(ShopPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-       if (JOptionPane.showConfirmDialog(null,"Confirmer le retrait du stock ??", "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-       {
-           
-       }
-       else
-       {
-           
-       }
+        
+    }
+    
+    
+    private void writeHistory(String record)
+    {
+        BufferedWriter writer = null;
+        try {
+            //create a temporary file
+            File logFile = new File(this.logFileName);
 
+            // This will output the full path where the file will be written to...
+            System.out.println(logFile.getCanonicalPath());
 
+            writer = new BufferedWriter(new FileWriter(logFile, true));
+            writer.write(record);
+          
+        } 
+        catch (Exception e) 
+        {
+            e.printStackTrace();
+        } 
+        finally 
+        {
+            try 
+            {
+                // Close the writer regardless of what happens...
+                writer.close();
+            } 
+            catch (Exception e) 
+            {
                 
+            }
+        }
     }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,11 +139,10 @@ public class ShopPanel extends StylePanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        comboCategory = new javax.swing.JComboBox<String>();
-        buttonAddStock = new javax.swing.JButton();
-        buttonRemoveStock = new javax.swing.JButton();
-        comboModel = new javax.swing.JComboBox<String>();
-        jSpinner1 = new javax.swing.JSpinner();
+        comboCategory = new javax.swing.JComboBox<Category>();
+        buttonOK = new javax.swing.JButton();
+        comboModel = new javax.swing.JComboBox<Model>();
+        crateNumberSpinner = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         buttonHistory = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -81,23 +151,18 @@ public class ShopPanel extends StylePanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Gestion du Stock");
 
-        comboCategory.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Categorie", "Petit", "Moyen", "Grand" }));
+        comboCategory.setModel(new CategoryComboModel());
+        comboCategory.setRenderer(new CategoryComboRenderer());
 
-        buttonAddStock.setText("Ajouter au Stock");
-        buttonAddStock.addActionListener(new java.awt.event.ActionListener() {
+        buttonOK.setText("Valider");
+        buttonOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAddStockActionPerformed(evt);
+                buttonOKActionPerformed(evt);
             }
         });
 
-        buttonRemoveStock.setText("Retirer du Stock");
-        buttonRemoveStock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRemoveStockActionPerformed(evt);
-            }
-        });
-
-        comboModel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "modèle", "modele 3", "modele 4", "modele 5", "modele 6", " " }));
+        comboModel.setModel(new ModelComboModel());
+        comboModel.setRenderer(new ModelComboRenderer());
         comboModel.setSelectedItem(new ModelComboModel());
 
         jLabel2.setText("Nombre de Caisses :");
@@ -119,29 +184,27 @@ public class ShopPanel extends StylePanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(comboModel, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(comboModel, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8)
-                                .addComponent(buttonAddStock)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonRemoveStock)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(crateNumberSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(buttonOK)
+                        .addGap(68, 68, 68)
+                        .addComponent(buttonHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(73, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -153,9 +216,8 @@ public class ShopPanel extends StylePanel {
                     .addComponent(comboModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonAddStock, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonRemoveStock, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(crateNumberSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
@@ -163,29 +225,25 @@ public class ShopPanel extends StylePanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonAddStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddStockActionPerformed
-        ConfirmAddStock(); 
-    }//GEN-LAST:event_buttonAddStockActionPerformed
-
-    private void buttonRemoveStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveStockActionPerformed
-        ConfirmRemoveStock();
-    }//GEN-LAST:event_buttonRemoveStockActionPerformed
+    private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
+        this.changeStock(); 
+    }//GEN-LAST:event_buttonOKActionPerformed
 
     private void buttonHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHistoryActionPerformed
-        ShopHistoryPopUpFrame.getInstance();
+//        ShopHistoryPopUpFrame.getInstance();
+        this.showHistory();
     }//GEN-LAST:event_buttonHistoryActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonAddStock;
     private javax.swing.JButton buttonHistory;
-    private javax.swing.JButton buttonRemoveStock;
-    private javax.swing.JComboBox<String> comboCategory;
-    private javax.swing.JComboBox<String> comboModel;
+    private javax.swing.JButton buttonOK;
+    private javax.swing.JComboBox<Category> comboCategory;
+    private javax.swing.JComboBox<Model> comboModel;
+    private javax.swing.JSpinner crateNumberSpinner;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable tabStock;
     // End of variables declaration//GEN-END:variables
 }

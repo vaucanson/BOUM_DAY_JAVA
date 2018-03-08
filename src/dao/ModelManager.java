@@ -21,7 +21,10 @@ public abstract class ModelManager
         
     }
     
-    
+    /**
+     * permet de retrouver un objet Model à partir de son nom, via une requête BDD
+     * @param name  est le nom de l'objet Model recherché
+     */
       public static Model getModel(String name)
     {
         Model mod = null;

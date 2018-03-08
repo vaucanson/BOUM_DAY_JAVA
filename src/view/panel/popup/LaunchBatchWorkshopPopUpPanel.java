@@ -9,6 +9,7 @@ import dao.BatchManager;
 import entity.Model;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import model.StockUnderLimitTableModel;
 import renderer.StockUnderLimitButtonRenderer;
 import view.frame.popup.LaunchBatchWorkshopPopUpFrame;
 import view.panel.StylePanel;
@@ -26,8 +27,12 @@ public class LaunchBatchWorkshopPopUpPanel extends StylePanel {
         this.initComponents();
         this.setVisible(true);
         this.parent = frame;
-        model = ((LaunchBatchWorkshopPopUpFrame) this.parent).getModel();
-        labModel.setText(model.getName());
+        
+        // permet de faire appel au modèle ciblé par la JTab dans la frame précédente
+        model = ((LaunchBatchWorkshopPopUpFrame) this.parent).getModel();       
+        
+        // renvoie le String donnant le nom du modèle ciblé
+        labModel.setText(model.getName());                     
     }
 
 
@@ -116,7 +121,10 @@ public class LaunchBatchWorkshopPopUpPanel extends StylePanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
-       if (JOptionPane.showConfirmDialog(null,"Annuler le lancement de lot ? ", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+      
+        // Demande de confirmation d'annulation pour éviter les fausses manipulations
+        
+        if (JOptionPane.showConfirmDialog(null,"Annuler le lancement de lot ? ", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
        {
           parent.dispose();
        }
@@ -129,16 +137,18 @@ public class LaunchBatchWorkshopPopUpPanel extends StylePanel {
 
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
        
-       if ((int)quantitySpinner.getValue() == 0)
+        
+       if ((int)quantitySpinner.getValue() == 0)        // permet d'informer l'utilisateur qu'il ne peut lancer un lot de 0 pièces
        {
            JOptionPane.showMessageDialog(null, "Veuillez saisir une quantité.");
        }
+       
+       //demande de confirmation pour éviter les erreurs de manipulation
        else if (JOptionPane.showConfirmDialog(null,"Lancer le lot ? ", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
        {
           BatchManager.init(model, (int)quantitySpinner.getValue());
           JOptionPane.showMessageDialog(null, "Un lot contenant " + quantitySpinner.getValue() + " pièces de modèle " + model.getName() + " a bien été lancé.");
-          parent.dispose();
-          
+          parent.dispose();         
        }
        else
        {

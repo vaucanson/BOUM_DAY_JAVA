@@ -2,17 +2,18 @@ package model;
 
 import dao.StockManager;
 import entity.Stock;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 import javax.swing.table.AbstractTableModel;
+import tool.CrateComparator;
 
 /**
- *
+ * Modèle pour table de caisse
  * @author boilleau
  */
-public class StockTableModel extends AbstractTableModel implements ListDataListener
+public class CrateTableModel extends AbstractTableModel implements ListDataListener
 {
     private List<Stock> stockList;  // la liste de stocks
     private List<String> columnNames; // la liste des noms de colonnes
@@ -20,12 +21,16 @@ public class StockTableModel extends AbstractTableModel implements ListDataListe
     /**
      * Constructeur
      */
-    public StockTableModel()
+    public CrateTableModel()
     {
         super();
         this.stockList = StockManager.getAllStocks();
         
+        // on trie par ordre alphabétique des noms de modèle, puis des noms de catégorie
+        Collections.sort(this.stockList, new CrateComparator());
+        
         this.columnNames = StockManager.colonnesStock();
+        
     }
     
     /**
@@ -47,6 +52,26 @@ public class StockTableModel extends AbstractTableModel implements ListDataListe
     {
         return this.columnNames.size();
     }
+    
+    /**
+     * Renvoie les classes des colonnes
+     * @params columnIndex l'index de la colonne voulue
+     * @return la classe de la colonne
+     */
+    @Override
+    public Class<?> getColumnClass(int columnIndex) 
+    {
+        Class clas = String.class;
+        switch (columnIndex)
+        {
+            case 2: clas = Integer.class;
+            break;
+            case 3: clas = Integer.class;
+            break;
+        }
+        return clas;
+    }
+        
 
     /**
      * Renvoie l'objet contenu à la case donnée
@@ -60,20 +85,17 @@ public class StockTableModel extends AbstractTableModel implements ListDataListe
         Stock stock = this.stockList.get(rowIndex);
         switch (columnIndex)
         {
-        case 0:
-                valeur = stock.getModel();
+            case 0:
+                valeur = stock.getModel().getName();
                 break;
-        case 1:
-                valeur = stock.getCategory();
+            case 1:
+                valeur = stock.getCategory().getName();
                 break;
-        case 2:
+            case 2:
                 valeur = stock.getQuantity();
                 break;
-        case 3:
+            case 3:
                 valeur = stock.getLimit();
-                break;
-        case 4:
-                valeur = stock.isLimitReached();
                 break;
         }
         return valeur;

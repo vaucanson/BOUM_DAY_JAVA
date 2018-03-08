@@ -32,7 +32,7 @@ public class StockUnderLimitButtonRenderer extends DefaultCellEditor{
     private Model model;
     private static LaunchBatchWorkshopPopUpFrame instance;
     
-    //TODO CONSTRUCTEUR REFUSE SANS LE CHECKBOX
+   
     public StockUnderLimitButtonRenderer(JCheckBox checkBox)
     {
         super(checkBox);
@@ -42,10 +42,7 @@ public class StockUnderLimitButtonRenderer extends DefaultCellEditor{
         
         button.setOpaque(true);
         
-        button.addActionListener(bListener);
-        
-        
-        
+        button.addActionListener(bListener);       
     }
     
     public Component getTableCellEditorComponent(JTable table, Object value,
@@ -57,7 +54,6 @@ public class StockUnderLimitButtonRenderer extends DefaultCellEditor{
         
         //On passe aussi le tableau pour des actions potentielles
         bListener.setTable(table);
-        
         
         return button;
     }
@@ -85,6 +81,7 @@ public class StockUnderLimitButtonRenderer extends DefaultCellEditor{
             nomModel =  (String) table.getModel().getValueAt(row, 0);
             model = ModelManager.getModel(nomModel);
             
+            // vérifie qu'un popup n'a pas deja été ouvert pour éviter les doublons
             if (instance == null || !instance.isVisible())
             {
                 synchronized (LaunchBatchWorkshopPopUpFrame.class)
@@ -92,7 +89,6 @@ public class StockUnderLimitButtonRenderer extends DefaultCellEditor{
                     if (instance == null || !instance.isVisible())
                     {
                         instance = new LaunchBatchWorkshopPopUpFrame(model);
-                        
                     }
                 }
             }

@@ -23,6 +23,12 @@ public abstract class CategoryManager {
         
     }
     
+    /**
+     *  permet de renvoyer un objet Category grace à une requete BDD à partir du nom
+     * @param name  est le nom de la catégorie recherchée
+     * @return      renvoie un objet Category
+     */
+    
     public static Category getCategory(String name)
     {
        Category myCat = null;
@@ -59,6 +65,9 @@ public abstract class CategoryManager {
         return myCat;
     }
     
+    /**
+     *  renvoie une ArrayList d'objets Category, à partir d'une requete BDD
+     */
     public static ArrayList<Category> load()
     {
         ArrayList<Category> cList = new ArrayList<>();

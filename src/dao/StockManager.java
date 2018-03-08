@@ -4,6 +4,7 @@ package dao;
 import entity.Category;
 import entity.Model;
 import entity.Stock;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -12,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import tool.Connexion;
 
 /**
@@ -25,6 +27,11 @@ public class StockManager {
         
     }
     
+    /*
+    *   cette fonction rempli une ArrayList d'objets Stock (pour la WorkShopPanel)
+    *   il fait appel à une fonction View (StockUnderLimit) de la base de donnée
+    *   si une quantité d'un modèle et d'une catégorie est en dessous du seuil limite, alors la colonne ISLIMITREACHED indique 1, sinon 0
+    */
     public static ArrayList<Stock> loadStockUnderLimit()
     {
         ArrayList<Stock> liste = new ArrayList<>();
@@ -75,6 +82,10 @@ public class StockManager {
         return liste;
     }
     
+    
+    /*
+        permet de remplir une ArrayList à partir des noms des colonnes la view StockUnderLimit (pour la WorkShopPanel)
+    */
     public static ArrayList<String> colonnesStock()
     {
         ArrayList<String> listStock = new ArrayList<String>();
@@ -123,9 +134,14 @@ public class StockManager {
         return listStock;
     }
     
+    
+    /*
+        cette fonction permet de renvoyer un nombre de pièces en stock pour un modèle donné et une catégorie donnée
+        @param model est le modèle ciblé par la ComboBox de la WorkShopPanel
+        @param category est la catégorie ciblée par la ComboBox de la WorkShopPanel
+    */
     public static int getQuantity(String model, String category)
-    {
-        
+    {        
         int quantity = 0;
         
         try
@@ -172,6 +188,11 @@ public class StockManager {
         return quantity;
     }
     
+    /*
+        cette fonction permet de renvoyer le seuil limite de pièces pour un modèle donné et une catégorie donnée
+        @param model est le modèle ciblé par la ComboBox de la WorkShopPanel
+        @param category est la catégorie ciblée par la ComboBox de la WorkShopPanel
+    */
     public static int getLimit(String model, String category)
     {
         
@@ -220,5 +241,60 @@ public class StockManager {
         
         return limit;
     }
+    
+    
+    public static void changeLimit(String model, String category, int limit)
+    {
+        try
+        {
+            Connection c = Connexion.getInstance("badaroux", "badaroux");
+            
+            try
+            {
+                CallableStatement cs = c.prepareCall("{?=call changeLimit (?,?,?,?)}");
+                
+                cs.setString(2, model);
+                cs.setString(3, category);
+                cs.setInt(4, limit);
+                
+                cs.registerOutParameter(1, java.sql.Types.INTEGER);
+                cs.registerOutParameter(5, java.sql.Types.VARCHAR);
+                
+                cs.execute();
+                
+                int ret = cs.getInt(1);
+                String msg = cs.getString(5);
+                
+                if (ret == 0)
+                {
+                    System.out.println(msg);
+                }
+                else
+                {
+    
+                }
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+                
+            } finally {
+                if (c != null) {
+                    try {
+                        c.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        
+                    }
+                }
+            }
+            
+        } catch (SQLException ex) {
+            
+        
+           ex.printStackTrace();
+            
+        }
+    }
+    
 }
 

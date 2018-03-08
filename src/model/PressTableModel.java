@@ -14,12 +14,12 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author badaroux
  */
-public class TablePressModel extends AbstractTableModel {
+public class PressTableModel extends AbstractTableModel {
 
-    private ArrayList<Press> pressList = PressManager.fillPressList();
+    private ArrayList<Press> pressList = PressManager.fillNonBusyPressList();
     private ArrayList<String> titlePressList = new ArrayList<>();
 
-    public TablePressModel() {
+    public PressTableModel() {
         titlePressList.add("Presse");
         titlePressList.add("Etat");
        

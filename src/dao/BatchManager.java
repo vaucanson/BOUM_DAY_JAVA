@@ -28,7 +28,7 @@ public class BatchManager {
         
     }
     
-    public static void init(Model model, int quantity)
+    public static void setStateOne(Model model, int quantity)
     {
         try
         {
@@ -36,7 +36,7 @@ public class BatchManager {
             
             try
             {
-                CallableStatement cs = c.prepareCall("{?=call initBatch (?,?,?)}");
+                CallableStatement cs = c.prepareCall("{?=call setBatchStateOne (?,?,?)}");
                 
                 cs.setInt(2, quantity);
                 cs.setString(3, model.getName());
@@ -80,7 +80,7 @@ public class BatchManager {
         }
     }
     
-    public static void end(Batch b)
+    public static void setStateThree(Batch b)
     {
         
         try {
@@ -88,7 +88,7 @@ public class BatchManager {
 
             try {
 
-                CallableStatement cs = c.prepareCall("{?=call endBatch (?, ?)}");
+                CallableStatement cs = c.prepareCall("{?=call setBatchStateThree (?, ?)}");
               
                 System.out.println(b.getId());
          
@@ -134,7 +134,7 @@ public class BatchManager {
         } 
     }
     
-    public static void start(Batch b,Press p)
+    public static void setStateTwo(Batch b,Press p)
     {
         
         try {
@@ -142,7 +142,7 @@ public class BatchManager {
 
             try {
 
-                CallableStatement cs = c.prepareCall("{?=call startBatch (?, ?, ?)}");
+                CallableStatement cs = c.prepareCall("{?=call setBatchStateTwo (?, ?, ?)}");
               
                 System.out.println(b.getId());
                 System.out.println(p.getId());
@@ -191,14 +191,14 @@ public class BatchManager {
         } 
     }
     
-    public static void stop (Press p)
+    public static void setStateFour (Press p)
     {
  try {
             Connection c = Connexion.getInstance("badaroux", "badaroux");
 
             try {
 
-                CallableStatement cs = c.prepareCall("{?=call stopBatch (?, ?)}");
+                CallableStatement cs = c.prepareCall("{?=call setBatchStateFour (?, ?)}");
               
                 cs.setInt(2, p.getId());
 

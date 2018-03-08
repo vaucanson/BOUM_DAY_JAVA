@@ -9,12 +9,12 @@ package view.panel;
  *
  * @author boilleau
  */
-public class ModelManagementPanel extends StylePanel {
+public class ApplicationModelManagementPanel extends StylePanel {
 
     /**
      * Creates new form ModelManagementPanel
      */
-    public ModelManagementPanel() {
+    public ApplicationModelManagementPanel() {
         initComponents();
     }
 

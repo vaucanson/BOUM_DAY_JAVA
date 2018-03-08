@@ -9,7 +9,7 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author boilleau
  */
-public class CrateTableBooleanRenderer implements TableCellRenderer
+public class StockTableBooleanRenderer implements TableCellRenderer
 {
 
     @Override

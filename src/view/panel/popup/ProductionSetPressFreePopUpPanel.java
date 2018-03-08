@@ -8,19 +8,19 @@ package view.panel.popup;
 import entity.Batch;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import model.FreePressTableModel;
+import model.PressNonBusyTableModel;
 import view.panel.StylePanel;
 
 /**
  *
  * @author badaroux
  */
-public class FreePressProductionPopUpPanel extends StylePanel {
+public class ProductionSetPressFreePopUpPanel extends StylePanel {
 
     private JFrame parent;
-    private FreePressTableModel fptm = new FreePressTableModel();
+    private PressNonBusyTableModel fptm = new PressNonBusyTableModel();
 
-    public FreePressProductionPopUpPanel(JFrame frame) {
+    public ProductionSetPressFreePopUpPanel(JFrame frame) {
         initComponents();
         this.setVisible(true);
         this.parent = frame;

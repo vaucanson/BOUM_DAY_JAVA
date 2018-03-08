@@ -7,23 +7,23 @@ package view.panel;
 
 import entity.Batch;
 import entity.Press;
-import view.frame.popup.FreePressProductionPopUpFrame;
+import view.frame.popup.ProductionSetPressFreePopUpFrame;
 import javax.swing.JOptionPane;
-import model.ListPressModel;
-import model.StartedBatchListModel;
+import model.PressListModel;
+import model.BatchStateTwoListModel;
 import view.frame.MainFrame;
 
 /**
  *
  * @author mattar
  */
-public class ProdPanel extends StylePanel {
+public class ProductionPanel extends StylePanel {
 
     private MainFrame parent;
-    private model.StartedBatchListModel sblm = new StartedBatchListModel();
-    private model.ListPressModel lpm = new ListPressModel();
+    private model.BatchStateTwoListModel sblm = new BatchStateTwoListModel();
+    private model.PressListModel lpm = new PressListModel();
 
-    public ProdPanel(MainFrame parent) {
+    public ProductionPanel(MainFrame parent) {
         initComponents();
         setVisible(true);
         this.parent = parent;
@@ -117,7 +117,7 @@ public class ProdPanel extends StylePanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonEndBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEndBatchActionPerformed
-        FreePressProductionPopUpFrame.getInstance();
+        ProductionSetPressFreePopUpFrame.getInstance();
 
 
     }//GEN-LAST:event_buttonEndBatchActionPerformed

@@ -8,7 +8,7 @@ package view.panel;
 import dao.PieceManager;
 import entity.Batch;
 import entity.Piece;
-import view.frame.popup.CancelControlerPopUpFrame;
+import view.frame.popup.ControlCancelPopUpFrame;
 import view.frame.MainFrame;
 
 /**
@@ -16,14 +16,14 @@ import view.frame.MainFrame;
  * @author badaroux
  */
 
-public class ControlerPanel extends StylePanel {
+public class ControlPanel extends StylePanel {
 
    private MainFrame parent;
    private Batch currentBatch;
 
 
    
-    public ControlerPanel(MainFrame frame) {
+    public ControlPanel(MainFrame frame) {
         initComponents();
         setVisible(true);
         this.parent = frame;
@@ -39,7 +39,7 @@ public class ControlerPanel extends StylePanel {
             labTitle.setText("Presse n°" + Integer.toString(currentBatch.getId()));   
             
          //   labBatchPiece.setText("Lot n°" + Integer.toString(dao.BatchManager.getOne(currentBatch).getId()));
-            564534
+         
         }
 
     }
@@ -225,7 +225,7 @@ public class ControlerPanel extends StylePanel {
     }//GEN-LAST:event_cbBrokenPieceActionPerformed
 
     private void buttonStopBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStopBatchActionPerformed
-        CancelControlerPopUpFrame.getInstance(dao.BatchManager.getOne(currentBatch));
+        ControlCancelPopUpFrame.getInstance(dao.BatchManager.getOne(currentBatch));
     }//GEN-LAST:event_buttonStopBatchActionPerformed
 
 

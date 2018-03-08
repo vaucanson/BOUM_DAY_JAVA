@@ -20,7 +20,7 @@ public class Stock {
     {
         this.category = category;
         this.model = model;
-        this.limit = limit;
+        setLimit(limit);
         this.quantity = quantity;
     }
    
@@ -46,5 +46,9 @@ public class Stock {
         return quantity;
     }
 
+    public void setLimit(int limit)
+    {
+        this.limit = limit;
+    }
     
 }

@@ -5,17 +5,37 @@
  */
 package view.panel;
 
+import dao.StockManager;
+import entity.Model;
+import javax.swing.JOptionPane;
+import model.ModelComboModel;
+import renderer.ModelComboRenderer;
+
 /**
  *
  * @author boilleau
  */
 public class LimitManagementPanel extends StylePanel{
 
+    private String nomModel;
+    
     /**
      * Creates new form LimitManagementPanel
      */
     public LimitManagementPanel() {
         initComponents();
+        
+        
+        // initialise les textfield
+        textSmall.setEditable(false);
+        textSmall.setText("Choisissez un modèle.");
+        
+        textMedium.setEditable(false);
+        textMedium.setText("Choisissez un modèle.");
+        
+        textBig.setEditable(false);
+        textBig.setText("Choisissez un modèle.");
+
     }
 
     /**
@@ -31,7 +51,7 @@ public class LimitManagementPanel extends StylePanel{
         labelSmall = new javax.swing.JLabel();
         labelMedium = new javax.swing.JLabel();
         labelBig = new javax.swing.JLabel();
-        comboModel = new javax.swing.JComboBox();
+        comboModel = new javax.swing.JComboBox<Model>();
         textSmall = new javax.swing.JTextField();
         textMedium = new javax.swing.JTextField();
         textBig = new javax.swing.JTextField();
@@ -45,15 +65,31 @@ public class LimitManagementPanel extends StylePanel{
 
         labelBig.setText("Grand");
 
-        comboModel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboModel.setModel(new ModelComboModel());
+        comboModel.setRenderer(new ModelComboRenderer());
+        comboModel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboModelActionPerformed(evt);
+            }
+        });
 
         textSmall.setText("<limite petit>");
+        textSmall.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textSmallActionPerformed(evt);
+            }
+        });
 
         textMedium.setText("<limite moyen>");
 
         textBig.setText("<limite grand>");
 
         buttonOK.setText("Modifier");
+        buttonOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOKActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -62,38 +98,40 @@ public class LimitManagementPanel extends StylePanel{
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(labelModelSelection)
-                        .addGap(138, 138, 138)
-                        .addComponent(comboModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(labelBig)
-                        .addGap(116, 116, 116)
-                        .addComponent(textBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelMedium)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(labelBig)
+                                .addGap(74, 74, 74)
+                                .addComponent(textBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelSmall)
-                                .addGap(94, 94, 94)
-                                .addComponent(textSmall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(161, 161, 161)
-                        .addComponent(buttonOK)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(labelMedium)
+                                        .addGap(74, 74, 74))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(labelSmall)
+                                        .addGap(84, 84, 84)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textSmall)
+                                    .addComponent(textMedium, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                                .addGap(171, 171, 171)
+                                .addComponent(buttonOK))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(labelModelSelection)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(comboModel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(270, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
+                .addGap(99, 99, 99)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelModelSelection)
                     .addComponent(comboModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(107, 107, 107)
+                .addGap(98, 98, 98)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSmall)
                     .addComponent(textSmall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -102,18 +140,69 @@ public class LimitManagementPanel extends StylePanel{
                     .addComponent(labelMedium)
                     .addComponent(textMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonOK))
-                .addGap(50, 50, 50)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelBig)
                     .addComponent(textBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void textSmallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSmallActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textSmallActionPerformed
+
+    private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
+        
+        // verifie l'état du bouton afin de lancer les commandes adéquates
+        if (buttonOK.getText().equalsIgnoreCase("Modifier"))
+        {
+            // active la modification des textfields et change le label du bouton
+            textSmall.setEditable(true);
+            textMedium.setEditable(true);
+            textBig.setEditable(true);
+            buttonOK.setText("Valider");
+        }
+        else
+        {
+            // si les informations entrées dans les textfileds sont valide (un entier positif)
+            if ((Integer.parseInt(textSmall.getText()) >= 0) && (Integer.parseInt(textMedium.getText()) >= 0) && (Integer.parseInt(textBig.getText()) >= 0))
+            {
+                // ferme la modification des textfield, change le label du bouton
+                
+                textSmall.setEditable(false);
+                textMedium.setEditable(false);
+                textBig.setEditable(false);
+                buttonOK.setText("Modifier");
+                
+                StockManager.changeLimit(nomModel, labelSmall.getText(), Integer.parseInt(textSmall.getText()));
+                StockManager.changeLimit(nomModel, labelMedium.getText(), Integer.parseInt(textMedium.getText()));
+                StockManager.changeLimit(nomModel, labelBig.getText(), Integer.parseInt(textBig.getText()));
+                
+                JOptionPane.showMessageDialog(null, "Le seuil a bien été mis à jour.");
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Erreur lors de la saisie. Les limites doivent des nombres entiers et positifs");
+            }
+
+        }
+    }//GEN-LAST:event_buttonOKActionPerformed
+
+    private void comboModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboModelActionPerformed
+        // permet de relever le String de l'objet Model ciblé par la ComboBox
+        Model mod = (Model) comboModel.getSelectedItem();
+        nomModel = mod.getName();
+        
+        textSmall.setText(Integer.toString(StockManager.getLimit(nomModel, labelSmall.getText())));
+        textMedium.setText(Integer.toString(StockManager.getLimit(nomModel, labelMedium.getText())));
+        textBig.setText(Integer.toString(StockManager.getLimit(nomModel, labelBig.getText())));
+    }//GEN-LAST:event_comboModelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonOK;
-    private javax.swing.JComboBox comboModel;
+    private javax.swing.JComboBox<Model> comboModel;
     private javax.swing.JLabel labelBig;
     private javax.swing.JLabel labelMedium;
     private javax.swing.JLabel labelModelSelection;

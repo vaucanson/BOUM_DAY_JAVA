@@ -14,10 +14,10 @@ import javax.swing.AbstractListModel;
  *
  * @author badaroux
  */
-public class ListBatchState2or3Model extends AbstractListModel<Batch> {
+public class BatchStateTwoOrThreeListModel extends AbstractListModel<Batch> {
     protected ArrayList<Batch> batchList;
 
-    public ListBatchState2or3Model() {
+    public BatchStateTwoOrThreeListModel() {
         
         batchList = BatchManager.fillListStopBatch();
 

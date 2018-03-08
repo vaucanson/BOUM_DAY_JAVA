@@ -7,25 +7,25 @@ package view.panel;
 
 import entity.Batch;
 import entity.Press;
-import model.ListBatchState2or3Model;
+import model.BatchStateTwoOrThreeListModel;
 import view.frame.MainFrame;
 
 /**
  *
  * @author badaroux
  */
-public class ChoosePressControlePanel extends StylePanel {
+public class ControlChoosePressPanel extends StylePanel {
 
     private MainFrame parent;
-    private ControlerPanel cp;
-    private ListBatchState2or3Model lbpm = new ListBatchState2or3Model();
+    private ControlPanel cp;
+    private BatchStateTwoOrThreeListModel lbpm = new BatchStateTwoOrThreeListModel();
 
     
-    public ChoosePressControlePanel(MainFrame parent) {
+    public ControlChoosePressPanel(MainFrame parent) {
         initComponents();
         setVisible(true);
         this.parent = parent;
-        cp = new ControlerPanel(parent);
+        cp = new ControlPanel(parent);
     }
 
     @SuppressWarnings("unchecked")

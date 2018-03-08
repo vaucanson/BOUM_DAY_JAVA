@@ -9,12 +9,12 @@ package view.panel;
  *
  * @author boilleau
  */
-public class PurgeManagementPanel extends StylePanel {
+public class ApplicationPurgeManagementPanel extends StylePanel {
 
     /**
      * Creates new form PurgePanel
      */
-    public PurgeManagementPanel() {
+    public ApplicationPurgeManagementPanel() {
         initComponents();
     }
 

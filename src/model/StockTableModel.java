@@ -7,13 +7,13 @@ import java.util.List;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 import javax.swing.table.AbstractTableModel;
-import tool.CrateComparator;
+import tool.StockComparator;
 
 /**
  * Modèle pour table de caisse
  * @author boilleau
  */
-public class CrateTableModel extends AbstractTableModel implements ListDataListener
+public class StockTableModel extends AbstractTableModel implements ListDataListener
 {
     private List<Stock> stockList;  // la liste de stocks
     private List<String> columnNames; // la liste des noms de colonnes
@@ -21,13 +21,13 @@ public class CrateTableModel extends AbstractTableModel implements ListDataListe
     /**
      * Constructeur
      */
-    public CrateTableModel()
+    public StockTableModel()
     {
         super();
         this.stockList = StockManager.getAllStocks();
         
         // on trie par ordre alphabétique des noms de modèle, puis des noms de catégorie
-        Collections.sort(this.stockList, new CrateComparator());
+        Collections.sort(this.stockList, new StockComparator());
         
         this.columnNames = StockManager.colonnesStock();
         

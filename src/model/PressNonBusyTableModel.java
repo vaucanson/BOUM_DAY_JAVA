@@ -7,20 +7,20 @@ import entity.Press;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-public class FreePressTableModel extends AbstractTableModel {
+public class PressNonBusyTableModel extends AbstractTableModel {
 
     ArrayList<String> columnName = new ArrayList<>();
     ArrayList<Press> pressList = PressManager.fillBusyPressList();
     ArrayList<Batch> batchList = BatchManager.fillListEndBatch();
 
-    public FreePressTableModel() {
+    public PressNonBusyTableModel() {
         columnName.add("Presse en cours d'utilisation");
         columnName.add("Lot en cours de production");
     }
 
     public void launch(Batch batch)
     {
-        dao.BatchManager.end(batch);
+        dao.BatchManager.setStateThree(batch);
         
         refresh();
         

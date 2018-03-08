@@ -15,14 +15,14 @@ import renderer.ModelComboRenderer;
  *
  * @author boilleau
  */
-public class LimitManagementPanel extends StylePanel{
+public class ApplicationLimitManagementPanel extends StylePanel{
 
     private String nomModel;
     
     /**
      * Creates new form LimitManagementPanel
      */
-    public LimitManagementPanel() {
+    public ApplicationLimitManagementPanel() {
         initComponents();
         
         

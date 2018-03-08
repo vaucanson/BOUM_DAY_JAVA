@@ -5,61 +5,65 @@
  */
 package view.frame.popup;
 
-import java.awt.GridLayout;
-import view.panel.popup.ShopHistoryPopUpPanel;
+import entity.Batch;
+import entity.Press;
+import view.panel.popup.ControlCancelPopUpPanel;
 
-/**
- *
- * @author mattar
- */
-public class ShopHistoryPopUpFrame extends StylePopUpFrame {
+public class ControlCancelPopUpFrame extends StylePopUpFrame {
 
-    private ShopHistoryPopUpPanel shpup;
-    private static ShopHistoryPopUpFrame instance;
-    
-    public ShopHistoryPopUpFrame() {
-        super();
-        shpup = new ShopHistoryPopUpPanel(this);
-        this.add(shpup);
-        
+   private ControlCancelPopUpPanel ccpup = new ControlCancelPopUpPanel(this);
+   private static ControlCancelPopUpFrame instance;
+   private Press press;
+
+   
+    private ControlCancelPopUpFrame(Press p) {
+       super();
+       add(ccpup);
+       press = p;
     }
-
-   public static ShopHistoryPopUpFrame getInstance()
+ 
+    public static ControlCancelPopUpFrame getInstance(Press p)
     {
+        
         if (instance == null || !instance.isVisible())
         {
-            synchronized (ShopHistoryPopUpFrame.class)
+            synchronized (ControlCancelPopUpFrame.class)
             {
                 if (instance == null || !instance.isVisible())
-                    instance = new ShopHistoryPopUpFrame();
+                    instance = new ControlCancelPopUpFrame(p);
             }
         } 
         return instance;
     }
+    
+    public  Press getPress() {
+    return press;
+    }
+
+    public void setPress(Press p) {
+        this.press = p;
+    }
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 828, Short.MAX_VALUE)
+            .addGap(0, 610, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 333, Short.MAX_VALUE)
+            .addGap(0, 273, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

@@ -205,7 +205,7 @@ public class WorkshopPanel extends StylePanel {
        //demande de confirmation pour éviter les erreurs de manipulation
        else if (JOptionPane.showConfirmDialog(null,"Lancer le lot ? ", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
        {
-          BatchManager.init(model, (int)quantitySpinner.getValue());
+          BatchManager.setStateOne(model, (int)quantitySpinner.getValue());
           JOptionPane.showMessageDialog(null, "Un lot contenant " + quantitySpinner.getValue() + " pièces de modèle " + model.getName() + " a bien été lancé.");         
        }
        else

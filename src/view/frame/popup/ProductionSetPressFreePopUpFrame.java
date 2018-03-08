@@ -1,32 +1,32 @@
 package view.frame.popup;
 
 import java.awt.GridLayout;
-import view.panel.popup.FreePressProductionPopUpPanel;
+import view.panel.popup.ProductionSetPressFreePopUpPanel;
 
 /**
  *
  * @author mattar
  */
-public class FreePressProductionPopUpFrame extends StylePopUpFrame {
+public class ProductionSetPressFreePopUpFrame extends StylePopUpFrame {
 
-    FreePressProductionPopUpPanel fpppu = new FreePressProductionPopUpPanel(this);
-    private static FreePressProductionPopUpFrame instance;
+    ProductionSetPressFreePopUpPanel fpppu = new ProductionSetPressFreePopUpPanel(this);
+    private static ProductionSetPressFreePopUpFrame instance;
     
-    private FreePressProductionPopUpFrame() {
+    private ProductionSetPressFreePopUpFrame() {
         super();
-        fpppu = new FreePressProductionPopUpPanel(this);
+        fpppu = new ProductionSetPressFreePopUpPanel(this);
         this.add(fpppu);
        
     }
 
-    public static FreePressProductionPopUpFrame getInstance()
+    public static ProductionSetPressFreePopUpFrame getInstance()
     {
         if (instance == null || !instance.isVisible())
         {
-            synchronized (FreePressProductionPopUpFrame.class)
+            synchronized (ProductionSetPressFreePopUpFrame.class)
             {
                 if (instance == null || !instance.isVisible())
-                    instance = new FreePressProductionPopUpFrame();
+                    instance = new ProductionSetPressFreePopUpFrame();
             }
         } 
         return instance;
@@ -34,8 +34,6 @@ public class FreePressProductionPopUpFrame extends StylePopUpFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

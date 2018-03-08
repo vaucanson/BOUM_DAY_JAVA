@@ -12,11 +12,11 @@ import view.panel.StylePanel;
  *
  * @author badaroux
  */
-public class ValidationControlerPopUpPanel extends StylePanel {
+public class ControlValidationPopUpPanel extends StylePanel {
 
     private JFrame parent;
     
-    public ValidationControlerPopUpPanel(JFrame frame) {
+    public ControlValidationPopUpPanel(JFrame frame) {
         initComponents();
        this.setVisible(true);
         this.parent = frame;

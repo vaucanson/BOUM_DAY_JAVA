@@ -8,7 +8,7 @@ import java.util.Comparator;
  * On teste l'ordre alphabétique des noms de modèle, et en cas d'égalité l'ordre alphabétique des noms de catégorie. 
  * @author boilleau
  */
-public class CrateComparator implements Comparator<Stock>
+public class StockComparator implements Comparator<Stock>
 {
 
     @Override

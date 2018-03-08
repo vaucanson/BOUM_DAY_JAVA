@@ -14,10 +14,10 @@ import javax.swing.AbstractListModel;
  *
  * @author badaroux
  */
-public class ListBusyPressModel extends AbstractListModel<Press> {
+public class PressBusyListModel extends AbstractListModel<Press> {
     protected ArrayList<Press> pressList;
 
-    public ListBusyPressModel() {
+    public PressBusyListModel() {
         pressList = PressManager.fillBusyPressList();
 
     }  

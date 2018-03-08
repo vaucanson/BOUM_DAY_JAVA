@@ -1,25 +1,22 @@
-package model;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package model;
 
 import dao.BatchManager;
 import entity.Batch;
-import entity.Press;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
 
-public class StartedBatchListModel extends AbstractListModel<Batch> {
+public class BatchListModel extends AbstractListModel<Batch> {
     private ArrayList<Batch> bList;
     
-    public StartedBatchListModel()
+    public BatchListModel()
     {
-        bList = BatchManager.fillListStartBatch();
+        bList = BatchManager.fillList();
     }
 
     @Override
@@ -32,12 +29,7 @@ public class StartedBatchListModel extends AbstractListModel<Batch> {
         return bList.get(index);
     }
     
-    public void launch(Batch batch, Press press)
-    {
-        dao.BatchManager.start(batch, press);   
-        bList.remove(batch);
-        fireIntervalAdded(bList, bList.size() - 1, bList.size() - 1);
-    }
+    
     
     public void add(Batch p)
     {

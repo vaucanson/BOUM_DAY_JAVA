@@ -10,7 +10,7 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author boilleau
  */
-public class CrateTableIntegerRenderer implements TableCellRenderer
+public class StockTableIntegerRenderer implements TableCellRenderer
 {
 
     @Override

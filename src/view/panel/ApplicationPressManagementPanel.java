@@ -7,17 +7,17 @@ package view.panel;
 
 import entity.Press;
 import javax.swing.JOptionPane;
-import model.ListPressModel;
+import model.PressListModel;
 
 /**
  *
  * @author boilleau
  */
-public class PressManagementPanel extends StylePanel {
+public class ApplicationPressManagementPanel extends StylePanel {
 
-    private model.ListPressModel lpm = new ListPressModel();
+    private model.PressListModel lpm = new PressListModel();
 
-    public PressManagementPanel() {
+    public ApplicationPressManagementPanel() {
         initComponents();
     }
 

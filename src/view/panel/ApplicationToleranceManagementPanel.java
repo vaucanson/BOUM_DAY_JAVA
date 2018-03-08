@@ -9,12 +9,12 @@ package view.panel;
  *
  * @author boilleau
  */
-public class ToleranceManagementPanel extends StylePanel {
+public class ApplicationToleranceManagementPanel extends StylePanel {
 
     /**
      * Creates new form TolerancePanel
      */
-    public ToleranceManagementPanel() {
+    public ApplicationToleranceManagementPanel() {
         initComponents();
     }
 

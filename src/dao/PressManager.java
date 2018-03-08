@@ -5,12 +5,9 @@
  */
 package dao;
 
-import entity.Batch;
-import entity.Model;
 import entity.Press;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,7 +25,7 @@ public class PressManager {
     public PressManager() {
     }
 
-    public static ArrayList<Press> fillPressList() {
+    public static ArrayList<Press> fillNonBusyPressList() {
         ArrayList<Press> pressList = new ArrayList<>();
         try {
 
@@ -36,7 +33,7 @@ public class PressManager {
 
             try {
                 Statement st = c.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM freePresses");
+                ResultSet rs = st.executeQuery("SELECT * FROM nonBusyPresses");
 
                 while (rs.next()) {
 

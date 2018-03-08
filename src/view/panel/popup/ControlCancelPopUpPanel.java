@@ -6,19 +6,19 @@
 package view.panel.popup;
 
 import javax.swing.JFrame;
-import view.frame.popup.CancelControlerPopUpFrame;
+import view.frame.popup.ControlCancelPopUpFrame;
 import view.panel.StylePanel;
 
 /**
  *
  * @author badaroux
  */
-public class CancelControlerPopUpPanel extends StylePanel {
+public class ControlCancelPopUpPanel extends StylePanel {
 
     
     private JFrame parent;
     
-    public CancelControlerPopUpPanel(JFrame frame) {
+    public ControlCancelPopUpPanel(JFrame frame) {
         initComponents();
         parent = frame;
         setVisible(true);
@@ -87,8 +87,9 @@ public class CancelControlerPopUpPanel extends StylePanel {
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
-        dao.BatchManager.stop(((CancelControlerPopUpFrame) parent).getPress());
-        System.err.println(((CancelControlerPopUpFrame) parent).getPress().getId());
+       
+        dao.BatchManager.setStateFour(((ControlCancelPopUpFrame) parent).getPress());
+        System.out.println(((ControlCancelPopUpFrame) parent).getPress().getId());
         parent.dispose();
     }//GEN-LAST:event_buttonValidateActionPerformed
 

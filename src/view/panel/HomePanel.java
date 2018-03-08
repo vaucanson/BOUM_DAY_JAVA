@@ -18,11 +18,11 @@ public class HomePanel extends StylePanel {
      * Creates new form homeScreen
      */
     private MainFrame parent;
-    private ChoosePressControlePanel cpcp;
+    private ControlChoosePressPanel cpcp;
     private WorkshopPanel wp;
-    private ApplicationHeadOfPanel ahop;
+    private ApplicationPanel ahop;
     private ShopPanel sp;
-    private ProdPanel pp;
+    private ProductionPanel pp;
         private boolean isApplicationHeadOf;
     private boolean isProductionHeadOf;
     private boolean isWorkshopHeadOf;
@@ -175,7 +175,7 @@ public class HomePanel extends StylePanel {
         try {
              switch (tfIdentificationName.getText()) {
             case "c":
-            cpcp = new ChoosePressControlePanel(parent);
+            cpcp = new ControlChoosePressPanel(parent);
             parent.changePanel(cpcp);
             break;
             case "w":
@@ -183,7 +183,7 @@ public class HomePanel extends StylePanel {
             parent.changePanel(wp);
             break;
             case "a":
-            ahop = new ApplicationHeadOfPanel();
+            ahop = new ApplicationPanel();
             parent.changePanel(ahop);
             break;
             case "s":
@@ -191,7 +191,7 @@ public class HomePanel extends StylePanel {
             parent.changePanel(sp);
             break;
             case "p":
-            pp = new ProdPanel(parent);
+            pp = new ProductionPanel(parent);
             parent.changePanel(pp);
             break;
             }

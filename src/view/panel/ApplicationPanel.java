@@ -9,12 +9,12 @@ package view.panel;
  *
  * @author boilleau
  */
-public class ApplicationHeadOfPanel extends StylePanel {
+public class ApplicationPanel extends StylePanel {
 
     /**
      * Creates new form ApplicationHeadOfPanel
      */
-    public ApplicationHeadOfPanel() {
+    public ApplicationPanel() {
         initComponents();
         this.initTabs();
     }
@@ -24,11 +24,11 @@ public class ApplicationHeadOfPanel extends StylePanel {
      */
     private void initTabs()
     {
-        this.panelTabbed.addTab("Gestion des modèles", new ModelManagementPanel());
-        this.panelTabbed.addTab("Gestion des presses", new PressManagementPanel());
-        this.panelTabbed.addTab("Gestion des purges", new PurgeManagementPanel());
-        this.panelTabbed.addTab("Gestion des seuils", new LimitManagementPanel());
-        this.panelTabbed.addTab("Gestion des intervalles de tolérance", new ToleranceManagementPanel());
+        this.panelTabbed.addTab("Gestion des modèles", new ApplicationModelManagementPanel());
+        this.panelTabbed.addTab("Gestion des presses", new ApplicationPressManagementPanel());
+        this.panelTabbed.addTab("Gestion des purges", new ApplicationPurgeManagementPanel());
+        this.panelTabbed.addTab("Gestion des seuils", new ApplicationLimitManagementPanel());
+        this.panelTabbed.addTab("Gestion des intervalles de tolérance", new ApplicationToleranceManagementPanel());
     }
 
     /**

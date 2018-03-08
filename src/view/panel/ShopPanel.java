@@ -7,10 +7,10 @@ package view.panel;
 
 import view.frame.popup.ShopHistoryPopUpFrame;
 import javax.swing.JOptionPane;
-import model.CrateTableModel;
+import model.StockTableModel;
 import model.ModelComboModel;
-import renderer.CrateTableBooleanRenderer;
-import renderer.CrateTableIntegerRenderer;
+import renderer.StockTableBooleanRenderer;
+import renderer.StockTableIntegerRenderer;
 import renderer.CrateTableStringRenderer;
 import renderer.ModelComboRenderer;
 import view.frame.MainFrame;
@@ -109,10 +109,10 @@ public class ShopPanel extends StylePanel {
             }
         });
 
-        tabStock.setModel(new model.CrateTableModel());
+        tabStock.setModel(new model.StockTableModel());
         tabStock.setDefaultRenderer(String.class, new renderer.CrateTableStringRenderer());
-        tabStock.setDefaultRenderer(Boolean.class, new renderer.CrateTableBooleanRenderer());
-        tabStock.setDefaultRenderer(Integer.class, new renderer.CrateTableIntegerRenderer());
+        tabStock.setDefaultRenderer(Boolean.class, new renderer.StockTableBooleanRenderer());
+        tabStock.setDefaultRenderer(Integer.class, new renderer.StockTableIntegerRenderer());
         jScrollPane1.setViewportView(tabStock);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

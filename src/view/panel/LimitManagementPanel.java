@@ -154,38 +154,44 @@ public class LimitManagementPanel extends StylePanel{
 
     private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
         
-        // verifie l'état du bouton afin de lancer les commandes adéquates
-        if (buttonOK.getText().equalsIgnoreCase("Modifier"))
+        if (comboModel.getSelectedIndex() == -1)
         {
-            // active la modification des textfields et change le label du bouton
-            textSmall.setEditable(true);
-            textMedium.setEditable(true);
-            textBig.setEditable(true);
-            buttonOK.setText("Valider");
+            JOptionPane.showMessageDialog(this, "Veuillez choisir un modèle.");
         }
         else
-        {
-            // si les informations entrées dans les textfileds sont valide (un entier positif)
-            if ((Integer.parseInt(textSmall.getText()) >= 0) && (Integer.parseInt(textMedium.getText()) >= 0) && (Integer.parseInt(textBig.getText()) >= 0))
             {
-                // ferme la modification des textfield, change le label du bouton
-                
-                textSmall.setEditable(false);
-                textMedium.setEditable(false);
-                textBig.setEditable(false);
-                buttonOK.setText("Modifier");
-                
-                StockManager.changeLimit(nomModel, labelSmall.getText(), Integer.parseInt(textSmall.getText()));
-                StockManager.changeLimit(nomModel, labelMedium.getText(), Integer.parseInt(textMedium.getText()));
-                StockManager.changeLimit(nomModel, labelBig.getText(), Integer.parseInt(textBig.getText()));
-                
-                JOptionPane.showMessageDialog(null, "Le seuil a bien été mis à jour.");
+            // verifie l'état du bouton afin de lancer les commandes adéquates
+            if (buttonOK.getText().equalsIgnoreCase("Modifier"))
+            {
+                // active la modification des textfields et change le label du bouton
+                textSmall.setEditable(true);
+                textMedium.setEditable(true);
+                textBig.setEditable(true);
+                buttonOK.setText("Valider");
             }
             else
             {
-                JOptionPane.showMessageDialog(null, "Erreur lors de la saisie. Les limites doivent des nombres entiers et positifs");
-            }
+                // si les informations entrées dans les textfileds sont valide (un entier positif)
+                if ((Integer.parseInt(textSmall.getText()) >= 0) && (Integer.parseInt(textMedium.getText()) >= 0) && (Integer.parseInt(textBig.getText()) >= 0))
+                {
+                    // ferme la modification des textfield, change le label du bouton
 
+                    textSmall.setEditable(false);
+                    textMedium.setEditable(false);
+                    textBig.setEditable(false);
+                    buttonOK.setText("Modifier");
+
+                    StockManager.changeLimit(nomModel, labelSmall.getText(), Integer.parseInt(textSmall.getText()));
+                    StockManager.changeLimit(nomModel, labelMedium.getText(), Integer.parseInt(textMedium.getText()));
+                    StockManager.changeLimit(nomModel, labelBig.getText(), Integer.parseInt(textBig.getText()));
+
+                    JOptionPane.showMessageDialog(null, "Le seuil a bien été mis à jour.");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Erreur lors de la saisie. Les limites doivent des nombres entiers et positifs");
+                }
+            }
         }
     }//GEN-LAST:event_buttonOKActionPerformed
 

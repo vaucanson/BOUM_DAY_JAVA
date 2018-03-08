@@ -39,7 +39,7 @@ public class ControlerPanel extends StylePanel {
             labTitle.setText("Presse n°" + Integer.toString(currentBatch.getId()));   
             
          //   labBatchPiece.setText("Lot n°" + Integer.toString(dao.BatchManager.getOne(currentBatch).getId()));
-            564534
+           
         }
 
     }

@@ -39,11 +39,7 @@ public class ControlPanel extends StylePanel {
             labTitle.setText("Presse n°" + Integer.toString(currentBatch.getId()));   
             
          //   labBatchPiece.setText("Lot n°" + Integer.toString(dao.BatchManager.getOne(currentBatch).getId()));
-<<<<<<< HEAD:src/view/panel/ControlerPanel.java
-           
-=======
-         
->>>>>>> master:src/view/panel/ControlPanel.java
+
         }
 
     }

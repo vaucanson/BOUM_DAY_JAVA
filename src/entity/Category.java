@@ -40,5 +40,14 @@ public class Category {
         this.maxTolerance = max;
     }
     
+    public float getMinTolerance()
+    {
+        return minTolerance;
+    }
+    
+    public float getMaxTolerance()
+    {
+        return maxTolerance;
+    }
     
 }

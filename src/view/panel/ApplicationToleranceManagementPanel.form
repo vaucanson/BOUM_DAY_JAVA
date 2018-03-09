@@ -16,51 +16,55 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labelMedium" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelSmall" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textLittleMin" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="textMediumMin" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="labelBig" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-                      <Component id="textBigMin" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="textBigMax" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="buttonChangeBig" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="textMediumMax" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="158" max="32767" attributes="0"/>
-                      <Component id="buttonChangeMedium" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="textLittleMax" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="buttonChangeLittle" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="labelPresentation" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="285" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="227" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="labelPresentation" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="labMinTolerance" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="labMaxTolerance" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="labelSmall" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelMedium" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="labelBig" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="98" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="textMediumMin" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="textLittleMin" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Component id="textBigMin" min="-2" pref="60" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="textBigMax" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="textMediumMax" alignment="1" pref="60" max="32767" attributes="0"/>
+                              <Component id="textLittleMax" alignment="1" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="buttonChangeMedium" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonChangeLittle" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonChangeBig" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,27 +73,24 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
               <Component id="labelPresentation" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
-              <Component id="labelSmall" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labMinTolerance" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labMaxTolerance" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="textLittleMin" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="textLittleMax" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonChangeLittle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelSmall" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="labelMedium" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="textMediumMin" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textMediumMax" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonChangeMedium" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="textMediumMin" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textMediumMax" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonChangeMedium" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelMedium" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="44" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -98,7 +99,7 @@
                   <Component id="textBigMax" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonChangeBig" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -125,48 +126,59 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textLittleMin">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="min petit"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textLittleMinActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="textLittleMin.setText(Float.toString(smallTolerance[1]));"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="textMediumMin">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="min moyen"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textBigMin">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="min grand"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textLittleMax">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="max petit"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textLittleMaxActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="textMediumMax">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="max moyen"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textBigMax">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="max grand"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="buttonChangeLittle">
       <Properties>
-        <Property name="text" type="java.lang.String" value="modifier"/>
+        <Property name="text" type="java.lang.String" value="Modifier"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonChangeLittleActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonChangeMedium">
       <Properties>
-        <Property name="text" type="java.lang.String" value="modifier"/>
+        <Property name="text" type="java.lang.String" value="Modifier"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonChangeMediumActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonChangeBig">
       <Properties>
-        <Property name="text" type="java.lang.String" value="modifier"/>
+        <Property name="text" type="java.lang.String" value="Modifier"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonChangeBigActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labMinTolerance">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tol&#xe9;rance Minimale"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labMaxTolerance">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tol&#xe9;rance Maximale"/>
       </Properties>
     </Component>
   </SubComponents>

@@ -27,17 +27,7 @@ public class ControlPanel extends StylePanel {
 
     }
 
-<<<<<<< HEAD
-    public void initControl()
-    {
-        if (parent.getCurrentPress() != null)
-        {
-            setCurrentPress(parent.getCurrentPress());
-            labTitle.setText("Presse n°" + Integer.toString(currentBatch.getId()));   
-            
-         //   labBatchPiece.setText("Lot n°" + Integer.toString(dao.BatchManager.getOne(currentBatch).getId()));
-
-=======
+    
     public void initControl() {
         if (parent.getCurrentBatch() != null) {
             setCurrentBatch(parent.getCurrentBatch());
@@ -46,7 +36,7 @@ public class ControlPanel extends StylePanel {
             labBatchPiece.setText("Presse n°" + Integer.toString(dao.PressManager.getOne(currentBatch).getId()));
             labModel.setText("Modèle de pièce : " + currentBatch.getModel());
             setProgression();
->>>>>>> master
+
         }
     }
 

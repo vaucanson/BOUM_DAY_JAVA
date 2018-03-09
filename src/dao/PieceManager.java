@@ -6,8 +6,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import tool.Connexion;
 
 /**
@@ -17,43 +15,62 @@ public abstract class PieceManager {
     
     /**
      * Ajoute la pièce donnée dans la base de données
+     * @param ht
+     * @param hl
+     * @param bt
+     * @param bl
+     * @param batchId
      */
-    public static void insert(Piece piece)
+    public static void create(float ht, float hl, float bt, float bl, int batchId)
     {
-        
+        String msg = "";
         try {
-            Connection c = Connexion.getInstance("boilleau", "boilleau");
-            String outMessage = "";
-            int newId = 0;
-            CallableStatement myStatement = c.prepareCall("{call setDimensions(?, ?, ?, ?, ?, ?, ?)}");
-//            myStatement.setFloat(1, piece.getHt());
-//            myStatement.setFloat(2, piece.getHl());
-//            myStatement.setFloat(3, piece.getBt());
-//            myStatement.setFloat(4, piece.getBl());
-//            myStatement.setInt(5, piece.getBatch());
-//            myStatement.registerOutParameter(6, java.sql.Types.VARCHAR);
-//            myStatement.registerOutParameter(7, java.sql.Types.INTEGER);
-            
-            // à enlever, c'est une pièce de test
-            myStatement.setFloat(1, 5);
-            myStatement.setFloat(2, 5);
-            myStatement.setFloat(3, 5);
-            myStatement.setFloat(4, 5);
-            myStatement.setInt(5, 1);
-            myStatement.registerOutParameter(6, java.sql.Types.VARCHAR);
-            myStatement.registerOutParameter(7, java.sql.Types.INTEGER);
-         
-            myStatement.executeUpdate();
-            
-            System.out.println(myStatement.getInt(6) + "  id : " + myStatement.getString(7));
+            Connection c = Connexion.getInstance("badaroux", "badaroux");
 
-        } 
-        catch (SQLException ex) 
-        {
+            try {
+
+                CallableStatement cs = c.prepareCall("{?=call createPiece (?, ?, ?, ?, ?, ?)}");
+
+                cs.registerOutParameter(1, java.sql.Types.INTEGER);
+                cs.registerOutParameter(7, java.sql.Types.VARCHAR);
+                cs.setFloat(2, ht);
+                cs.setFloat(3, hl);
+                cs.setFloat(4, bt);
+                cs.setFloat(5, bl);
+                cs.setInt(6, batchId);
+                cs.setString(7, msg);
+
+                cs.execute();
+
+                int resultat = cs.getInt(1);
+
+                if (resultat == 0) {
+                    System.out.println(cs.getString(7));
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            } finally {
+                if (c != null) {
+                    try {
+                        c.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+
+                    }
+                }
+            }
+
+        } catch (SQLException ex) {
+
             ex.printStackTrace();
+
         }
          
     }
+    
+    
     
     /**
      * Instancie un objet Pièce d'après ses infos en bdd

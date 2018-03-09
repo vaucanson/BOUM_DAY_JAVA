@@ -5,6 +5,7 @@
  */
 package dao;
 
+import entity.Batch;
 import entity.Press;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -189,4 +190,52 @@ public class PressManager {
         return ret;
     }
 
+    public static Press getOne(Batch batch)
+    {
+        Press press = null;
+       
+                try
+            {
+
+                Connection c;
+                c = Connexion.getInstance("badaroux", "badaroux");
+
+                try
+                {
+                    Statement st = c.createStatement();
+
+                    ResultSet rs = st.executeQuery("SELECT press.id FROM PRESS JOIN BATCH on batch.press = press.id WHERE batch.id ='" + batch.getId() +"'");
+
+                    if (rs.next())
+                    {
+                        press = new Press(rs.getShort(1));  
+                    }
+
+                    st.close();
+                }
+                catch(Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+                finally
+                {
+                    try
+                    {
+                        c.close();
+                    }
+                    catch(SQLException ex)
+                    {
+                        ex.printStackTrace();
+                    }
+                }
+
+            }
+            catch(SQLException ex)
+            {
+
+                ex.printStackTrace();
+            }
+
+            return press;
+    }
 }

@@ -27,7 +27,7 @@ public class StylePopUpFrame extends javax.swing.JFrame {
     {
         if (instance == null || !instance.isVisible())
         {
-            synchronized (ControlValidationPopUpFrame.class)
+            synchronized (StylePopUpFrame.class)
             {
                 if (instance == null || !instance.isVisible())
                     instance = new StylePopUpFrame();

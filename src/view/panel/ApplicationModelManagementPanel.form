@@ -24,7 +24,7 @@
                   <Component id="buttonRemove" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonAdd" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="167" max="32767" attributes="0"/>
+              <EmptySpace pref="225" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="labelNewModel" min="-2" max="-2" attributes="0"/>
@@ -41,11 +41,11 @@
                                               <Component id="labelDiametre" min="-2" max="-2" attributes="0"/>
                                               <Component id="labelName" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="labelSmall" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" attributes="0">
@@ -53,15 +53,14 @@
                                           <Component id="labelMedium" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelBig" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="textBig" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textMedium" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textSmall" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textName" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textDiametre" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="textDiametre" max="32767" attributes="0"/>
+                                  <Component id="textName" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="textSmall" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="textMedium" alignment="1" min="-2" pref="45" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -71,8 +70,16 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="buttonOK" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="textBig" min="-2" pref="45" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="buttonOK" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -139,16 +146,13 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="listModel">
           <Properties>
-            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-                <StringItem index="4" value="Item 5"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new ModelListModel()" type="code"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="listModel.setCellRenderer(new ModelListRenderer());"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -198,34 +202,22 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textName">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;nom&gt;"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textDiametre">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;diam&#xe8;tre&gt;"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textSmall">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;petit&gt;"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textMedium">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;moyen&gt;"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textBig">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;grand&gt;"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="buttonOK">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ajouter mod&#xe8;le"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonOKActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

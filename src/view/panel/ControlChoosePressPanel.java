@@ -7,6 +7,7 @@ package view.panel;
 
 import entity.Batch;
 import entity.Press;
+import javax.swing.JOptionPane;
 import model.BatchStateTwoOrThreeListModel;
 import view.frame.MainFrame;
 
@@ -88,12 +89,16 @@ public class ControlChoosePressPanel extends StylePanel {
 
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
         
-        
-        parent.setCurrentPress((Batch) listBatch.getSelectedValue());
-        parent.changePanel(cp);
-        cp.initControl();
-        
-        
+        if (listBatch.getSelectedValue() != null)
+        {
+            parent.setCurrentBatch((Batch) listBatch.getSelectedValue());
+            parent.changePanel(cp);
+            cp.initControl();
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Veuillez selectionner un lot");
+        }  
     }//GEN-LAST:event_buttonValidateActionPerformed
 
 

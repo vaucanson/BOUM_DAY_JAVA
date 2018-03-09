@@ -36,6 +36,8 @@ public class BatchStateTwoListModel extends AbstractListModel<Batch> {
     {
         dao.BatchManager.setStateTwo(batch, press);   
         bList.remove(batch);
+
+        //TODO NE MARCHE PAS AVEC> UN SUEL
         fireIntervalAdded(bList, bList.size() - 1, bList.size() - 1);
     }
     

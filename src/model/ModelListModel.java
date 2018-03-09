@@ -28,5 +28,14 @@ public class ModelListModel extends AbstractListModel<Model> {
         return mList.get(index);
     }
    
-    
+    /**
+     * Ajoute un modèle à la liste et le crée en bdd
+     * @param model 
+     */
+    public void addModel(Model model)
+    {
+        this.mList.add(model);
+        this.fireIntervalAdded(this, 0, this.mList.size());
+        ModelManager.add(model);
+    }
 }

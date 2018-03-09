@@ -34,11 +34,11 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     
-    public Batch getCurrentPress() {
+    public Batch getCurrentBatch() {
     return currentBatch;
 }
 
-    public void setCurrentPress(Batch batch) {
+    public void setCurrentBatch(Batch batch) {
         this.currentBatch = batch;
     }
 

@@ -11,12 +11,47 @@ public class Piece {
     private float bt; // le diamètre bas transversal
     private float bl; // le diamètre bas longitudinal
     private int batch;  // le lot auquel la pièce appartient
+    private boolean broken;
 
+
+
+    
+     public Piece(float ht, float hl, float bt, float bl, int batch)
+    {
+        this.setHt(ht);
+        this.setHl(hl);
+        this.setBt(bt);
+        this.setBl(bl);
+        this.setBatch(batch);
+        
+        if ((ht != 0) && (hl !=0) && (bt != 0) && (bl != 0))
+        {
+            setBroken(false);
+        }
+        else
+        {
+            setBroken(true);
+        }
+    }
+     
+    
+    
+    public boolean isBroken() {
+    return broken;
+    }
+
+    public void setBroken(boolean broken) {
+        this.broken = broken;
+    }
+    
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
+        
+       //TODO VERIFICATION
+        
         this.id = id;
     }
 
@@ -57,19 +92,9 @@ public class Piece {
     }
 
     public void setBatch(int batch) {
-//        this.batch = batch;
-        // TODO
+       this.batch = batch;
+        
     }
     
-    /**
-     * Constructeur
-     */
-        public Piece(float ht, float hl, float bt, float bl, int batch)
-    {
-        this.setHt(ht);
-        this.setHl(hl);
-        this.setBt(bt);
-        this.setBl(bl);
-        this.setBatch(batch);
-    }
+       
 }

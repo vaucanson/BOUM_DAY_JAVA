@@ -346,5 +346,57 @@ public class StockManager {
         }
     }
     
+    
+    /**
+     * Modifie la quantité d'un stock en base de données
+     * @param model
+     * @param category
+     * @param quantity 
+     */
+    public static void changeQuantity(String model, String category, int quantity)
+    {
+        try
+        {
+            Connection c = Connexion.getInstance("badaroux", "badaroux");
+            
+            try
+            {
+                CallableStatement cs = c.prepareCall("{?=call addCrate (?,?,?,?)}");
+                
+                cs.setString(2, category);
+                cs.setString(3, model);
+                cs.setInt(4, quantity);
+                
+                cs.registerOutParameter(1, java.sql.Types.INTEGER);
+                cs.registerOutParameter(5, java.sql.Types.VARCHAR);
+                
+                cs.execute();
+                
+                int ret = cs.getInt(1);
+                String msg = cs.getString(5);
+                
+                if (ret == 0)
+                {
+                    System.out.println(msg);
+                }
+            } 
+            catch (Exception e) 
+            {
+                e.printStackTrace();
+            } 
+            finally {
+                if (c != null) {
+                    try {
+                        c.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+           ex.printStackTrace();
+        }
+    }
+    
 }
 

@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 import tool.Connexion;
 
 /**
@@ -191,7 +190,7 @@ public class BatchManager {
         } 
     }
     
-    public static void setStateFour (Press p)
+    public static void setStateFour (Batch b)
     {
  try {
             Connection c = Connexion.getInstance("badaroux", "badaroux");
@@ -200,7 +199,7 @@ public class BatchManager {
 
                 CallableStatement cs = c.prepareCall("{?=call setBatchStateFour (?, ?)}");
               
-                cs.setInt(2, p.getId());
+                cs.setInt(2, b.getId());
 
                 cs.registerOutParameter(1, java.sql.Types.INTEGER);
                 cs.registerOutParameter(3, java.sql.Types.VARCHAR);
@@ -476,7 +475,6 @@ public class BatchManager {
         return liste;
     }
     
-    
     public static Boolean isLaunched(String modele)
     {
         Boolean result = false;
@@ -526,55 +524,52 @@ public class BatchManager {
         }
         return result;
     }
-    
-    public static Press getOne(Batch batch)
+   
+    public static boolean setBreak(Batch batch, int rest)
     {
-        Press press = null;
-       
-                try
+        Boolean result = false;
+        int id = batch.getId();
+        
+        try
+        {
+ 
+            Connection c;
+            c = Connexion.getInstance("badaroux", "badaroux");
+            
+            try
             {
-
-                Connection c;
-                c = Connexion.getInstance("badaroux", "badaroux");
-
+                Statement st = c.createStatement();
+                
+                st.execute("UPDATE BATCH SET piecesNumber = '" + rest + "' WHERE batch.id = '" + id + "'");
+                result = true;
+                
+                st.close();
+            }
+            catch(Exception ex)
+            {
+                ex.printStackTrace();
+            }
+            finally
+            {
                 try
                 {
-                    Statement st = c.createStatement();
-
-                    ResultSet rs = st.executeQuery("SELECT * FROM BATCH JOIN PRESS on batch.press = press.id WHERE press.id ='" + batch.getId() +"'");
-
-                    if (rs.next())
-                    {
-                        press = new Press(rs.getShort(1));  
-                    }
-
-                    st.close();
+                    c.close();
                 }
-                catch(Exception ex)
+                catch(SQLException ex)
                 {
                     ex.printStackTrace();
                 }
-                finally
-                {
-                    try
-                    {
-                        c.close();
-                    }
-                    catch(SQLException ex)
-                    {
-                        ex.printStackTrace();
-                    }
-                }
-
             }
-            catch(SQLException ex)
-            {
-
-                ex.printStackTrace();
-            }
-
-            return press;
+            
+        }
+        catch(SQLException ex)
+        {
+          
+            ex.printStackTrace();
+        }
+        return result;
     }
+    
         
 
 }

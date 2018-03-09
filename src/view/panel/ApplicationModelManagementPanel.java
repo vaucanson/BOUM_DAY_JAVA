@@ -5,6 +5,12 @@
  */
 package view.panel;
 
+import dao.ModelManager;
+import entity.Model;
+import javax.swing.JOptionPane;
+import model.ModelListModel;
+import renderer.ModelListRenderer;
+
 /**
  *
  * @author boilleau
@@ -16,6 +22,41 @@ public class ApplicationModelManagementPanel extends StylePanel {
      */
     public ApplicationModelManagementPanel() {
         initComponents();
+    }
+    
+    /**
+     * INUTILE, À SUPPRIMER
+     * Crée un modèle d'après les données saisies par l'utilisateur
+     */
+    public void addModel()
+    {
+        try
+        {
+            String name = textName.getText();
+            Float diameter = Float.parseFloat(textDiametre.getText() );
+            int smallMin = Integer.parseInt(textSmall.getText());
+            int middleMin = Integer.parseInt(textMedium.getText());
+            int bigMin = Integer.parseInt(textBig.getText());
+        }
+        catch (NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(null, "Erreur de format d'un des nombres");
+        }
+    }
+    
+    /**
+     * Crée un modèle d'après les données saisies par l'utilisateur
+     * @return 
+     */
+    private Model createModel() throws NumberFormatException
+    {
+        String name = textName.getText();
+        Float diameter = Float.parseFloat(textDiametre.getText() );
+        int smallMin = Integer.parseInt(textSmall.getText());
+        int middleMin = Integer.parseInt(textMedium.getText());
+        int bigMin = Integer.parseInt(textBig.getText());
+        Model tmpModel = new Model(name, diameter, smallMin, middleMin, bigMin);
+        return tmpModel;
     }
 
     /**
@@ -45,11 +86,8 @@ public class ApplicationModelManagementPanel extends StylePanel {
         textBig = new javax.swing.JTextField();
         buttonOK = new javax.swing.JButton();
 
-        listModel.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        listModel.setModel(new ModelListModel());
+        listModel.setCellRenderer(new ModelListRenderer());
         jScrollPane1.setViewportView(listModel);
 
         buttonAdd.setText("Ajouter");
@@ -70,17 +108,12 @@ public class ApplicationModelManagementPanel extends StylePanel {
 
         labelBig.setText("grand");
 
-        textName.setText("<nom>");
-
-        textDiametre.setText("<diamètre>");
-
-        textSmall.setText("<petit>");
-
-        textMedium.setText("<moyen>");
-
-        textBig.setText("<grand>");
-
         buttonOK.setText("Ajouter modèle");
+        buttonOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOKActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -93,7 +126,7 @@ public class ApplicationModelManagementPanel extends StylePanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonRemove)
                     .addComponent(buttonAdd))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(labelNewModel)
@@ -108,26 +141,30 @@ public class ApplicationModelManagementPanel extends StylePanel {
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(labelDiametre)
                                                 .addComponent(labelName))
-                                            .addGap(66, 66, 66))
+                                            .addGap(37, 37, 37))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                             .addComponent(labelSmall)
-                                            .addGap(102, 102, 102)))
+                                            .addGap(73, 73, 73)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(labelMedium)
                                             .addComponent(labelBig))
-                                        .addGap(102, 102, 102)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textSmall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textDiametre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGap(63, 63, 63)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textDiametre)
+                                    .addComponent(textName)
+                                    .addComponent(textSmall)
+                                    .addComponent(textMedium, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(193, 193, 193))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonOK)
-                .addGap(133, 133, 133))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(textBig, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(buttonOK)
+                        .addGap(133, 133, 133))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,6 +208,17 @@ public class ApplicationModelManagementPanel extends StylePanel {
                 .addContainerGap(116, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
+        try
+        {
+            ((ModelListModel) this.listModel.getModel()).addModel(this.createModel());
+        }
+        catch (NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(null, "Erreur de format d'un des nombres saisis");
+        }
+    }//GEN-LAST:event_buttonOKActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

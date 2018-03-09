@@ -24,13 +24,21 @@ public class StockTableModel extends AbstractTableModel implements ListDataListe
     public StockTableModel()
     {
         super();
-        this.stockList = StockManager.getAllStocks();
+        this.fillStockList();
         
         // on trie par ordre alphabétique des noms de modèle, puis des noms de catégorie
         Collections.sort(this.stockList, new StockComparator());
         
         this.columnNames = StockManager.colonnesStock();
         
+    }
+    
+    /**
+     * 
+     */
+    private void fillStockList()
+    {
+        this.stockList = StockManager.getAllStocks();
     }
     
     /**
@@ -131,5 +139,17 @@ public class StockTableModel extends AbstractTableModel implements ListDataListe
 	this.fireTableRowsUpdated(0, this.getRowCount());
     }
 
+    /**
+     * Change la quantité du stock ayant le modèle et la catégorie donnés
+     * @param model
+     * @param category
+     * @param quantity 
+     */
+    public void changeQuantity(String model, String category, int quantity)
+    {
+        StockManager.changeQuantity(model, category, quantity);
+        this.fillStockList();
+	this.fireTableRowsUpdated(0, this.getRowCount());
+    }
    
 }

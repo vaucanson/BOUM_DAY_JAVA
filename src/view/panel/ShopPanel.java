@@ -5,24 +5,20 @@
  */
 package view.panel;
 
-import dao.StockManager;
 import entity.Category;
 import entity.Model;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import view.frame.popup.ShopHistoryPopUpFrame;
 import javax.swing.JOptionPane;
 import model.CategoryComboModel;
 import model.ModelComboModel;

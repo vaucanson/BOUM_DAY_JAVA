@@ -27,9 +27,13 @@ public class ApplicationPurgeManagementPanel extends StylePanel {
         
         nbPurge =  PieceManager.getNbPurge();
         
+        initState();
         
-        
-        
+       
+    }
+    private void initState()
+    {
+         
         if (nbPurge <= 0)
         {
             labelNumberOfPiecesToPurge.setText("Purge impossible :");
@@ -43,7 +47,7 @@ public class ApplicationPurgeManagementPanel extends StylePanel {
              buttonValidate.setEnabled(true);
         }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,6 +116,7 @@ public class ApplicationPurgeManagementPanel extends StylePanel {
         {
             PieceManager.purge();
             JOptionPane.showMessageDialog(null, "La base de donnée à été purgée.");
+            initState();
         }
     }//GEN-LAST:event_buttonValidateActionPerformed
 

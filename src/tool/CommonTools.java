@@ -47,5 +47,13 @@ abstract public class CommonTools
 		String pattern = "^\\d+([.,]\\d+)?$";
 		return str != null && str.matches(pattern);
 	}
+        
+        public static boolean isFloatNegOK(String str)
+	{
+		// des chiffres, puis optionnellement un point ou une virgule et encore
+		// des chiffres
+		String pattern="^([+-]?\\d*\\.?\\d*)$";
+		return str != null && str.matches(pattern);
+	}
 
 }

@@ -77,7 +77,7 @@ public abstract class PieceManager {
      * @params id int représentant l'id de la pièce à instancier
      * @return une pièce
      */
-    private static Piece fetchPiece(int id)
+    private static Piece fetch(int id)
     {
         Piece newPiece = null; // la nouvelle pièce à créer
         try 
@@ -100,4 +100,89 @@ public abstract class PieceManager {
         }
         return newPiece;
     }
+    
+    public static void purge()
+    {
+        try
+        {
+            Connection c = Connexion.getInstance("badaroux", "badaroux");
+            
+            try
+            {
+                CallableStatement cs = c.prepareCall("{?=call piecesPurge (?)}");
+                
+                cs.registerOutParameter(1, java.sql.Types.INTEGER);
+                cs.registerOutParameter(2, java.sql.Types.VARCHAR);
+                
+                cs.execute();
+                
+                int ret = cs.getInt(1);
+                String msg = cs.getString(2);
+                
+                if (ret == 0)
+                {
+                    System.out.println(msg);
+                }
+                else
+                {
+    
+                }
+                
+            } catch (Exception e) {
+                e.printStackTrace();
+                
+            } finally {
+                if (c != null) {
+                    try {
+                        c.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        
+                    }
+                }
+            }
+            
+        } catch (SQLException ex) {
+            
+        
+           ex.printStackTrace();
+            
+        }
+    }
+    
+    /**
+     * permet de savoir combien de pièces sont à effacer de la base de donnée
+     * @return int renvoi le nombre de pièces en base de donnée datant de plus d'un an
+     */
+    public static int getNbPurge()
+    {
+        int number = 0;
+        
+        try 
+        {
+            Connection c = Connexion.getInstance("badaroux", "badaroux");
+            // on récupère la connexion courante
+            c = Connexion.getInstance();
+            Statement st = c.createStatement();
+            ResultSet rs = st.executeQuery("SELECT PIECE.id  FROM PIECE "
+                                          + "JOIN BATCH on BATCH.id = PIECE.batch "
+                                          + "WHERE DATEDIFF(DAY, BATCH.date, GETDATE()) > 365");
+            
+            if (rs.next())
+            {
+                while (rs.next())
+                {
+                    number += (rs.getInt(1));
+                }
+            }
+            st.close();
+        } 
+        catch (SQLException ex) 
+        {
+            ex.printStackTrace();
+        }
+        return number;
+    }
+    
+    
 }

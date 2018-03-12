@@ -16,7 +16,7 @@ public class CategoryListRenderer implements ListCellRenderer<Category> {
 
    
     public Component getListCellRendererComponent(JList<? extends Category> list, Category cat, int index, boolean isSelected, boolean cellHasFocus) {
-        JLabel lab = new JLabel(cat.getName());
+        JLabel lab = new JLabel(cat.toString());
         lab.setOpaque(true);
        
         if (isSelected)

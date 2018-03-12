@@ -5,10 +5,17 @@ import dao.CategoryManager;
 public enum Category 
 {
 //    SMALL((float) -0.1, (float) -0.01),
-    SMALL(CategoryManager.getTolerance("small")[0], CategoryManager.getTolerance("small")[1]),
-    MEDIUM(CategoryManager.getTolerance("medium")[0], CategoryManager.getTolerance("medium")[1]),
-    BIG(CategoryManager.getTolerance("big")[0], CategoryManager.getTolerance("big")[1]),
-    WASTE(0, 0);
+//    SMALL((float) -0.1, (float) -0.01),
+//    SMALL((float) -0.1, (float) -0.01),
+//    SMALL((float) -0.1, (float) -0.01),
+//    SMALL((float) -0.1, (float) -0.01),
+//    SMALL((float) -0.1, (float) -0.01),
+//    SMALL((float) -0.1, (float) -0.01),
+//    SMALL((float) -0.1, (float) -0.01),
+    PETIT(CategoryManager.getTolerance("PETIT")[0], CategoryManager.getTolerance("PETIT")[1]),
+    MOYEN(CategoryManager.getTolerance("MOYEN")[0], CategoryManager.getTolerance("MOYEN")[1]),
+    GRAND(CategoryManager.getTolerance("GRAND")[0], CategoryManager.getTolerance("GRAND")[1]),
+    REBUT(0, 0);
     
    private String name;
     private float minTolerance;
@@ -16,8 +23,8 @@ public enum Category
     
     private Category (float min, float max)
     {
-        setMinTolerance(min);
-        setMaxTolerance(max);   
+        this.minTolerance = min;
+        this.maxTolerance = max;
     }
     
     public void setMinTolerance(float min)
@@ -46,27 +53,27 @@ public enum Category
     
     public static Category getCorrespondant(float interval)
     {
-    	Category cat = Category.WASTE;
+    	Category cat = Category.REBUT;
     	
-    	if (interval < SMALL.getMinTolerance()) // si inférieur à small.min
+    	if (interval < PETIT.getMinTolerance()) // si inférieur à small.min
     	{
-    		cat = WASTE;
+    		cat = REBUT;
     	}
-    	else if (interval < MEDIUM.getMinTolerance()) // si entre small.min et medium.min
+    	else if (interval < MOYEN.getMinTolerance()) // si entre small.min et medium.min
     	{
-    		cat = SMALL;
+    		cat = PETIT;
     	}
-    	else if (interval < MEDIUM.getMaxTolerance()) // si entre medium.min et medium.max
+    	else if (interval < MOYEN.getMaxTolerance()) // si entre medium.min et medium.max
     	{
-    		cat = MEDIUM;
+    		cat = MOYEN;
     	}
-    	else if (interval < BIG.getMaxTolerance()) // si entre medium.max et big.max	
+    	else if (interval < GRAND.getMaxTolerance()) // si entre medium.max et big.max	
     	{
-    		cat = BIG;
+    		cat = GRAND;
     	}
     	else // si supérieur à big.max
     	{
-    		cat = WASTE;
+    		cat = REBUT;
     	}
     	
 		return cat;
@@ -75,7 +82,7 @@ public enum Category
     
 	public static Category get(float htInterval, float hlInterval, float btInterval, float blInterval)
 	{
-            Category cat = Category.WASTE;
+            Category cat = Category.REBUT;
 	    
 	    Category htCat = Category.getCorrespondant(htInterval);
 	    Category hlCat = Category.getCorrespondant(hlInterval);

@@ -60,7 +60,7 @@ public class ShopPanel extends StylePanel {
        {
             int quantity = (int) this.crateNumberSpinner.getValue();
             String model = ((Model) this.comboModel.getSelectedItem()).getName();
-            String category = ((Category) this.comboCategory.getSelectedItem()).getName();
+            String category = ((Category) this.comboCategory.getSelectedItem()).toString();
 
             ((StockTableModel) this.tabStock.getModel()).changeQuantity(model, category, quantity);  
 

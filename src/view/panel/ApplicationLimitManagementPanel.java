@@ -56,13 +56,19 @@ public class ApplicationLimitManagementPanel extends StylePanel{
         textMedium = new javax.swing.JTextField();
         textBig = new javax.swing.JTextField();
         buttonOK = new javax.swing.JButton();
+        labTitle = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
-        labelModelSelection.setText("Selectionnez un modèle :");
+        labelModelSelection.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelModelSelection.setText("Selectionnez un modèle");
 
+        labelSmall.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelSmall.setText("Petit");
 
+        labelMedium.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelMedium.setText("Moyen");
 
+        labelBig.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelBig.setText("Grand");
 
         comboModel.setModel(new ModelComboModel());
@@ -73,17 +79,13 @@ public class ApplicationLimitManagementPanel extends StylePanel{
             }
         });
 
-        textSmall.setText("<limite petit>");
         textSmall.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textSmallActionPerformed(evt);
             }
         });
 
-        textMedium.setText("<limite moyen>");
-
-        textBig.setText("<limite grand>");
-
+        buttonOK.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         buttonOK.setText("Modifier");
         buttonOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,60 +93,64 @@ public class ApplicationLimitManagementPanel extends StylePanel{
             }
         });
 
+        labTitle.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labTitle.setText("GESTION DES SEUILS");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelBig)
-                                .addGap(74, 74, 74)
-                                .addComponent(textBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(labelMedium)
-                                        .addGap(74, 74, 74))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(labelSmall)
-                                        .addGap(84, 84, 84)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(textSmall)
-                                    .addComponent(textMedium, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                                .addGap(171, 171, 171)
-                                .addComponent(buttonOK))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(labelModelSelection)
+                        .addGap(316, 316, 316)
+                        .addComponent(labelModelSelection, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(comboModel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(270, Short.MAX_VALUE))
+                        .addComponent(comboModel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(397, 397, 397)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(labelMedium)
+                                    .addComponent(labelSmall, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelBig, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textMedium)
+                                    .addComponent(textSmall)
+                                    .addComponent(textBig, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(buttonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(322, Short.MAX_VALUE))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
+                .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(110, 110, 110)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelModelSelection)
                     .addComponent(comboModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(98, 98, 98)
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSmall)
                     .addComponent(textSmall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelMedium)
-                    .addComponent(textMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonOK))
-                .addGap(35, 35, 35)
+                    .addComponent(textMedium, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelBig)
                     .addComponent(textBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(buttonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(158, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -209,6 +215,8 @@ public class ApplicationLimitManagementPanel extends StylePanel{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonOK;
     private javax.swing.JComboBox<Model> comboModel;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel labTitle;
     private javax.swing.JLabel labelBig;
     private javax.swing.JLabel labelMedium;
     private javax.swing.JLabel labelModelSelection;

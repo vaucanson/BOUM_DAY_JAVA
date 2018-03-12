@@ -18,8 +18,6 @@ public class Category {
     private float minTolerance;
     private float maxTolerance;
     
-    
-    //TODO LES SET AVEC VERIF
     public Category (String name, float min, float max)
     {
         this.name = name;
@@ -27,10 +25,13 @@ public class Category {
         setMaxTolerance(max);   
     }
     
+<<<<<<< HEAD
+=======
     public Category set(Piece p, Batch b)
     {
         return null;
     }
+>>>>>>> master
     
     public String getName()
     {

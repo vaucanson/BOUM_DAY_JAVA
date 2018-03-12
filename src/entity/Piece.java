@@ -51,7 +51,12 @@ public class Piece {
         }
     }
      
-    
+    public Category getCategory(Piece p, Batch b)
+    {
+        
+        
+       return null; 
+    }
     
     public boolean isBroken() 
     {

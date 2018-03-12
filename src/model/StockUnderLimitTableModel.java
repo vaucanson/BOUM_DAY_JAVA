@@ -72,9 +72,9 @@ public class StockUnderLimitTableModel extends AbstractTableModel{
             break;
             case 1 : o = s.getCategory().getName();         // la colonne concerne la catégorie, la fonction récupère l'attribut "name" de la Category ciblée
             break;
-            case 2 : o = s.getLimit();                      // la colonne concerne le seuil pour un modèle et une catégorie, renvoie un int
+            case 2 : o = s.getQuantity();                   // la colonne concerne la quantité de pièces en stock pour un modèle et une catégorie, renvoie un int
             break;
-            case 3 : o = s.getQuantity();                   // la colonne concerne la quantité de pièces en stock pour un modèle et une catégorie, renvoie un int
+            case 3 : o = s.getLimit();                    // la colonne concerne le seuil pour un modèle et une catégorie, renvoie un int
             break;
             case 5 : o = BatchManager.isLaunched(s.getModel().getName());      // la colonne renvoie un boolean afin de savoir si un lot a deja été lancé pour le modèle concerné par la ligne
             break;

@@ -1,5 +1,7 @@
 package entity;
 
+import javax.swing.JOptionPane;
+
 /**
  * Classe représentant une pièce.
  */
@@ -18,11 +20,26 @@ public class Piece {
     
      public Piece(float ht, float hl, float bt, float bl, int batch)
     {
-        this.setHt(ht);
-        this.setHl(hl);
-        this.setBt(bt);
-        this.setBl(bl);
-        this.setBatch(batch);
+        if (!setHt(ht))
+        {
+            JOptionPane.showMessageDialog(null, "Erreur : le nombre HT doit être positif.");
+        }
+        else if (!setHl(hl))
+        {
+            JOptionPane.showMessageDialog(null, "Erreur : le nombre HL doit être positif.");
+        }
+        else if (!setBt(bt))
+        {
+            JOptionPane.showMessageDialog(null, "Erreur : le nombre BT doit être positif.");
+        }
+        else if (!setBl(bl))
+        {
+            JOptionPane.showMessageDialog(null, "Erreur : le nombre BL doit être positif.");
+        }
+        else if (!setBatch(batch))
+        {
+            JOptionPane.showMessageDialog(null, "Erreur : le numéro du lot doit être positif.");
+        }
         
         if ((ht != 0) && (hl !=0) && (bt != 0) && (bl != 0))
         {
@@ -41,7 +58,8 @@ public class Piece {
        return null; 
     }
     
-    public boolean isBroken() {
+    public boolean isBroken() 
+    {
     return broken;
     }
 
@@ -53,51 +71,92 @@ public class Piece {
         return id;
     }
 
-    public void setId(int id) {
+    public boolean setId(int id) {
+        boolean ok = false;
         
-       //TODO VERIFICATION
-        
-        this.id = id;
+        if (id >= 0)
+        {
+            this.id = id;
+            ok = true;
+        }
+        return ok;        
     }
 
     public float getHt() {
         return ht;
     }
 
-    public void setHt(float ht) {
-        this.ht = ht;
+    public boolean setHt(float ht) 
+    {
+        boolean ok = false;
+        if (ht >= 0)
+        {
+            this.ht = ht;
+            ok =true;
+        }
+        return ok;
+        
     }
 
     public float getHl() {
         return hl;
     }
 
-    public void setHl(float hl) {
-        this.hl = hl;
+    public boolean setHl(float hl) {
+        boolean ok = false;
+        if (hl >= 0)
+        {
+           this.hl = hl;
+            ok =true;
+        }
+        return ok;
+        
     }
 
     public float getBt() {
         return bt;
     }
 
-    public void setBt(float bt) {
-        this.bt = bt;
+    public boolean setBt(float bt) {
+        boolean ok = false;
+        if (bt >= 0)
+        {
+           this.bt = bt;
+            ok =true;
+        }
+        return ok;
+        
     }
 
     public float getBl() {
         return bl;
     }
 
-    public void setBl(float bl) {
-        this.bl = bl;
+    public boolean setBl(float bl) {
+         boolean ok = false;
+        if (bl >= 0)
+        {
+            this.bl = bl;
+            ok =true;
+        }
+        return ok;
+       
     }
 
     public int getBatch() {
         return batch;
     }
 
-    public void setBatch(int batch) {
-       this.batch = batch;
+    public boolean setBatch(int batch) 
+    {
+         boolean ok = false;
+        if (batch >= 0)
+        {
+            this.batch = batch;
+            ok =true;
+        }
+        return ok;
+       
         
     }
     

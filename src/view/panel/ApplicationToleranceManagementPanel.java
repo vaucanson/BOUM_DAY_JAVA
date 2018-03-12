@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package view.panel;
 
 import dao.CategoryManager;
@@ -14,7 +14,7 @@ import tool.CommonTools;
  * @author boilleau
  */
 public class ApplicationToleranceManagementPanel extends StylePanel {
-
+    
     /**
      * Creates new form TolerancePanel
      */
@@ -28,27 +28,38 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
         initFields();
         
     }
-
+    
     private void initFields()
     {
         smallTolerance = CategoryManager.getTolerance(labelSmall.getText());
         mediumTolerance = CategoryManager.getTolerance(labelMedium.getText());
         bigTolerance = CategoryManager.getTolerance(labelBig.getText());
-     
+        
         textLittleMin.setText(Float.toString(smallTolerance[0]));
         textLittleMax.setText(Float.toString(smallTolerance[1]));
-        textLittleMin.setEditable(false);
-        textLittleMax.setEditable(false);
-
+        if (buttonChangeLittle.getText().equalsIgnoreCase("Modifier"))
+        {
+            textLittleMin.setEditable(false);
+            textLittleMax.setEditable(false);
+        }
+        
         textMediumMin.setText(Float.toString(mediumTolerance[0]));
         textMediumMax.setText(Float.toString(mediumTolerance[1]));
-        textMediumMin.setEditable(false);
-        textMediumMax.setEditable(false);
-
+        
+        if (buttonChangeMedium.getText().equalsIgnoreCase("Modifier"))
+        {
+            textMediumMin.setEditable(false);
+            textMediumMax.setEditable(false);
+        }
+        
         textBigMin.setText(Float.toString(bigTolerance[0]));
         textBigMax.setText(Float.toString(bigTolerance[1]));
-        textBigMin.setEditable(false);
-        textBigMax.setEditable(false);
+        
+        if (buttonChangeBig.getText().equalsIgnoreCase("Modifier"))
+        {
+            textBigMin.setEditable(false);
+            textBigMax.setEditable(false);
+        }
     }
     
     /**
@@ -214,101 +225,100 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
                 .addContainerGap(161, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void textLittleMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textLittleMinActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textLittleMinActionPerformed
-
+    
     private void textLittleMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textLittleMaxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textLittleMaxActionPerformed
-
+    
     private void buttonChangeLittleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeLittleActionPerformed
         
-        if (CommonTools.isFloatNegOK(textLittleMin.getText()) && CommonTools.isFloatNegOK(textLittleMax.getText()))
+        if (buttonChangeLittle.getText().equalsIgnoreCase("Modifier"))
         {
-            if (buttonChangeLittle.getText().equalsIgnoreCase("Modifier"))
+            textLittleMin.setEditable(true);
+            textLittleMax.setEditable(true);
+            
+            buttonChangeLittle.setText("Valider");
+        }
+        else
+        {
+            if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
             {
-                textLittleMin.setEditable(true);
-                textLittleMax.setEditable(true);
-
-                buttonChangeLittle.setText("Valider");
-            }
-            else
-            {
-                if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+                if (CommonTools.isFloatNegative(textLittleMin.getText()) && CommonTools.isFloatNegative(textLittleMax.getText()) && (Float.parseFloat(textLittleMin.getText()) > Float.parseFloat(textLittleMax.getText())))
                 {
                     CategoryManager.changeTolerance(labelSmall.getText(), Float.parseFloat(textLittleMin.getText()), Float.parseFloat(textLittleMax.getText()));
                     buttonChangeLittle.setText("Modifier");
-                    textLittleMin.setEditable(false);
-                    textLittleMax.setEditable(false);
                     initFields();
                 }
-            }
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux.");
-        }
-    }//GEN-LAST:event_buttonChangeLittleActionPerformed
-
-    private void buttonChangeMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeMediumActionPerformed
-        if (CommonTools.isFloatNegOK(textMediumMin.getText()) && CommonTools.isFloat(textMediumMax.getText()))
-        {
-            if (buttonChangeLittle.getText().equalsIgnoreCase("Modifier"))
-            {
-                textMediumMin.setEditable(true);
-                textMediumMax.setEditable(true);
-
-                buttonChangeMedium.setText("Valider");
-            }
-            else
-            {
-                if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+                else
                 {
-                    CategoryManager.changeTolerance(labelMedium.getText(), Float.parseFloat(textMediumMin.getText()), Float.parseFloat(textMediumMax.getText()));
-                    buttonChangeLittle.setText("Modifier");
-                    textMediumMin.setEditable(false);
-                    textMediumMax.setEditable(false);
-                    initFields();
+                    JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux et négatifs. Assurez-vous que la valeur maximale soit supérieure à la valeur minimale.");
                 }
             }
         }
+        
+    }//GEN-LAST:event_buttonChangeLittleActionPerformed
+    
+    private void buttonChangeMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeMediumActionPerformed
+        
+        if (buttonChangeMedium.getText().equalsIgnoreCase("Modifier"))
+        {
+            textMediumMin.setEditable(true);
+            textMediumMax.setEditable(true);
+            
+            buttonChangeMedium.setText("Valider");
+        }
         else
         {
-            JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux.");
+            
+            if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            {
+                
+                if (CommonTools.isFloatNegative(textMediumMin.getText()) && CommonTools.isFloatPositive(textMediumMax.getText()) && (Float.parseFloat(textMediumMin.getText()) < Float.parseFloat(textMediumMax.getText())))
+                {
+                    
+                    CategoryManager.changeTolerance(labelMedium.getText(), Float.parseFloat(textMediumMin.getText()), Float.parseFloat(textMediumMax.getText()));
+                    buttonChangeMedium.setText("Modifier");
+                    initFields();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux. Entrer un nombre négatif pour le minimum, et positif pour le maximum.");
+                }
+            }
         }
     }//GEN-LAST:event_buttonChangeMediumActionPerformed
-
+    
     private void buttonChangeBigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeBigActionPerformed
-        if (CommonTools.isFloat(textBigMin.getText()) && CommonTools.isFloat(textBigMax.getText()))
-        {
-            if (buttonChangeBig.getText().equalsIgnoreCase("Modifier"))
+         if (buttonChangeBig.getText().equalsIgnoreCase("Modifier"))
             {
                 textBigMin.setEditable(true);
                 textBigMax.setEditable(true);
-
+                
                 buttonChangeBig.setText("Valider");
             }
             else
             {
                 if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
                 {
-                    CategoryManager.changeTolerance(labelBig.getText(), Float.parseFloat(textBigMin.getText()), Float.parseFloat(textBigMax.getText()));
-                    buttonChangeBig.setText("Modifier");
-                    textBigMin.setEditable(false);
-                    textBigMax.setEditable(false);
-                    initFields();
+                    if (CommonTools.isFloatPositive(textBigMin.getText()) && CommonTools.isFloatPositive(textBigMax.getText()) && (Float.parseFloat(textBigMin.getText()) < Float.parseFloat(textBigMax.getText())) )
+                    {
+                        CategoryManager.changeTolerance(labelBig.getText(), Float.parseFloat(textBigMin.getText()), Float.parseFloat(textBigMax.getText()));
+                        buttonChangeBig.setText("Modifier");
+                        initFields();
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux positifs. Assurez-vous que la valeur maximale soit supérieure à la valeur minimale.");
+                    }
                 }
             }
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux.");
-        }
     }//GEN-LAST:event_buttonChangeBigActionPerformed
-
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonChangeBig;
     private javax.swing.JButton buttonChangeLittle;

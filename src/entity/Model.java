@@ -1,5 +1,7 @@
 package entity;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author boilleau
@@ -14,6 +16,34 @@ public class Model {
     private int mediumLimit;  // en catégorie moyen
     private int bigLimit;  // en catégorie grand
 
+    
+     /**
+     * Constructeur à limites
+     */
+    public Model(String name, float diameter, int smallLimit, int mediumLimit, int bigLimit)
+    {
+        setName(name);
+        
+        if (!setDiameter(diameter))
+        {
+            JOptionPane.showMessageDialog(null, "Erreur dans la saisie du diamètre (nombre négatif).");
+        }        
+        else if (!setSmallLimit(smallLimit))
+        {
+            JOptionPane.showMessageDialog(null, "Erreur : la limite doit être un nombre positif.");
+        }
+        else if (!setMediumLimit(mediumLimit))
+        {
+            JOptionPane.showMessageDialog(null, "Erreur : la limite doit être un nombre positif.");
+        }
+        else if (!setBigLimit(bigLimit))
+        {
+            JOptionPane.showMessageDialog(null, "Erreur : la limite doit être un nombre positif.");
+        }
+    }
+    
+    
+    
     public int getSmallLimit() {
         return smallLimit;
     }
@@ -35,17 +65,7 @@ public class Model {
         this(name, diameter, 0, 0, 0);
     }
     
-    /**
-     * Constructeur à limites
-     */
-    public Model(String name, float diameter, int smallLimit, int mediumLimit, int bigLimit)
-    {
-        setName(name);
-        setDiameter(diameter);
-        this.smallLimit = smallLimit;
-        this.mediumLimit = mediumLimit;
-        this.bigLimit = bigLimit;
-    }
+   
     
     public String getName() {
         return name;
@@ -59,9 +79,49 @@ public class Model {
         return diameter;
     }
 
-    public void setDiameter(Float diameter) {
-        this.diameter = diameter;
+    private boolean setDiameter(Float diameter) {
+        boolean ok = false;
+        if (diameter > 0)
+        {        
+            this.diameter = diameter;
+            ok = true;
+        }
+        
+       return ok;
     }
+
+    public boolean setSmallLimit(int smallLimit) {
+        boolean ok = false;
+        if (smallLimit >= 0)
+        {
+            this.smallLimit = smallLimit;
+            ok = true;
+        }
+       
+        return ok;
+    }
+
+    public boolean setMediumLimit(int mediumLimit) {
+         boolean ok = false;
+        if (mediumLimit >= 0)
+        {
+            this.mediumLimit = mediumLimit;
+            ok = true;
+        }
+       
+        return ok;
+    }
+
+    public boolean setBigLimit(int bigLimit) {
+         boolean ok = false;
+        if (bigLimit >= 0)
+        {
+             this.bigLimit = bigLimit;
+             ok = true;
+        }
+       return ok;
+    }
+    
     
    
 }

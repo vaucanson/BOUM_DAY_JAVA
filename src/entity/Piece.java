@@ -1,5 +1,7 @@
 package entity;
 
+import dao.BatchManager;
+
 /**
  * Classe représentant une pièce.
  */
@@ -10,10 +12,8 @@ public class Piece {
     private float hl; // le diamètre haut longitudinal
     private float bt; // le diamètre bas transversal
     private float bl; // le diamètre bas longitudinal
-    private int batch;  // le lot auquel la pièce appartient
+    private Batch batch;  // le lot auquel la pièce appartient
     private boolean broken;
-
-
 
     
      public Piece(float ht, float hl, float bt, float bl, int batch)
@@ -22,7 +22,7 @@ public class Piece {
         this.setHl(hl);
         this.setBt(bt);
         this.setBl(bl);
-        this.setBatch(batch);
+        this.setBatch(BatchManager.get(batch));
         
         if ((ht != 0) && (hl !=0) && (bt != 0) && (bl != 0))
         {
@@ -87,14 +87,26 @@ public class Piece {
         this.bl = bl;
     }
 
-    public int getBatch() {
+    public Batch getBatch() {
         return batch;
     }
 
-    public void setBatch(int batch) {
+    public void setBatch(Batch batch) {
        this.batch = batch;
         
     }
     
+    public tool.Category getCategory()
+    {
+        tool.Category cat = tool.Category.WASTE;
+        
+        float htInterval = this.ht - this.getBatch().getModel().getDiameter();
+        float hlInterval = this.hl - this.getBatch().getModel().getDiameter();
+        float btInterval = this.bt - this.getBatch().getModel().getDiameter();
+        float blInterval = this.bl - this.getBatch().getModel().getDiameter();
+        
+        cat = tool.Category.get(htInterval, hlInterval, btInterval, blInterval);
+        return cat;
+    }
        
 }

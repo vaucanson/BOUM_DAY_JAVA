@@ -5,7 +5,6 @@
  */
 package view.panel;
 
-import dao.ModelManager;
 import entity.Model;
 import javax.swing.JOptionPane;
 import model.ModelListModel;
@@ -45,6 +44,14 @@ public class ApplicationModelManagementPanel extends StylePanel {
     }
     
     /**
+     * 
+     */
+    private void removeSelectedModel()
+    {
+        
+    }
+    
+    /**
      * Crée un modèle d'après les données saisies par l'utilisateur
      * @return 
      */
@@ -70,7 +77,6 @@ public class ApplicationModelManagementPanel extends StylePanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         listModel = new javax.swing.JList();
-        buttonAdd = new javax.swing.JButton();
         buttonRemove = new javax.swing.JButton();
         labelNewModel = new javax.swing.JLabel();
         labelName = new javax.swing.JLabel();
@@ -90,9 +96,12 @@ public class ApplicationModelManagementPanel extends StylePanel {
         listModel.setCellRenderer(new ModelListRenderer());
         jScrollPane1.setViewportView(listModel);
 
-        buttonAdd.setText("Ajouter");
-
         buttonRemove.setText("Supprimer");
+        buttonRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoveActionPerformed(evt);
+            }
+        });
 
         labelNewModel.setText("Nouveau Modèle :");
 
@@ -123,9 +132,7 @@ public class ApplicationModelManagementPanel extends StylePanel {
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonRemove)
-                    .addComponent(buttonAdd))
+                .addComponent(buttonRemove)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -158,13 +165,10 @@ public class ApplicationModelManagementPanel extends StylePanel {
                         .addGap(193, 193, 193))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(textBig, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(buttonOK)
-                        .addGap(133, 133, 133))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(buttonOK)
+                    .addComponent(textBig, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(193, 193, 193))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,9 +178,7 @@ public class ApplicationModelManagementPanel extends StylePanel {
                         .addGap(60, 60, 60)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(buttonAdd)
-                        .addGap(46, 46, 46)
+                        .addGap(153, 153, 153)
                         .addComponent(buttonRemove))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
@@ -203,9 +205,9 @@ public class ApplicationModelManagementPanel extends StylePanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelBig)
                             .addComponent(textBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(79, 79, 79)
+                .addGap(18, 18, 18)
                 .addComponent(buttonOK)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -220,9 +222,12 @@ public class ApplicationModelManagementPanel extends StylePanel {
         }
     }//GEN-LAST:event_buttonOKActionPerformed
 
+    private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveActionPerformed
+        this.removeSelectedModel();
+    }//GEN-LAST:event_buttonRemoveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonOK;
     private javax.swing.JButton buttonRemove;
     private javax.swing.JScrollPane jScrollPane1;

@@ -27,6 +27,15 @@ public class BatchManager {
         
     }
     
+    /**
+     * TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * @return 
+     */
+    public static Batch get(int id)
+    {
+        return null;
+    }
+    
     public static void setStateOne(Model model, int quantity)
     {
         try
@@ -257,7 +266,8 @@ public class BatchManager {
                 
                 while (rs.next())
                 {
-                    liste.add(new Batch(rs.getShort(1), rs.getDate(2), rs.getShort(3), rs.getShort(4), rs.getShort(5), rs.getString(6)));
+                    Model model = ModelManager.getModel(rs.getString(6));
+                    liste.add(new Batch(rs.getShort(1), rs.getDate(2), rs.getShort(3), rs.getShort(4), rs.getShort(5), model));
                     
                 }
                 st.close();
@@ -304,7 +314,8 @@ public class BatchManager {
                 
                 while (rs.next())
                 {
-                    liste.add(new Batch(rs.getShort(1), rs.getDate(2), rs.getShort(3), rs.getShort(4), rs.getShort(5), rs.getString(6)));
+                    Model model = ModelManager.getModel(rs.getString(6));
+                    liste.add(new Batch(rs.getShort(1), rs.getDate(2), rs.getShort(3), rs.getShort(4), rs.getShort(5), model));
                     
                 }
                 st.close();
@@ -351,7 +362,8 @@ public class BatchManager {
                 
                 while (rs.next())
                 {
-                    liste.add(new Batch(rs.getShort(1), rs.getDate(2), rs.getShort(3), rs.getShort(4), rs.getShort(5), rs.getString(6)));
+                    Model model = ModelManager.getModel(rs.getString(6));
+                    liste.add(new Batch(rs.getShort(1), rs.getDate(2), rs.getShort(3), rs.getShort(4), rs.getShort(5), model));
                     
                 }
                 st.close();
@@ -398,7 +410,8 @@ public class BatchManager {
                 
                 while (rs.next())
                 {
-                    liste.add(new Batch(rs.getShort(1), rs.getDate(2), rs.getShort(3), rs.getShort(4), rs.getShort(5), rs.getString(6)));
+                    Model model = ModelManager.getModel(rs.getString(6));
+                    liste.add(new Batch(rs.getShort(1), rs.getDate(2), rs.getShort(3), rs.getShort(4), rs.getShort(5), model));
                     
                 }
                 st.close();
@@ -445,7 +458,8 @@ public class BatchManager {
                 
                 while (rs.next())
                 {
-                    liste.add(new Batch(rs.getShort(1), rs.getDate(2), rs.getShort(3), rs.getShort(4), rs.getShort(5), rs.getString(6)));
+                    Model model = ModelManager.getModel(rs.getString(6));
+                    liste.add(new Batch(rs.getShort(1), rs.getDate(2), rs.getShort(3), rs.getShort(4), rs.getShort(5), model));
                     
                 }
                 st.close();

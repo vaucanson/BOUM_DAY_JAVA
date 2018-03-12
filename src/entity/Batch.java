@@ -12,7 +12,7 @@ public class Batch {
     private short piecesNumber;
     private short state;
     private short press;
-    private String model;
+    private Model model;
 
     public short getId() {
         return id;
@@ -54,16 +54,16 @@ public class Batch {
         this.press = press;
     }
 
-    public String getModel() {
+    public Model getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public void setModel(Model model) {
         this.model = model;
     }
     
     
-    public Batch (short id, Date date, short pn, short state, short press, String model)
+    public Batch (short id, Date date, short pn, short state, short press, Model model)
     {
         this.id = id;
         this.date = date;

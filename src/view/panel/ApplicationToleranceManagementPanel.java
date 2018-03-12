@@ -37,18 +37,29 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
         
         textLittleMin.setText(Float.toString(smallTolerance[0]));
         textLittleMax.setText(Float.toString(smallTolerance[1]));
-        textLittleMin.setEditable(false);
-        textLittleMax.setEditable(false);
+        if (buttonChangeLittle.getText().equalsIgnoreCase("Modifier"))
+        {
+            textLittleMin.setEditable(false);
+            textLittleMax.setEditable(false);
+        }
         
         textMediumMin.setText(Float.toString(mediumTolerance[0]));
         textMediumMax.setText(Float.toString(mediumTolerance[1]));
-        textMediumMin.setEditable(false);
-        textMediumMax.setEditable(false);
+        
+        if (buttonChangeMedium.getText().equalsIgnoreCase("Modifier"))
+        {
+            textMediumMin.setEditable(false);
+            textMediumMax.setEditable(false);
+        }
         
         textBigMin.setText(Float.toString(bigTolerance[0]));
         textBigMax.setText(Float.toString(bigTolerance[1]));
-        textBigMin.setEditable(false);
-        textBigMax.setEditable(false);
+        
+        if (buttonChangeBig.getText().equalsIgnoreCase("Modifier"))
+        {
+            textBigMin.setEditable(false);
+            textBigMax.setEditable(false);
+        }
     }
     
     /**
@@ -220,8 +231,6 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
                 {
                     CategoryManager.changeTolerance(labelSmall.getText(), Float.parseFloat(textLittleMin.getText()), Float.parseFloat(textLittleMax.getText()));
                     buttonChangeLittle.setText("Modifier");
-                    textLittleMin.setEditable(false);
-                    textLittleMax.setEditable(false);
                     initFields();
                 }
                 else
@@ -252,9 +261,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
                 {
                     
                     CategoryManager.changeTolerance(labelMedium.getText(), Float.parseFloat(textMediumMin.getText()), Float.parseFloat(textMediumMax.getText()));
-                    buttonChangeLittle.setText("Modifier");
-                    textMediumMin.setEditable(false);
-                    textMediumMax.setEditable(false);
+                    buttonChangeMedium.setText("Modifier");
                     initFields();
                 }
                 else
@@ -281,8 +288,6 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
                     {
                         CategoryManager.changeTolerance(labelBig.getText(), Float.parseFloat(textBigMin.getText()), Float.parseFloat(textBigMax.getText()));
                         buttonChangeBig.setText("Modifier");
-                        textBigMin.setEditable(false);
-                        textBigMax.setEditable(false);
                         initFields();
                     }
                     else

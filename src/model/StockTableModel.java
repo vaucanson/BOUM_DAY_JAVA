@@ -152,4 +152,16 @@ public class StockTableModel extends AbstractTableModel implements ListDataListe
 	this.fireTableRowsUpdated(0, this.getRowCount());
     }
    
+    
+    	/**
+	 * Renvoie le nom d'une colonne
+	 * 
+	 * @params i l'indice d'une colonne
+	 * @return un string représentant le nom de la colonne i
+	 */
+	@Override
+	public String getColumnName(int i)
+	{
+		return this.columnNames.get(i);
+	}
 }

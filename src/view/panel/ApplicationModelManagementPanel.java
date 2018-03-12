@@ -78,6 +78,7 @@ public class ApplicationModelManagementPanel extends StylePanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         listModel = new javax.swing.JList();
+        buttonAdd = new javax.swing.JButton();
         buttonRemove = new javax.swing.JButton();
         labelNewModel = new javax.swing.JLabel();
         labelName = new javax.swing.JLabel();
@@ -99,6 +100,10 @@ public class ApplicationModelManagementPanel extends StylePanel {
         listModel.setCellRenderer(new ModelListRenderer());
         jScrollPane1.setViewportView(listModel);
 
+        buttonAdd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buttonAdd.setText("Ajouter");
+
+        buttonRemove.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buttonRemove.setText("Supprimer");
         buttonRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,6 +242,10 @@ public class ApplicationModelManagementPanel extends StylePanel {
             JOptionPane.showMessageDialog(null, "Erreur de format d'un des nombres saisis");
         }
     }//GEN-LAST:event_buttonOKActionPerformed
+
+    private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonRemoveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

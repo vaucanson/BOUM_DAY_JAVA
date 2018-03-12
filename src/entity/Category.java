@@ -5,6 +5,9 @@
  */
 package entity;
 
+import javax.swing.JOptionPane;
+import tool.CommonTools;
+
 /**
  *
  * @author MATTAR
@@ -14,9 +17,6 @@ public class Category {
    private String name;
     private float minTolerance;
     private float maxTolerance;
-    private String smallCat;
-    private String mediumCat;
-    private String largeCat;
     
     
     //TODO LES SET AVEC VERIF
@@ -29,8 +29,6 @@ public class Category {
     
     public Category set(Piece p, Batch b)
     {
-        
-        
         return null;
     }
     
@@ -39,12 +37,24 @@ public class Category {
         return name;
     }
     
-    public void setMinTolerance(float min)
+    private void setName(String name)
+    {
+        if (CommonTools.isAlphabetical(name))
+        {
+            this.name = name;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Erreur dans la saisie du nom de catégorie.");
+        }
+    }
+    
+    private void setMinTolerance(float min)
     {
         this.minTolerance = min;
     }
     
-    public void setMaxTolerance (float max)
+    private void setMaxTolerance (float max)
     {
         this.maxTolerance = max;
     }

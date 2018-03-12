@@ -50,7 +50,7 @@ public class StockManager {
                     {
                         Category cat = CategoryManager.getCategory(rs.getString(2));
                         Model mod = ModelManager.getModel(rs.getString(1));
-                        liste.add(new Stock(mod, cat, rs.getInt(4), rs.getInt(3)));
+                        liste.add(new Stock(mod, cat, rs.getInt(3), rs.getInt(4)));
                     }
                 }
                 st.close();

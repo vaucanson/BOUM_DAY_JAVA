@@ -5,6 +5,8 @@
  */
 package entity;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author badaroux
@@ -16,7 +18,10 @@ public class Press {
 
     public Press(int i) 
     {
-        id = i;
+        if (!setId(i))
+        {
+            JOptionPane.showMessageDialog(null, "Erreur : l'ID de la presse doit être un nombre positif.");
+        }
         setIsFree(true);
     }
     
@@ -24,8 +29,14 @@ public class Press {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public boolean setId(int id) {
+        boolean ok = false;
+        if (id >= 0)
+        {
+            this.id = id;
+            ok = true;
+        }
+        return ok;
     }
 
         public boolean GetisFree() {

@@ -75,7 +75,7 @@ public class Model {
         this.name = name;
     }
 
-    public Float getDiameter() {
+    public float getDiameter() {
         return diameter;
     }
 

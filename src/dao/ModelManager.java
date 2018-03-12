@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import tool.Connexion;
 
 /**
@@ -140,12 +138,12 @@ public abstract class ModelManager
                 cs.setInt(6, bigMin);
                 
                 cs.registerOutParameter(1, java.sql.Types.INTEGER);
-                cs.registerOutParameter(5, java.sql.Types.VARCHAR);
+                cs.registerOutParameter(7, java.sql.Types.VARCHAR);
                 
                 cs.execute();
                 
                 int ret = cs.getInt(1);
-                String msg = cs.getString(5);
+                String msg = cs.getString(7);
                 
                 if (ret == 0)
                 {

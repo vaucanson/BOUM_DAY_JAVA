@@ -45,6 +45,14 @@ public class ApplicationModelManagementPanel extends StylePanel {
     }
     
     /**
+     * 
+     */
+    private void removeSelectedModel()
+    {
+        
+    }
+    
+    /**
      * Crée un modèle d'après les données saisies par l'utilisateur
      * @return 
      */
@@ -70,7 +78,6 @@ public class ApplicationModelManagementPanel extends StylePanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         listModel = new javax.swing.JList();
-        buttonAdd = new javax.swing.JButton();
         buttonRemove = new javax.swing.JButton();
         labelNewModel = new javax.swing.JLabel();
         labelName = new javax.swing.JLabel();
@@ -92,11 +99,12 @@ public class ApplicationModelManagementPanel extends StylePanel {
         listModel.setCellRenderer(new ModelListRenderer());
         jScrollPane1.setViewportView(listModel);
 
-        buttonAdd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        buttonAdd.setText("Ajouter");
-
-        buttonRemove.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buttonRemove.setText("Supprimer");
+        buttonRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRemoveActionPerformed(evt);
+            }
+        });
 
         labelNewModel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelNewModel.setText("Nouveau Modèle :");

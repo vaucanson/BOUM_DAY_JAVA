@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package view.panel;
 
 import entity.Batch;
@@ -14,19 +14,19 @@ import view.frame.MainFrame;
  * @author badaroux
  */
 public class ControlPanel extends StylePanel {
-
+    
     private MainFrame parent;
     private Batch currentBatch;
     private int counter = 0;
     int goal;
-
+    
     public ControlPanel(MainFrame frame) {
         initComponents();
         setVisible(true);
         this.parent = frame;
-
+        
     }
-
+    
     
     public void initControl() {
         if (parent.getCurrentBatch() != null) {
@@ -36,14 +36,14 @@ public class ControlPanel extends StylePanel {
             labBatchPiece.setText("Presse n°" + Integer.toString(dao.PressManager.getOne(currentBatch).getId()));
             labModel.setText("Modèle de pièce : " + currentBatch.getModel());
             setProgression();
-
+            
         }
     }
-
+    
     public void setProgression() {
-
+        
         labProgressing.setText(counter + " pièce controlée(s) sur " + goal);
-
+        
         if (counter == goal) {
             if (currentBatch.getState() == 3) {
                 JOptionPane.showMessageDialog(null, "La saisie du lot est terminée.");
@@ -53,16 +53,16 @@ public class ControlPanel extends StylePanel {
                 JOptionPane.showMessageDialog(null, "Attention, la presse n'a pas été libérée correctement. Veuillez en référer à votre supérieur. "
                         + "Attendez son signal avant de terminer le lot");
                 buttonValidate.setEnabled(false);
-
+                
             }
-
+            
         }
-    }
-
+    } 
+    
     public void setCurrentBatch(Batch batch) {
         this.currentBatch = batch;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -83,7 +83,7 @@ public class ControlPanel extends StylePanel {
         buttonBreak = new javax.swing.JButton();
         labModel = new javax.swing.JLabel();
         labProgressing = new javax.swing.JLabel();
-        progressBar = new javax.swing.JProgressBar();
+        jSeparator1 = new javax.swing.JSeparator();
 
         labHL.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labHL.setText("HL");
@@ -112,7 +112,6 @@ public class ControlPanel extends StylePanel {
         tfBT.setToolTipText("");
         tfBT.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
-        cbBrokenPiece.setBackground(new java.awt.Color(206, 216, 232));
         cbBrokenPiece.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cbBrokenPiece.setText("Pièce cassée");
         cbBrokenPiece.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +122,6 @@ public class ControlPanel extends StylePanel {
 
         buttonValidate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         buttonValidate.setText("Valider pièce");
-        buttonValidate.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         buttonValidate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonValidateActionPerformed(evt);
@@ -132,7 +130,6 @@ public class ControlPanel extends StylePanel {
 
         buttonStopBatch.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         buttonStopBatch.setText("Fin du contröle");
-        buttonStopBatch.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         buttonStopBatch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonStopBatchActionPerformed(evt);
@@ -147,7 +144,7 @@ public class ControlPanel extends StylePanel {
         labBatchPiece.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labBatchPiece.setText("lab batch piece");
 
-        buttonBreak.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        buttonBreak.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         buttonBreak.setText("Mettre le contole en pause");
         buttonBreak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,8 +163,11 @@ public class ControlPanel extends StylePanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labBatchPiece, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labModel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addContainerGap(213, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cbBrokenPiece, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -180,28 +180,24 @@ public class ControlPanel extends StylePanel {
                             .addComponent(labHT, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfHL, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
-                            .addComponent(tfHT, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(tfHL)
+                            .addComponent(tfHT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labBL)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(tfBL, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(buttonValidate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                    .addComponent(buttonValidate, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(buttonBreak, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(buttonStopBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labProgressing, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(222, 222, 222))))
-            .addComponent(labBatchPiece, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labModel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(buttonStopBatch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonBreak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(labProgressing)))
+                .addGap(0, 238, Short.MAX_VALUE))
+            .addComponent(jSeparator1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,64 +208,72 @@ public class ControlPanel extends StylePanel {
                 .addComponent(labBatchPiece)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labModel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfHL, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labHL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfHT, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labHT))
+                    .addComponent(labHT)
+                    .addComponent(labProgressing, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labBL)
+                    .addComponent(tfBL, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labBL)
-                            .addComponent(tfBL, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labProgressing, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(tfBT, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(labBT))))
+                        .addGap(22, 22, 22)
+                        .addComponent(tfBT, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
-                .addComponent(cbBrokenPiece)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 37, Short.MAX_VALUE)
-                        .addComponent(buttonValidate, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonBreak, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(buttonStopBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(26, 26, 26)
+                        .addComponent(labBT)))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbBrokenPiece)
+                    .addComponent(buttonBreak, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonStopBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonValidate, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
+<<<<<<< HEAD
         if ((tool.CommonTools.isFloat(tfHT.getText())) && (tool.CommonTools.isFloat(tfHL.getText())) && (tool.CommonTools.isFloat(tfBT.getText())) && (tool.CommonTools.isFloat(tfBL.getText()))) {
 
             confirmStart();
-            
             setProgression();
+            
         } else {
             JOptionPane.showMessageDialog(null, "Veuillez saisir l'intégrité de l'ensemble des dimensions.");
+=======
+        if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText())))
+        {
+            if ((tool.CommonTools.isFloatPositive(tfHT.getText())) && (tool.CommonTools.isFloatPositive(tfHL.getText())) && (tool.CommonTools.isFloatPositive(tfBT.getText())) && (tool.CommonTools.isFloatPositive(tfBL.getText()))) {
+                
+                confirmStart();
+                
+                setProgression();
+            } else {
+                JOptionPane.showMessageDialog(null, "Veuillez saisir l'intégrité de l'ensemble des dimensions.");
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Erreur : un des champs est à zéro.");
+>>>>>>> master
         }
     }//GEN-LAST:event_buttonValidateActionPerformed
-
+    
     private void tfHLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHLActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfHLActionPerformed
-
+    
     private void cbBrokenPieceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBrokenPieceActionPerformed
         if (cbBrokenPiece.isSelected()) {
             tfHT.setText("0");
@@ -278,32 +282,32 @@ public class ControlPanel extends StylePanel {
             tfBL.setText("0");
         }
     }//GEN-LAST:event_cbBrokenPieceActionPerformed
-
+    
     private void buttonStopBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStopBatchActionPerformed
         if (currentBatch.getState() == 3) {
             confirmStop();
         } else {
             JOptionPane.showMessageDialog(null, "Attention, la presse n'a pas été libérée correctement. Veuillez en référer à votre supérieur.");
         }
-
+        
     }//GEN-LAST:event_buttonStopBatchActionPerformed
-
+    
     private void buttonBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBreakActionPerformed
-
+        
         confirmBreak();
-
+        
     }//GEN-LAST:event_buttonBreakActionPerformed
-
+    
     private void confirmBreak() {
         if (JOptionPane.showConfirmDialog(null, "Mettre le lot en pause ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            boolean stop = dao.BatchManager.setBreak(currentBatch, (goal - counter + 1));
+            boolean stop = dao.BatchManager.setBreak(currentBatch, (goal - counter));
             if (stop) {
                 JOptionPane.showMessageDialog(null, "Le lot a bien été mis en pause.");
                 parent.changePanel(new ControlChoosePressPanel(parent));
             }
         }
     }
-
+    
     private void confirmStop() {
         if (JOptionPane.showConfirmDialog(null, "Arrêter le lot ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             dao.BatchManager.setStateFour(currentBatch);
@@ -311,7 +315,7 @@ public class ControlPanel extends StylePanel {
             parent.changePanel(new ControlChoosePressPanel(parent));
         }
     }
-
+    
     private void confirmStart() {
         if (JOptionPane.showConfirmDialog(null, "Valider la pièce ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if (cbBrokenPiece.isSelected()) {
@@ -338,7 +342,7 @@ public class ControlPanel extends StylePanel {
                 tfBL.setText("");
                 counter++;
             }
-
+            
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -346,6 +350,7 @@ public class ControlPanel extends StylePanel {
     private javax.swing.JButton buttonStopBatch;
     private javax.swing.JButton buttonValidate;
     private javax.swing.JCheckBox cbBrokenPiece;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labBL;
     private javax.swing.JLabel labBT;
     private javax.swing.JLabel labBatchPiece;
@@ -354,7 +359,6 @@ public class ControlPanel extends StylePanel {
     private javax.swing.JLabel labModel;
     private javax.swing.JLabel labProgressing;
     private javax.swing.JLabel labTitle;
-    private javax.swing.JProgressBar progressBar;
     private javax.swing.JTextField tfBL;
     private javax.swing.JTextField tfBT;
     private javax.swing.JTextField tfHL;

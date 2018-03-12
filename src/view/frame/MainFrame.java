@@ -16,14 +16,14 @@ public class MainFrame extends javax.swing.JFrame {
     private JPanel mainPanel;
     private Batch currentBatch;
 
-
-    
-    
     public MainFrame() {
         initComponents();
         setLayout(new GridLayout(1, 1, 10, 0));
+        setBounds(400, 200, 1000, 600);
         mainPanel = new HomePanel(this);
         add(mainPanel);
+        setResizable(false);
+        setTitle("BOUM_DAY");
     }
 
     public void changePanel(JPanel panel)

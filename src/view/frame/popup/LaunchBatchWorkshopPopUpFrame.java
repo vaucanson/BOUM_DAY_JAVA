@@ -27,6 +27,7 @@ public class LaunchBatchWorkshopPopUpFrame extends StylePopUpFrame {
 
         lbw = new LaunchBatchWorkshopPopUpPanel(this);
         this.add(lbw);
+        this.setBounds(700, 300, 500, 400);
     }
 
     public Model getModel() {

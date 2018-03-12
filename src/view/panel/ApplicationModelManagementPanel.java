@@ -5,6 +5,7 @@
  */
 package view.panel;
 
+import dao.ModelManager;
 import entity.Model;
 import javax.swing.JOptionPane;
 import model.ModelListModel;
@@ -91,6 +92,8 @@ public class ApplicationModelManagementPanel extends StylePanel {
         textMedium = new javax.swing.JTextField();
         textBig = new javax.swing.JTextField();
         buttonOK = new javax.swing.JButton();
+        labTitlle = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         listModel.setModel(new ModelListModel());
         listModel.setCellRenderer(new ModelListRenderer());
@@ -103,20 +106,28 @@ public class ApplicationModelManagementPanel extends StylePanel {
             }
         });
 
+        labelNewModel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelNewModel.setText("Nouveau Modèle :");
 
-        labelName.setText("nom :");
+        labelName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelName.setText("Nom");
 
-        labelDiametre.setText("diamètre :");
+        labelDiametre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelDiametre.setText("Diamètre");
 
-        labelLimit.setText("Seuil par catégorie :");
+        labelLimit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelLimit.setText("Seuil par catégorie");
 
-        labelSmall.setText("petit");
+        labelSmall.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelSmall.setText("Petit");
 
-        labelMedium.setText("moyen");
+        labelMedium.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelMedium.setText("Moyen");
 
-        labelBig.setText("grand");
+        labelBig.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelBig.setText("Grand");
 
+        buttonOK.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         buttonOK.setText("Ajouter modèle");
         buttonOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,76 +135,72 @@ public class ApplicationModelManagementPanel extends StylePanel {
             }
         });
 
+        labTitlle.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labTitlle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labTitlle.setText("GESTION DES MODELES");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addComponent(buttonRemove)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                .addGap(77, 77, 77)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(labelNewModel)
-                        .addGap(165, 165, 165))
+                        .addGap(270, 270, 270))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(labelName)
+                        .addGap(27, 27, 27)
+                        .addComponent(textName, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(labelDiametre)
+                        .addGap(18, 18, 18)
+                        .addComponent(textDiametre, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(164, 164, 164))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(labelLimit)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(labelDiametre)
-                                                .addComponent(labelName))
-                                            .addGap(37, 37, 37))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(labelSmall)
-                                            .addGap(73, 73, 73)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(labelMedium)
-                                            .addComponent(labelBig))
-                                        .addGap(63, 63, 63)))
+                                    .addComponent(labelSmall)
+                                    .addComponent(labelMedium)
+                                    .addComponent(labelBig))
+                                .addGap(19, 19, 19)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(textDiametre)
-                                    .addComponent(textName)
-                                    .addComponent(textSmall)
-                                    .addComponent(textMedium, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(193, 193, 193))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(buttonOK)
-                    .addComponent(textBig, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(193, 193, 193))
+                                    .addComponent(textSmall, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(textMedium, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(textBig, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(buttonOK))
+                        .addGap(267, 267, 267))))
+            .addComponent(labTitlle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(labTitlle, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(labelNewModel)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(buttonRemove))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(labelNewModel)
-                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelName)
-                            .addComponent(textName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelDiametre)
-                            .addComponent(textDiametre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(54, 54, 54)
+                            .addComponent(textDiametre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
                         .addComponent(labelLimit)
-                        .addGap(38, 38, 38)
+                        .addGap(74, 74, 74)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelSmall)
                             .addComponent(textSmall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -204,10 +211,19 @@ public class ApplicationModelManagementPanel extends StylePanel {
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelBig)
-                            .addComponent(textBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addComponent(buttonOK)
-                .addContainerGap(177, Short.MAX_VALUE))
+                            .addComponent(textBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(buttonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jScrollPane1)
+                            .addGap(82, 82, 82))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(buttonAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(32, 32, 32)
+                            .addComponent(buttonRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(301, 301, 301)))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -222,15 +238,14 @@ public class ApplicationModelManagementPanel extends StylePanel {
         }
     }//GEN-LAST:event_buttonOKActionPerformed
 
-    private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveActionPerformed
-        this.removeSelectedModel();
-    }//GEN-LAST:event_buttonRemoveActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonOK;
     private javax.swing.JButton buttonRemove;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel labTitlle;
     private javax.swing.JLabel labelBig;
     private javax.swing.JLabel labelDiametre;
     private javax.swing.JLabel labelLimit;

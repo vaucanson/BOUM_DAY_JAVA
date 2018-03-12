@@ -60,7 +60,10 @@ public class ApplicationPurgeManagementPanel extends StylePanel {
         buttonValidate = new javax.swing.JButton();
         labelNumberOfPiecesToPurge = new javax.swing.JLabel();
         labelPurgeImpossible = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
+        buttonValidate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         buttonValidate.setText("Valider");
         buttonValidate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonValidate.addActionListener(new java.awt.event.ActionListener() {
@@ -70,39 +73,43 @@ public class ApplicationPurgeManagementPanel extends StylePanel {
         });
 
         labelNumberOfPiecesToPurge.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelNumberOfPiecesToPurge.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNumberOfPiecesToPurge.setText("Label info purge");
 
         labelPurgeImpossible.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelPurgeImpossible.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelPurgeImpossible.setText("Label purge impossible");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("GESTION DE LA PURGE");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1001, Short.MAX_VALUE)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(labelNumberOfPiecesToPurge, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelPurgeImpossible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 260, Short.MAX_VALUE)
-                .addComponent(labelPurgeImpossible)
-                .addGap(288, 288, 288))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(311, 311, 311)
-                        .addComponent(buttonValidate, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(300, 300, 300)
-                        .addComponent(labelNumberOfPiecesToPurge)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonValidate, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(396, 396, 396))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96)
                 .addComponent(labelNumberOfPiecesToPurge)
-                .addGap(57, 57, 57)
+                .addGap(98, 98, 98)
                 .addComponent(labelPurgeImpossible)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addGap(77, 77, 77)
                 .addComponent(buttonValidate, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(134, 134, 134))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -123,6 +130,8 @@ public class ApplicationPurgeManagementPanel extends StylePanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonValidate;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelNumberOfPiecesToPurge;
     private javax.swing.JLabel labelPurgeImpossible;
     // End of variables declaration//GEN-END:variables

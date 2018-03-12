@@ -40,7 +40,7 @@ abstract public class CommonTools
 	 * @return vrai si la chaîne est composée de chiffres avec optionnellement
 	 *         un point ou une virgule dedans
 	 */
-	public static boolean isFloat(String str)
+	public static boolean isFloatPositive(String str)
 	{
 		// des chiffres, puis optionnellement un point ou une virgule et encore
 		// des chiffres
@@ -48,11 +48,19 @@ abstract public class CommonTools
 		return str != null && str.matches(pattern);
 	}
         
-        public static boolean isFloatNegOK(String str)
+        public static boolean isFloat(String str)
 	{
 		// des chiffres, puis optionnellement un point ou une virgule et encore
 		// des chiffres
 		String pattern="^([+-]?\\d*\\.?\\d*)$";
+		return str != null && str.matches(pattern);
+	}
+        
+        public static boolean isFloatNegative(String str)
+	{
+		// des chiffres, puis optionnellement un point ou une virgule et encore
+		// des chiffres
+		String pattern="^-([+-]?\\d*\\.?\\d+)?$";
 		return str != null && str.matches(pattern);
 	}
 

@@ -5,6 +5,8 @@
  */
 package entity;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mattar
@@ -27,8 +29,12 @@ public class Stock {
     {
         this.category = category;
         this.model = model;
-        setLimit(limit);
         this.quantity = quantity;
+        if (!setLimit(limit))
+        {
+            JOptionPane.showMessageDialog(null, "Erreur : le seuil minimal doit être un nombre positif.");
+        }
+        
     }
    
     @Override
@@ -58,9 +64,15 @@ public class Stock {
         return (this.getQuantity() < this.getLimit());
     }
 
-    public void setLimit(int limit)
+    public boolean setLimit(int limit)
     {
-        this.limit = limit;
+        boolean ok = false;
+        if (limit > 0)
+        {
+            this.limit = limit;
+            ok = true;
+        }
+        return ok;
     }
     
 }

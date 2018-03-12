@@ -1,5 +1,6 @@
 package dao;
 
+import entity.Batch;
 import entity.Piece;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -90,7 +91,8 @@ public abstract class PieceManager {
             if (rs.next())
             {
                 // création d'une pièce avec les données trouvées
-                newPiece = new Piece(rs.getFloat("ht"), rs.getFloat("hl"), rs.getFloat("bt"), rs.getFloat("bl"), rs.getInt("batch"));
+                Batch batch = BatchManager.get(rs.getInt("batch"));
+                newPiece = new Piece(rs.getFloat("ht"), rs.getFloat("hl"), rs.getFloat("bt"), rs.getFloat("bl"), batch);
             }
             st.close();
         } 

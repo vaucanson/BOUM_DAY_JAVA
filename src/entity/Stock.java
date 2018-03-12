@@ -39,7 +39,7 @@ public class Stock {
    
     @Override
     public String toString() {
-        return getModel().getName() + getCategory().getName() + getQuantity() + getLimit();
+        return getModel().getName() + getCategory().toString() + getQuantity() + getLimit();
     }
 
     public Category getCategory() {

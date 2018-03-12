@@ -48,7 +48,7 @@ public class StockManager {
                 {
                     if (rs.getInt(5) == 1)
                     {
-                        Category cat = CategoryManager.getCategory(rs.getString(2));
+                        Category cat = Category.valueOf(rs.getString(2).toUpperCase());
                         Model mod = ModelManager.getModel(rs.getString(1));
                         liste.add(new Stock(mod, cat, rs.getInt(3), rs.getInt(4)));
                     }
@@ -153,7 +153,7 @@ public class StockManager {
                 while (rs.next())
                 {   
                     Model model = ModelManager.getModel(rs.getString(1));
-                    Category category = CategoryManager.getCategory(rs.getString(2));
+                    Category category = Category.valueOf(rs.getString(2).toUpperCase());
                     int quantity = rs.getInt(3);
                     int limit = rs.getInt(4);
                     

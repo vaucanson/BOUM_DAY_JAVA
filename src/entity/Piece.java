@@ -140,16 +140,16 @@ public class Piece {
        this.batch = batch;
     }
     
-    public tool.Category getCategory()
+    public entity.Category getCategory()
     {
-        tool.Category cat = tool.Category.WASTE;
+        entity.Category cat = entity.Category.WASTE;
         
         float htInterval = this.ht - this.getBatch().getModel().getDiameter();
         float hlInterval = this.hl - this.getBatch().getModel().getDiameter();
         float btInterval = this.bt - this.getBatch().getModel().getDiameter();
         float blInterval = this.bl - this.getBatch().getModel().getDiameter();
         
-        cat = tool.Category.get(htInterval, hlInterval, btInterval, blInterval);
+        cat = entity.Category.get(htInterval, hlInterval, btInterval, blInterval);
         return cat;
     }
     

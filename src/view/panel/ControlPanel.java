@@ -33,7 +33,7 @@ public class ControlPanel extends StylePanel {
             goal = currentBatch.getPiecesNumber();
             labTitle.setText("Lot n°" + Integer.toString(currentBatch.getId()));
             labBatchPiece.setText("Presse n°" + Integer.toString(dao.PressManager.getOne(currentBatch).getId()));
-            labModel.setText("Modèle de pièce : " + currentBatch.getModel());
+            labModel.setText("Modèle de pièce : " + currentBatch.getModel().getName());
             setProgression();
 
         }
@@ -111,6 +111,7 @@ public class ControlPanel extends StylePanel {
         tfBT.setToolTipText("");
         tfBT.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
+        cbBrokenPiece.setBackground(getBackground());
         cbBrokenPiece.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cbBrokenPiece.setText("Pièce cassée");
         cbBrokenPiece.addActionListener(new java.awt.event.ActionListener() {
@@ -207,7 +208,7 @@ public class ControlPanel extends StylePanel {
                 .addComponent(labBatchPiece)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labModel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

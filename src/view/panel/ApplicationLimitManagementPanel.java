@@ -10,6 +10,7 @@ import entity.Model;
 import javax.swing.JOptionPane;
 import model.ModelComboModel;
 import renderer.ModelComboRenderer;
+import tool.CommonTools;
 
 /**
  *
@@ -172,8 +173,12 @@ public class ApplicationLimitManagementPanel extends StylePanel{
             else
             {
                 // si les informations entrées dans les textfileds sont valide (un entier positif)
-                if ((Integer.parseInt(textSmall.getText()) >= 0) && (Integer.parseInt(textMedium.getText()) >= 0) && (Integer.parseInt(textBig.getText()) >= 0))
+                if (CommonTools.isInteger(textSmall.getText()) && CommonTools.isInteger(textMedium.getText()) && CommonTools.isInteger(textMedium.getText()))
                 {
+                    if ((Integer.parseInt(textSmall.getText()) >= 0) && (Integer.parseInt(textMedium.getText()) >= 0) && (Integer.parseInt(textBig.getText()) >= 0))
+                    {
+                        
+             
                     // ferme la modification des textfield, change le label du bouton
 
                     textSmall.setEditable(false);
@@ -186,10 +191,15 @@ public class ApplicationLimitManagementPanel extends StylePanel{
                     StockManager.changeLimit(nomModel, labelBig.getText(), Integer.parseInt(textBig.getText()));
 
                     JOptionPane.showMessageDialog(null, "Le seuil a bien été mis à jour.");
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Erreur : Veuillez saisir des nombres positifs");
+                    }
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Erreur lors de la saisie. Les limites doivent des nombres entiers et positifs");
+                    JOptionPane.showMessageDialog(null, "Erreur : Veuillez saisir un nombre entier et positif." );
                 }
             }
         }

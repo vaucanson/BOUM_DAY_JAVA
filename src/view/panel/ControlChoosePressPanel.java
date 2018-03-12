@@ -6,9 +6,9 @@
 package view.panel;
 
 import entity.Batch;
-import entity.Press;
 import javax.swing.JOptionPane;
 import model.BatchStateTwoOrThreeListModel;
+import renderer.BatchListRenderer;
 import view.frame.MainFrame;
 
 /**
@@ -44,6 +44,7 @@ public class ControlChoosePressPanel extends StylePanel {
         labTitle.setText("LOT A CONTROLER");
 
         listBatch.setModel(lbpm);
+        listBatch.setCellRenderer(new BatchListRenderer());
         jScrollPane1.setViewportView(listBatch);
 
         buttonValidate.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N

@@ -1,5 +1,6 @@
 package main;
 
+import tool.CommonTools;
 import view.frame.MainFrame;
 
 /**

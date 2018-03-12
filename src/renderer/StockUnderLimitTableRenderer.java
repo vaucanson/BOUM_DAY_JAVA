@@ -26,25 +26,28 @@ public class StockUnderLimitTableRenderer implements TableCellRenderer{
         JLabel lab = new JLabel(value.toString());
         lab.setOpaque(true);
         
-        
+        /**
+         * le bouton n'apparait que si la colonne état est à false (en rouge)
+         */
         if ( column == 4 && table.getModel().getValueAt(row, 5)== Boolean.FALSE)
         {
             button = new JButton("Lancer Lot");
             return button;
             
         }
+        // défini la couleur des cellules de colonne État
         else if (column == 5)
         {
             state = new JButton("");
             
             if (value.toString().equalsIgnoreCase("true"))
             {
-                state.setBackground(Color.green);
+                state.setBackground(Color.green);                   // vert si un lot a été lancé pour le modèle associé
                 
             }
             else
             {
-                state.setBackground(Color.red);
+                state.setBackground(Color.red);                     // rouge si aucun lot n'a été lancé pour le modèle associé
             }
             return state;
         }

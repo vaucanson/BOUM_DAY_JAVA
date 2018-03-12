@@ -1,7 +1,6 @@
 package entity;
 
 import dao.CategoryManager;
-import dao.CategoryManagerOld;
 
 public enum Category 
 {
@@ -11,6 +10,7 @@ public enum Category
     BIG(CategoryManager.getTolerance("big")[0], CategoryManager.getTolerance("big")[1]),
     WASTE(0, 0);
     
+   private String name;
     private float minTolerance;
     private float maxTolerance;
     

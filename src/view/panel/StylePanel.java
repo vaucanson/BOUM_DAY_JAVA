@@ -19,7 +19,7 @@ public class StylePanel extends javax.swing.JPanel {
     public StylePanel() {
         initComponents();
         this.setFont(new java.awt.Font("Tahoma", 0, 24));
-        this.setBackground(Color.decode("#d6c4be"));
+        this.setBackground(Color.decode("#dce3e5"));
 
        System.out.println(this.getClass().getSimpleName());
         

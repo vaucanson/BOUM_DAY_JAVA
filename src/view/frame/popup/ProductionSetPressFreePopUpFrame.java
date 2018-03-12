@@ -16,6 +16,7 @@ public class ProductionSetPressFreePopUpFrame extends StylePopUpFrame {
         super();
         fpppu = new ProductionSetPressFreePopUpPanel(this);
         this.add(fpppu);
+        this.setBounds(700, 300, 500, 400);
        
     }
 

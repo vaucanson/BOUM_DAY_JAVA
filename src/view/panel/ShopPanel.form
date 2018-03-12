@@ -16,64 +16,53 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="comboModel" min="-2" pref="134" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="comboCategory" min="-2" pref="134" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="52" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jScrollPane1" min="-2" pref="909" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="comboModel" min="-2" pref="151" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="comboCategory" min="-2" pref="149" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="crateNumberSpinner" min="-2" pref="57" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="buttonOK" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="buttonHistory" min="-2" pref="221" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="73" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <Component id="jScrollPane1" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
+          <Component id="labTitle" alignment="1" max="32767" attributes="0"/>
+          <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+              <Component id="labTitle" min="-2" pref="39" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="comboModel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="comboCategory" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="crateNumberSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="buttonOK" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
+                  <Component id="buttonOK" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="buttonHistory" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="350" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="364" max="-2" attributes="0"/>
+              <EmptySpace pref="79" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Gestion du Stock"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JComboBox" name="comboCategory">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -87,6 +76,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonOK">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Valider"/>
       </Properties>
       <Events>
@@ -110,11 +102,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nombre de Caisses :"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Nombre de Caisses"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="buttonHistory">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Historique des Entr&#xe9;es / Sorties"/>
       </Properties>
       <Events>
@@ -135,10 +133,21 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="tabStock.setDefaultRenderer(String.class, new renderer.CrateTableStringRenderer());&#xa;tabStock.setDefaultRenderer(Boolean.class, new renderer.StockTableBooleanRenderer());&#xa;tabStock.setDefaultRenderer(Integer.class, new renderer.StockTableIntegerRenderer());"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="tabStock.setDefaultRenderer(String.class, new renderer.CrateTableStringRenderer());&#xa;tabStock.setDefaultRenderer(Boolean.class, new renderer.StockTableBooleanRenderer());&#xa;tabStock.setDefaultRenderer(Integer.class, new renderer.StockTableIntegerRenderer());&#xa;&#xa;tabStock.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer()&#xa;{&#xa;        {&#xa;            setOpaque(true);&#xa;        }&#xa;&#xa;        @Override&#xa;        public Component getTableCellRendererComponent(&#xa;                                                        final JTable table,&#xa;                                                        final Object value,&#xa;                                                        final boolean isSelected,&#xa;                                                        final boolean hasFocus,&#xa;                                                        final int row,&#xa;                                                        final int column)&#xa;        {&#xa;                JLabel lab = new JLabel();&#xa;                lab.setOpaque(true);&#xa;&#xa;                // la font&#xa;                lab.setFont(lab.getFont().deriveFont(Font.BOLD));&#xa;&#xa;                // centrer le texte&#xa;                lab.setHorizontalAlignment(SwingConstants.CENTER);&#xa;&#xa;                // le texte &#xe0; afficher&#xa;                String texte = String.format(&quot;%s&quot;, value.toString());&#xa;                texte = texte.toUpperCase();&#xa;&#xa;                lab.setText(texte);&#xa;                lab.setForeground(Color.WHITE);&#xa;                lab.setBackground(Color.GRAY);&#xa;&#xa;                // renvoie le label&#xa;                return lab;&#xa;        }&#xa;});"/>
           </AuxValues>
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="labTitle">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="24" style="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="GESTION DES STOCKS"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator1">
+    </Component>
   </SubComponents>
 </Form>

@@ -13,8 +13,8 @@ public class Batch {
     private short piecesNumber;
     private short state;
     private short press;
-    private String model;
-    
+    private Model model;
+
     public short getId() {
         return id;
     }
@@ -28,15 +28,15 @@ public class Batch {
         }
         return ok;
     }
-    
+
     public Date getDate() {
         return date;
     }
-    
+
     public void setDate(Date date) {
         this.date = date;
     }
-    
+
     public short getPiecesNumber() {
         return piecesNumber;
     }
@@ -50,7 +50,7 @@ public class Batch {
         }
         return ok;
     }
-    
+
     public short getState() {
         return state;
     }
@@ -64,7 +64,7 @@ public class Batch {
         }
         return ok;
     }
-    
+
     public short getPress() {
         return press;
     }
@@ -79,17 +79,17 @@ public class Batch {
         }
         return ok;
     }
-    
-    public String getModel() {
+
+    public Model getModel() {
         return model;
     }
-    
-    public void setModel(String model) {
+
+    public void setModel(Model model) {
         this.model = model;
     }
     
     
-    public Batch (short id, Date date, short pn, short state, short press, String model)
+    public Batch (short id, Date date, short pn, short state, short press, Model model)
     {
         this.date = date;
         this.model = model;
@@ -113,10 +113,12 @@ public class Batch {
         
         
     }
+
+
     
     @Override
     public String toString() {
-        return "lot numero : " + id + ", " + piecesNumber + " pièces de modèle " + model  + ". Etat : " + state;
+        return "Lot numero : " + id + " || " + piecesNumber + " pièces de modèle " + model;
     }
     
 }

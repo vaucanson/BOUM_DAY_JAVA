@@ -12,13 +12,11 @@ public class Piece {
     private float hl; // le diamètre haut longitudinal
     private float bt; // le diamètre bas transversal
     private float bl; // le diamètre bas longitudinal
-    private int batch;  // le lot auquel la pièce appartient
+    private Batch batch;  // le lot auquel la pièce appartient
     private boolean broken;
 
-
-
     
-     public Piece(float ht, float hl, float bt, float bl, int batch)
+     public Piece(float ht, float hl, float bt, float bl, Batch batch)
     {
         if (!setHt(ht))
         {
@@ -36,10 +34,8 @@ public class Piece {
         {
             JOptionPane.showMessageDialog(null, "Erreur : le nombre BL doit être positif.");
         }
-        else if (!setBatch(batch))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur : le numéro du lot doit être positif.");
-        }
+        
+        this.setBatch(batch);
         
         if ((ht != 0) && (hl !=0) && (bt != 0) && (bl != 0))
         {
@@ -50,12 +46,10 @@ public class Piece {
             setBroken(true);
         }
     }
-     
-    
     
     public boolean isBroken() 
     {
-    return broken;
+        return broken;
     }
 
     public void setBroken(boolean broken) {
@@ -128,7 +122,7 @@ public class Piece {
     }
 
     public boolean setBl(float bl) {
-         boolean ok = false;
+        boolean ok = false;
         if (bl >= 0)
         {
             this.bl = bl;
@@ -138,21 +132,25 @@ public class Piece {
        
     }
 
-    public int getBatch() {
+    public Batch getBatch() {
         return batch;
     }
 
-    public boolean setBatch(int batch) 
+    public void setBatch(Batch batch) {
+       this.batch = batch;
+    }
+    
+    public tool.Category getCategory()
     {
-         boolean ok = false;
-        if (batch >= 0)
-        {
-            this.batch = batch;
-            ok =true;
-        }
-        return ok;
-       
+        tool.Category cat = tool.Category.WASTE;
         
+        float htInterval = this.ht - this.getBatch().getModel().getDiameter();
+        float hlInterval = this.hl - this.getBatch().getModel().getDiameter();
+        float btInterval = this.bt - this.getBatch().getModel().getDiameter();
+        float blInterval = this.bl - this.getBatch().getModel().getDiameter();
+        
+        cat = tool.Category.get(htInterval, hlInterval, btInterval, blInterval);
+        return cat;
     }
     
        

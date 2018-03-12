@@ -21,10 +21,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jLabel1" alignment="0" pref="1001" max="32767" attributes="0"/>
+          <Component id="jLabel1" alignment="0" pref="900" max="32767" attributes="0"/>
           <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="buttonEndBatch" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
@@ -35,7 +35,7 @@
                       <Component id="jScrollPane1" min="-2" pref="454" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -45,7 +45,7 @@
               <Component id="jLabel1" min="-2" pref="59" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace pref="87" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" alignment="1" min="-2" pref="274" max="-2" attributes="0"/>
                   <Component id="buttonStartBatch" min="-2" pref="274" max="-2" attributes="0"/>
@@ -68,7 +68,7 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="listBatch">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="listBatch.setModel(sblm);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="listBatch.setModel(sblm);&#xa;listBatch.setCellRenderer(new BatchListRenderer());"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
           </AuxValues>
         </Component>
@@ -118,6 +118,9 @@
               <Connection code="lpm" type="code"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="listPress.setCellRenderer(new PressListRenderer());"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

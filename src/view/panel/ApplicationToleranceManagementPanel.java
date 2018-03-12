@@ -5,7 +5,7 @@
 */
 package view.panel;
 
-import dao.CategoryManager;
+import dao.CategoryManagerOld;
 import javax.swing.JOptionPane;
 import tool.CommonTools;
 
@@ -31,9 +31,9 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
     
     private void initFields()
     {
-        smallTolerance = CategoryManager.getTolerance(labelSmall.getText());
-        mediumTolerance = CategoryManager.getTolerance(labelMedium.getText());
-        bigTolerance = CategoryManager.getTolerance(labelBig.getText());
+        smallTolerance = CategoryManagerOld.getTolerance(labelSmall.getText());
+        mediumTolerance = CategoryManagerOld.getTolerance(labelMedium.getText());
+        bigTolerance = CategoryManagerOld.getTolerance(labelBig.getText());
         
         textLittleMin.setText(Float.toString(smallTolerance[0]));
         textLittleMax.setText(Float.toString(smallTolerance[1]));
@@ -249,7 +249,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
             {
                 if (CommonTools.isFloatNegative(textLittleMin.getText()) && CommonTools.isFloatNegative(textLittleMax.getText()) && (Float.parseFloat(textLittleMin.getText()) > Float.parseFloat(textLittleMax.getText())))
                 {
-                    CategoryManager.changeTolerance(labelSmall.getText(), Float.parseFloat(textLittleMin.getText()), Float.parseFloat(textLittleMax.getText()));
+                    CategoryManagerOld.changeTolerance(labelSmall.getText(), Float.parseFloat(textLittleMin.getText()), Float.parseFloat(textLittleMax.getText()));
                     buttonChangeLittle.setText("Modifier");
                     initFields();
                 }
@@ -280,7 +280,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
                 if (CommonTools.isFloatNegative(textMediumMin.getText()) && CommonTools.isFloatPositive(textMediumMax.getText()) && (Float.parseFloat(textMediumMin.getText()) < Float.parseFloat(textMediumMax.getText())))
                 {
                     
-                    CategoryManager.changeTolerance(labelMedium.getText(), Float.parseFloat(textMediumMin.getText()), Float.parseFloat(textMediumMax.getText()));
+                    CategoryManagerOld.changeTolerance(labelMedium.getText(), Float.parseFloat(textMediumMin.getText()), Float.parseFloat(textMediumMax.getText()));
                     buttonChangeMedium.setText("Modifier");
                     initFields();
                 }
@@ -306,7 +306,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
                 {
                     if (CommonTools.isFloatPositive(textBigMin.getText()) && CommonTools.isFloatPositive(textBigMax.getText()) && (Float.parseFloat(textBigMin.getText()) < Float.parseFloat(textBigMax.getText())) )
                     {
-                        CategoryManager.changeTolerance(labelBig.getText(), Float.parseFloat(textBigMin.getText()), Float.parseFloat(textBigMax.getText()));
+                        CategoryManagerOld.changeTolerance(labelBig.getText(), Float.parseFloat(textBigMin.getText()), Float.parseFloat(textBigMax.getText()));
                         buttonChangeBig.setText("Modifier");
                         initFields();
                     }

@@ -67,6 +67,7 @@
             </Property>
           </Properties>
           <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="listBatch.setCellRenderer(new BatchListRenderer());"/>
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="listBatch.setModel(lbpm);"/>
           </AuxValues>
         </Component>

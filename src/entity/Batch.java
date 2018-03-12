@@ -110,7 +110,7 @@ public class Batch {
     
     @Override
     public String toString() {
-        return "Lot numero : " + id + " || " + piecesNumber + " pièces de modèle " + model;
+        return "Lot numero : " + id + " || " + piecesNumber + " pièces de modèle " + model.getName();
     }
     
 }

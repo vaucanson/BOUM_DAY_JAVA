@@ -97,7 +97,7 @@ public class StockTableModel extends AbstractTableModel implements ListDataListe
                 valeur = stock.getModel().getName();
                 break;
             case 1:
-                valeur = stock.getCategory().getName();
+                valeur = stock.getCategory().toString();
                 break;
             case 2:
                 valeur = stock.getQuantity();

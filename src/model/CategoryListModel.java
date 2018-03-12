@@ -1,6 +1,5 @@
 package model;
 
-import dao.CategoryManagerOld;
 import entity.Category;
 import java.util.ArrayList;
 import java.util.Arrays;

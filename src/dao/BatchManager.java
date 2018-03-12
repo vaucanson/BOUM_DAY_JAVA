@@ -539,6 +539,7 @@ public class BatchManager {
         return result;
     }
    
+    // TODO TRANSFORMER EN PROCEDURE STOCKEE
     public static boolean setBreak(Batch batch, int rest)
     {
         Boolean result = false;

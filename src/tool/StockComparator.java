@@ -20,7 +20,7 @@ public class StockComparator implements Comparator<Stock>
         {
             retour = 2;  
         }
-        else if ( o1.getModel().getName().compareTo(o2.getModel().getName()) == 0 && o1.getCategory().getName().compareTo(o2.getCategory().getName()) > 0 )
+        else if ( o1.getModel().getName().compareTo(o2.getModel().getName()) == 0 && o1.getCategory().toString().compareTo(o2.getCategory().toString()) > 0 )
         {
            retour = 1;
         }

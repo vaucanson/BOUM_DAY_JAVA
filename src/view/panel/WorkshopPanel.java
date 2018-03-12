@@ -200,7 +200,7 @@ public class WorkshopPanel extends StylePanel {
         
         // permet de relever le String de l'objet Category ciblé par la ComboBox
         Category cat = (Category) comboCategory.getSelectedItem();
-        nomCategory = cat.getName();
+        nomCategory = cat.toString();
     }//GEN-LAST:event_comboCategoryActionPerformed
 
     private void comboModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboModelActionPerformed

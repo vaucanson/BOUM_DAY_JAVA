@@ -142,7 +142,7 @@ public class Piece {
     
     public entity.Category getCategory()
     {
-        entity.Category cat = entity.Category.WASTE;
+        entity.Category cat = entity.Category.REBUT;
         
         float htInterval = this.ht - this.getBatch().getModel().getDiameter();
         float hlInterval = this.hl - this.getBatch().getModel().getDiameter();

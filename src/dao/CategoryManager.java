@@ -44,17 +44,7 @@ public abstract class CategoryManager
             {
                 ex.printStackTrace();
             }
-            finally
-            {
-                try
-                {
-                    c.close();
-                }
-                catch (SQLException ex)
-                {
-                    ex.printStackTrace();
-                }
-            }
+
         }
         catch(SQLException ex)
         {

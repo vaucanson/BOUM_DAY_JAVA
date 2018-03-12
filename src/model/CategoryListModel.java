@@ -3,6 +3,7 @@ package model;
 import dao.CategoryManagerOld;
 import entity.Category;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.AbstractListModel;
 
 /**
@@ -14,7 +15,7 @@ public class CategoryListModel extends AbstractListModel<Category> {
     
     public CategoryListModel()
     {
-        cList = new ArrayList(Category.values());
+        cList = new ArrayList<Category>(Arrays.asList(Category.values()));
     }
 
     @Override

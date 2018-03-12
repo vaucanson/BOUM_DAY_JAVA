@@ -25,13 +25,12 @@ public class Category {
         setMaxTolerance(max);   
     }
     
-<<<<<<< HEAD
-=======
+
     public Category set(Piece p, Batch b)
     {
         return null;
     }
->>>>>>> master
+
     
     public String getName()
     {

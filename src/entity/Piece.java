@@ -16,7 +16,7 @@ public class Piece {
     private boolean broken;
 
     
-     public Piece(float ht, float hl, float bt, float bl, int batch)
+     public Piece(float ht, float hl, float bt, float bl, Batch batch)
     {
         if (!setHt(ht))
         {
@@ -34,10 +34,8 @@ public class Piece {
         {
             JOptionPane.showMessageDialog(null, "Erreur : le nombre BL doit être positif.");
         }
-        else if (!setBatch(batch))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur : le numéro du lot doit être positif.");
-        }
+        
+        this.setBatch(batch);
         
         if ((ht != 0) && (hl !=0) && (bt != 0) && (bl != 0))
         {
@@ -48,17 +46,10 @@ public class Piece {
             setBroken(true);
         }
     }
-     
-    public Category getCategory(Piece p, Batch b)
-    {
-        
-        
-       return null; 
-    }
     
     public boolean isBroken() 
     {
-    return broken;
+        return broken;
     }
 
     public void setBroken(boolean broken) {
@@ -131,7 +122,7 @@ public class Piece {
     }
 
     public boolean setBl(float bl) {
-         boolean ok = false;
+        boolean ok = false;
         if (bl >= 0)
         {
             this.bl = bl;
@@ -147,19 +138,11 @@ public class Piece {
 
     public void setBatch(Batch batch) {
        this.batch = batch;
-        
     }
     
     public tool.Category getCategory()
     {
-         boolean ok = false;
-        if (batch >= 0)
-        {
-            this.batch = batch;
-            ok =true;
-        }
-        return ok;
-       
+        tool.Category cat = tool.Category.WASTE;
         
         float htInterval = this.ht - this.getBatch().getModel().getDiameter();
         float hlInterval = this.hl - this.getBatch().getModel().getDiameter();

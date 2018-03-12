@@ -25,8 +25,5 @@ public class CategoryListRenderer implements ListCellRenderer<Category> {
        }
         
         return lab;
-    }
-
-   
-    
+    }  
 }

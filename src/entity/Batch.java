@@ -69,15 +69,9 @@ public class Batch {
         return press;
     }
     
-    public boolean setPress(short press) {
-        boolean ok = false;
-        
-        if (press > 0)
-        {
-            this.press = press;
-            ok = true;
-        }
-        return ok;
+    private void setPress(short press) 
+    {
+        this.press = press;
     }
 
     public Model getModel() {
@@ -91,8 +85,10 @@ public class Batch {
     
     public Batch (short id, Date date, short pn, short state, short press, Model model)
     {
-        this.date = date;
+        setDate(date);
+        setModel(model);
         this.model = model;
+        setPress(press);
         
         if (!setPiecesNumber(pn))
         {
@@ -101,10 +97,6 @@ public class Batch {
         else if (!setState(state))
         {
             JOptionPane.showMessageDialog(null, "Erreur : l'état du lot doit être compris entre 1 et 4.");
-        }
-        else if (!setPress(press))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur : l'ID de la presse doit être positif.");
         }
         else if (!setId(id))
         {

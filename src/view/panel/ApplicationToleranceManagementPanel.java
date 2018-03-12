@@ -6,9 +6,10 @@
 package view.panel;
 
 import dao.CategoryManager;
-import dao.CategoryManagerOld;
 import entity.Category;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import tool.CommonTools;
 
 /**
@@ -39,8 +40,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
         mediumTolerance[1] = Category.MOYEN.getMaxTolerance();
         bigTolerance[0] = Category.GRAND.getMinTolerance();
         bigTolerance[1] = Category.GRAND.getMaxTolerance();
-     
-        
+         
         textLittleMin.setText(Float.toString(smallTolerance[0]));
         textLittleMax.setText(Float.toString(smallTolerance[1]));
         if (buttonChangeLittle.getText().equalsIgnoreCase("Modifier"))
@@ -66,6 +66,29 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
             textBigMin.setEditable(false);
             textBigMax.setEditable(false);
         }
+    }
+    
+    /**
+     * J'EN SUIS LÀÀÀÀÀÀÀÀÀ   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     */
+    private void saveIntervals(String category, JTextField textMin, JTextField textMax)
+    {
+         if (buttonChangeLittle.getText().equalsIgnoreCase("Modifier"))
+        {
+            textMin.setEditable(true);
+            textMax.setEditable(true);
+            
+            buttonChangeLittle.setText("Valider");
+        }
+        else
+        {
+            if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            {
+                CategoryManager.changeTolerance(category, Float.parseFloat(textMin.getText()), Float.parseFloat(textMax.getText()));
+                buttonChangeLittle.setText("Modifier");
+                initFields();
+            }
+        }       
     }
     
     /**
@@ -241,87 +264,23 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
     }//GEN-LAST:event_textLittleMaxActionPerformed
     
     private void buttonChangeLittleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeLittleActionPerformed
-        
-        if (buttonChangeLittle.getText().equalsIgnoreCase("Modifier"))
-        {
-            textLittleMin.setEditable(true);
-            textLittleMax.setEditable(true);
-            
-            buttonChangeLittle.setText("Valider");
-        }
-        else
-        {
-            if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-            {
-                if (CommonTools.isFloatNegative(textLittleMin.getText()) && CommonTools.isFloatNegative(textLittleMax.getText()) && (Float.parseFloat(textLittleMin.getText()) > Float.parseFloat(textLittleMax.getText())))
-                {
-                    CategoryManager.changeTolerance(labelSmall.getText(), Float.parseFloat(textLittleMin.getText()), Float.parseFloat(textLittleMax.getText()));
-                    buttonChangeLittle.setText("Modifier");
-                    initFields();
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux et négatifs. Assurez-vous que la valeur maximale soit supérieure à la valeur minimale.");
-                }
-            }
-        }
-        
+//        if (CommonTools.isFloatNegative(textLittleMin.getText()) && CommonTools.isFloatNegative(textLittleMax.getText()) && (Float.parseFloat(textLittleMin.getText()) > Float.parseFloat(textLittleMax.getText())))
+         
+        this.saveIntervals(labelSmall.getText(), textLittleMin, textLittleMax);
     }//GEN-LAST:event_buttonChangeLittleActionPerformed
     
     private void buttonChangeMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeMediumActionPerformed
         
-        if (buttonChangeMedium.getText().equalsIgnoreCase("Modifier"))
-        {
-            textMediumMin.setEditable(true);
-            textMediumMax.setEditable(true);
-            
-            buttonChangeMedium.setText("Valider");
-        }
-        else
-        {
-            
-            if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-            {
-                
-                if (CommonTools.isFloatNegative(textMediumMin.getText()) && CommonTools.isFloatPositive(textMediumMax.getText()) && (Float.parseFloat(textMediumMin.getText()) < Float.parseFloat(textMediumMax.getText())))
-                {
-                    
-                    CategoryManager.changeTolerance(labelMedium.getText(), Float.parseFloat(textMediumMin.getText()), Float.parseFloat(textMediumMax.getText()));
-                    buttonChangeMedium.setText("Modifier");
-                    initFields();
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux. Entrer un nombre négatif pour le minimum, et positif pour le maximum.");
-                }
-            }
-        }
+//        if (CommonTools.isFloatNegative(textMediumMin.getText()) && CommonTools.isFloatPositive(textMediumMax.getText()) && (Float.parseFloat(textMediumMin.getText()) < Float.parseFloat(textMediumMax.getText())))
+        
+        this.saveIntervals(labelMedium.getText(), textMediumMin, textMediumMax);
     }//GEN-LAST:event_buttonChangeMediumActionPerformed
     
     private void buttonChangeBigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeBigActionPerformed
-         if (buttonChangeBig.getText().equalsIgnoreCase("Modifier"))
-            {
-                textBigMin.setEditable(true);
-                textBigMax.setEditable(true);
-                
-                buttonChangeBig.setText("Valider");
-            }
-            else
-            {
-                if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-                {
-                    if (CommonTools.isFloatPositive(textBigMin.getText()) && CommonTools.isFloatPositive(textBigMax.getText()) && (Float.parseFloat(textBigMin.getText()) < Float.parseFloat(textBigMax.getText())) )
-                    {
-                        CategoryManager.changeTolerance(labelBig.getText(), Float.parseFloat(textBigMin.getText()), Float.parseFloat(textBigMax.getText()));
-                        buttonChangeBig.setText("Modifier");
-                        initFields();
-                    }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux positifs. Assurez-vous que la valeur maximale soit supérieure à la valeur minimale.");
-                    }
-                }
-            }
+        
+//        if (CommonTools.isFloatPositive(textBigMin.getText()) && CommonTools.isFloatPositive(textBigMax.getText()) && (Float.parseFloat(textBigMin.getText()) < Float.parseFloat(textBigMax.getText())) )
+          this.saveIntervals(labelBig.getText(), textBigMin, textBigMax);
+        
     }//GEN-LAST:event_buttonChangeBigActionPerformed
     
     

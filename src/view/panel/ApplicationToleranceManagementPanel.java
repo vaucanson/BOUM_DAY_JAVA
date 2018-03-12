@@ -60,7 +60,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelPresentation = new javax.swing.JLabel();
+        labelTitle = new javax.swing.JLabel();
         labelSmall = new javax.swing.JLabel();
         labelMedium = new javax.swing.JLabel();
         labelBig = new javax.swing.JLabel();
@@ -75,13 +75,19 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
         buttonChangeBig = new javax.swing.JButton();
         labMinTolerance = new javax.swing.JLabel();
         labMaxTolerance = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
-        labelPresentation.setText("Intervalles de tolérance par catégories :");
+        labelTitle.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTitle.setText("GESTION DES INTERVALLES DE TOLERANCE PAR CATEGORIE");
 
+        labelSmall.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelSmall.setText("Petit");
 
+        labelMedium.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelMedium.setText("Moyen");
 
+        labelBig.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelBig.setText("Grand");
 
         textLittleMin.setText(Float.toString(smallTolerance[1]));
@@ -97,6 +103,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
             }
         });
 
+        buttonChangeLittle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buttonChangeLittle.setText("Modifier");
         buttonChangeLittle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +111,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
             }
         });
 
+        buttonChangeMedium.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buttonChangeMedium.setText("Modifier");
         buttonChangeMedium.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +119,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
             }
         });
 
+        buttonChangeBig.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         buttonChangeBig.setText("Modifier");
         buttonChangeBig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,80 +127,91 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
             }
         });
 
+        labMinTolerance.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labMinTolerance.setText("Tolérance Minimale");
 
+        labMaxTolerance.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labMaxTolerance.setText("Tolérance Maximale");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(227, 227, 227)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelPresentation)
-                                .addGap(28, 28, 28))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labMinTolerance)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(labMaxTolerance))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labelSmall)
-                                .addComponent(labelMedium))
-                            .addComponent(labelBig))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textMediumMin, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textLittleMin, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textBigMin, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textBigMax, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(textMediumMax, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                                .addComponent(textLittleMax, javax.swing.GroupLayout.Alignment.TRAILING)))
-                        .addGap(11, 11, 11)))
-                .addGap(74, 74, 74)
+            .addComponent(labelTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(145, 145, 145)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonChangeMedium, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(buttonChangeLittle, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(buttonChangeBig, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(112, 112, 112))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(380, 380, 380)
+                                .addComponent(textBigMax, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelBig)
+                                .addGap(93, 93, 93)
+                                .addComponent(textBigMin, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                        .addComponent(buttonChangeBig, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelSmall)
+                                .addGap(353, 353, 353)
+                                .addComponent(textLittleMax, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(130, 130, 130)
+                                .addComponent(textLittleMin, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonChangeLittle, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labelMedium)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(380, 380, 380)
+                                .addComponent(textMediumMax, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(130, 130, 130)
+                                .addComponent(textMediumMin, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonChangeMedium, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(165, 165, 165))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(252, 252, 252)
+                .addComponent(labMinTolerance)
+                .addGap(107, 107, 107)
+                .addComponent(labMaxTolerance)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(labelPresentation)
-                .addGap(83, 83, 83)
+                .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labMinTolerance)
                     .addComponent(labMaxTolerance))
-                .addGap(27, 27, 27)
+                .addGap(83, 83, 83)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textLittleMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelSmall)
                     .addComponent(textLittleMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonChangeLittle)
-                    .addComponent(labelSmall))
-                .addGap(33, 33, 33)
+                    .addComponent(buttonChangeLittle))
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textMediumMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textMediumMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonChangeMedium)
                     .addComponent(labelMedium))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelBig)
                     .addComponent(textBigMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelBig)
                     .addComponent(textBigMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonChangeBig))
-                .addGap(131, 131, 131))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -293,12 +313,13 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
     private javax.swing.JButton buttonChangeBig;
     private javax.swing.JButton buttonChangeLittle;
     private javax.swing.JButton buttonChangeMedium;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labMaxTolerance;
     private javax.swing.JLabel labMinTolerance;
     private javax.swing.JLabel labelBig;
     private javax.swing.JLabel labelMedium;
-    private javax.swing.JLabel labelPresentation;
     private javax.swing.JLabel labelSmall;
+    private javax.swing.JLabel labelTitle;
     private javax.swing.JTextField textBigMax;
     private javax.swing.JTextField textBigMin;
     private javax.swing.JTextField textLittleMax;

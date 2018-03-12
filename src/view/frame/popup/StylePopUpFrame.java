@@ -20,7 +20,7 @@ public class StylePopUpFrame extends javax.swing.JFrame {
         this.initComponents();
         this.setVisible(true);
         this.setLayout(new GridLayout(1, 1, 10, 0));
-        this.setBounds(200, 200, 500, 400);
+        this.setBounds(700, 300, 500, 400);
     }
 
       public static StylePopUpFrame getInstance()
@@ -46,11 +46,11 @@ public class StylePopUpFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 350, Short.MAX_VALUE)
         );
 
         pack();

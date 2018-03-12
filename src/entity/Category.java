@@ -14,12 +14,7 @@ public class Category {
    private String name;
     private float minTolerance;
     private float maxTolerance;
-    private String smallCat;
-    private String mediumCat;
-    private String largeCat;
     
-    
-    //TODO LES SET AVEC VERIF
     public Category (String name, float min, float max)
     {
         this.name = name;
@@ -27,12 +22,6 @@ public class Category {
         setMaxTolerance(max);   
     }
     
-    public Category set(Piece p, Batch b)
-    {
-        
-        
-        return null;
-    }
     
     public String getName()
     {

@@ -78,7 +78,7 @@ public class Batch {
     
     @Override
     public String toString() {
-        return "lot numero : " + id + ", " + piecesNumber + " pièces de modèle " + model  + ". Etat : " + state;
+        return "Lot numero : " + id + " || " + piecesNumber + " pièces de modèle " + model;
     }
     
 }

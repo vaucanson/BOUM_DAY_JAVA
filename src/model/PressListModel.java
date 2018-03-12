@@ -15,29 +15,28 @@ import javax.swing.AbstractListModel;
  * @author badaroux
  */
 public class PressListModel extends AbstractListModel<Press> {
+
     protected ArrayList<Press> pressList;
 
     public PressListModel() {
         pressList = PressManager.fillNonBusyPressList();
 
-    }  
-    
-    public void addPress()
-    {
+    }
+
+    public void addPress() {
         int i = dao.PressManager.add();
-        
+
         Press press = new Press(i);
         pressList.add(press);
         fireIntervalAdded(pressList, pressList.size() - 1, pressList.size() - 1);
     }
-    
-    public void removePress(Press press)
-    {
+
+    public void removePress(Press press) {
         dao.PressManager.remove(press.getId());
         pressList.remove(press);
-        fireIntervalAdded(pressList, pressList.size() - 1, pressList.size() - 1);
+        fireContentsChanged(this, 0, pressList.size());
     }
-    
+
     @Override
     public int getSize() {
         return pressList.size();
@@ -45,7 +44,7 @@ public class PressListModel extends AbstractListModel<Press> {
 
     @Override
     public Press getElementAt(int i) {
-       return pressList.get(i);
+        return pressList.get(i);
     }
 
 }

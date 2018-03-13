@@ -34,14 +34,23 @@ public class ModelListModel extends AbstractListModel<Model> {
      */
     public void addModel(Model model)
     {
-        ModelManager.add(model);
-        this.mList.add(model);
+        if (ModelManager.add(model) == 0)
+        {
+            this.mList.add(model);
+        }
+        else
+        {
+            this.mList = ModelManager.load();
+        }
         this.fireIntervalAdded(this, 0, this.mList.size());
     }
 
+    /**
+     * Supprime le modèle donné de la bdd et de la liste
+     * @param model 
+     */
     public void removeModel(Model model) 
     {
-        // à faire : si on n'a pas d'erreur ici, on fait le reste, sinon on affiche un message d'erreur
         if (ModelManager.delete(model) == 0)
         {
             this.mList.remove(model); 

@@ -112,17 +112,32 @@ public abstract class ModelManager
       /** 
        * ajoute un modèle en bdd
        * @param model le modèle à ajouter
+       * @return un code de retour entier. 
+       * @see ModelManager.insert
        */
-      public static void add(Model model)
+      public static int add(Model model)
       {
-          ModelManager.insert(model.getName(), model.getDiameter(), model.getSmallLimit(), model.getMediumLimit(), model.getBigLimit());
+          return ModelManager.insert(model.getName(), model.getDiameter(), model.getSmallLimit(), model.getMediumLimit(), model.getBigLimit());
       }
       
-      /**
-       * Ajoute un modèle en bdd
-       */
-     private static void insert(String name, Float diameter, int smallMin, int middleMin, int bigMin)
+      
+    /**
+     * Ajoute un modèle en bdd
+     * @param name
+     * @param diameter
+     * @param smallMin
+     * @param middleMin
+     * @param bigMin
+     * @return un code de retour entier.
+     * 0 : tout est bien
+     * 1 : erreur en bdd : les paramètres ne sont pas au bon format
+     * 2 : erreur en bdd : // pas implémenté
+     * 3 : erreur en bdd : erreur lors de l'insertion
+     * 4 : erreur java
+     */
+     private static int insert(String name, Float diameter, int smallMin, int middleMin, int bigMin)
      {
+        int ret = 4; // le code de retour
         try
         {
             Connection c = Connexion.getInstance("badaroux", "badaroux");
@@ -142,12 +157,14 @@ public abstract class ModelManager
                 
                 cs.execute();
                 
-                int ret = cs.getInt(1);
+                ret = cs.getInt(1);
                 String msg = cs.getString(7);
+                System.out.println(String.format("code retour : %d | message : %s", ret, msg));
                 
-                if (ret == 0)
+                // si le retour n'est pas bon, on affiche un message d'erreur à l'utilisateur
+                if (ret != 0)
                 {
-                    System.out.println(msg);
+                    JOptionPane.showMessageDialog(null, msg, "titre", JOptionPane.ERROR_MESSAGE, null);
                 }
             } 
             catch (Exception e) 
@@ -166,22 +183,24 @@ public abstract class ModelManager
         } catch (SQLException ex) {
            ex.printStackTrace();
         }
+        
+        return ret;
     }
 
      /**
       * Supprime en bdd le modèle donné
       * @param model
-      * @return 
+      * @return un code de retour entier.
+      * 0 : tout est bien
+      * 1 : erreur en bdd : le nom fourni n'est pas au bon format
+      * 2 : erreur en bdd : le nom fourni n'existe pas
+      * 3 : erreur en bdd : erreur lors de la suppression
+      * 4 : erreur java
       */
     public static int delete(Model model) 
      {
-         // le code de retour.
-         // 0 : tout est bien
-         // 1 : erreur en bdd : le nom fourni n'est pas au bon format
-         // 2 : erreur en bdd : le nom fourni n'existe pas
-         // 3 : erreur en bdd : erreur lors de la suppression
-         // 4 : erreur java
-        int ret = 4;   
+        int ret = 4;   // le code de retour
+        
         try
         {
             Connection c = Connexion.getInstance("badaroux", "badaroux");

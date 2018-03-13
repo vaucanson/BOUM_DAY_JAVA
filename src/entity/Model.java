@@ -71,7 +71,7 @@ public class Model {
         return name;
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 
@@ -90,7 +90,7 @@ public class Model {
        return ok;
     }
 
-    public boolean setSmallLimit(int smallLimit) {
+    private boolean setSmallLimit(int smallLimit) {
         boolean ok = false;
         if (smallLimit >= 0)
         {
@@ -101,7 +101,7 @@ public class Model {
         return ok;
     }
 
-    public boolean setMediumLimit(int mediumLimit) {
+    private boolean setMediumLimit(int mediumLimit) {
          boolean ok = false;
         if (mediumLimit >= 0)
         {
@@ -112,7 +112,7 @@ public class Model {
         return ok;
     }
 
-    public boolean setBigLimit(int bigLimit) {
+    private boolean setBigLimit(int bigLimit) {
          boolean ok = false;
         if (bigLimit >= 0)
         {

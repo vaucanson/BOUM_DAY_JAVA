@@ -64,7 +64,7 @@ public class Stock {
         return (this.getQuantity() < this.getLimit());
     }
 
-    public boolean setLimit(int limit)
+    private boolean setLimit(int limit)
     {
         boolean ok = false;
         if (limit > 0)

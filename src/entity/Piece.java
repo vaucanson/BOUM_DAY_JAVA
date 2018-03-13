@@ -52,7 +52,7 @@ public class Piece {
         return broken;
     }
 
-    public void setBroken(boolean broken) {
+    private void setBroken(boolean broken) {
         this.broken = broken;
     }
     
@@ -60,7 +60,7 @@ public class Piece {
         return id;
     }
 
-    public boolean setId(int id) {
+    private boolean setId(int id) {
         boolean ok = false;
         
         if (id >= 0)
@@ -75,7 +75,7 @@ public class Piece {
         return ht;
     }
 
-    public boolean setHt(float ht) 
+    private boolean setHt(float ht) 
     {
         boolean ok = false;
         if (ht >= 0)
@@ -91,7 +91,7 @@ public class Piece {
         return hl;
     }
 
-    public boolean setHl(float hl) {
+    private boolean setHl(float hl) {
         boolean ok = false;
         if (hl >= 0)
         {
@@ -106,7 +106,7 @@ public class Piece {
         return bt;
     }
 
-    public boolean setBt(float bt) {
+    private boolean setBt(float bt) {
         boolean ok = false;
         if (bt >= 0)
         {
@@ -121,7 +121,7 @@ public class Piece {
         return bl;
     }
 
-    public boolean setBl(float bl) {
+    private boolean setBl(float bl) {
         boolean ok = false;
         if (bl >= 0)
         {
@@ -136,7 +136,7 @@ public class Piece {
         return batch;
     }
 
-    public void setBatch(Batch batch) {
+    private void setBatch(Batch batch) {
        this.batch = batch;
     }
     

@@ -33,6 +33,12 @@ public class StockUnderLimitTableModel extends AbstractTableModel{
          */
         nomColonnes.add("Action");      
         nomColonnes.add("Etat");
+        nomColonnes.set(0, "Modèle");
+        nomColonnes.set(1, "Catégorie");
+        nomColonnes.set(2,"Caisses en stock");
+        nomColonnes.set(3, "Seuil minimal");
+        
+
     }
     
     

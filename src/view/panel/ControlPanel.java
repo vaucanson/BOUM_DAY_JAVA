@@ -244,26 +244,17 @@ public class ControlPanel extends StylePanel {
 
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
 
-        if ((tool.CommonTools.isFloat(tfHT.getText())) && (tool.CommonTools.isFloat(tfHL.getText())) && (tool.CommonTools.isFloat(tfBT.getText())) && (tool.CommonTools.isFloat(tfBL.getText()))) {
+        if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
+            if ((tool.CommonTools.isFloatPositive(tfHT.getText())) && (tool.CommonTools.isFloatPositive(tfHL.getText())) && (tool.CommonTools.isFloatPositive(tfBT.getText())) && (tool.CommonTools.isFloatPositive(tfBL.getText()))) {
 
-            confirmStart();
-            setProgression();
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Veuillez saisir l'intégrité de l'ensemble des dimensions.");
-
-            if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
-                if ((tool.CommonTools.isFloatPositive(tfHT.getText())) && (tool.CommonTools.isFloatPositive(tfHL.getText())) && (tool.CommonTools.isFloatPositive(tfBT.getText())) && (tool.CommonTools.isFloatPositive(tfBL.getText()))) {
-
-                    confirmStart();
-
-                    setProgression();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Veuillez saisir l'intégrité de l'ensemble des dimensions.");
-                }
+                confirmStart();
+                setProgression();
             } else {
-                JOptionPane.showMessageDialog(null, "Erreur : un des champs est à zéro.");
+                JOptionPane.showMessageDialog(null, "Veuillez saisir l'intégrité de l'ensemble des dimensions.");
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Erreur : un des champs est à zéro.");
+
     }//GEN-LAST:event_buttonValidateActionPerformed
     }
     private void tfHLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHLActionPerformed

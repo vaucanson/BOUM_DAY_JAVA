@@ -73,7 +73,7 @@ public abstract class ModelManager
             {
                 Statement st = c.createStatement();
                 
-                ResultSet rs = st.executeQuery("SELECT * FROM MODEL ORDER BY NAME ");
+                ResultSet rs = st.executeQuery("SELECT * FROM MODEL where active = 1 ORDER BY NAME ");
                 
                 while (rs.next())
                 {
@@ -120,9 +120,8 @@ public abstract class ModelManager
       /**
        * Ajoute un modèle en bdd
        */
-      private static void insert(String name, Float diameter, int smallMin, int middleMin, int bigMin)
+     private static void insert(String name, Float diameter, int smallMin, int middleMin, int bigMin)
      {
-         System.out.println(String.format("%s ", name, diameter, smallMin, middleMin, bigMin));
         try
         {
             Connection c = Connexion.getInstance("badaroux", "badaroux");
@@ -144,6 +143,50 @@ public abstract class ModelManager
                 
                 int ret = cs.getInt(1);
                 String msg = cs.getString(7);
+                
+                if (ret == 0)
+                {
+                    System.out.println(msg);
+                }
+            } 
+            catch (Exception e) 
+            {
+                e.printStackTrace();
+            } 
+            finally {
+                if (c != null) {
+                    try {
+                        c.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+           ex.printStackTrace();
+        }
+    }
+
+    public static void delete(Model model) 
+     {
+        try
+        {
+            Connection c = Connexion.getInstance("badaroux", "badaroux");
+            
+            try
+            {
+                CallableStatement cs = c.prepareCall("{?=call removeModel (?, ?)}");
+                
+                cs.setString(2, model.getName());;
+                
+                cs.registerOutParameter(1, java.sql.Types.INTEGER);
+                cs.registerOutParameter(3, java.sql.Types.VARCHAR);
+                
+                cs.execute();
+                
+                int ret = cs.getInt(1);
+                String msg = cs.getString(3);
+                System.out.println(ret + " | " + msg);
                 
                 if (ret == 0)
                 {

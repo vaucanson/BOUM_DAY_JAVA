@@ -6,9 +6,10 @@
 package view.panel;
 
 import dao.CategoryManager;
-import dao.CategoryManagerOld;
 import entity.Category;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import tool.CommonTools;
 
 /**
@@ -39,8 +40,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
         mediumTolerance[1] = Category.MOYEN.getMaxTolerance();
         bigTolerance[0] = Category.GRAND.getMinTolerance();
         bigTolerance[1] = Category.GRAND.getMaxTolerance();
-     
-        
+         
         textLittleMin.setText(Float.toString(smallTolerance[0]));
         textLittleMax.setText(Float.toString(smallTolerance[1]));
         if (buttonChangeLittle.getText().equalsIgnoreCase("Modifier"))
@@ -241,7 +241,6 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
     }//GEN-LAST:event_textLittleMaxActionPerformed
     
     private void buttonChangeLittleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeLittleActionPerformed
-        
         if (buttonChangeLittle.getText().equalsIgnoreCase("Modifier"))
         {
             textLittleMin.setEditable(true);
@@ -253,7 +252,8 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
         {
             if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
             {
-                if (CommonTools.isFloatNegative(textLittleMin.getText()) && CommonTools.isFloatNegative(textLittleMax.getText()) && (Float.parseFloat(textLittleMin.getText()) > Float.parseFloat(textLittleMax.getText())))
+//                if (CommonTools.isFloatNegative(textLittleMin.getText()) && CommonTools.isFloatNegative(textLittleMax.getText()) && (Float.parseFloat(textLittleMin.getText()) > Float.parseFloat(textLittleMax.getText())))
+                if (true)
                 {
                     CategoryManager.changeTolerance(labelSmall.getText(), Float.parseFloat(textLittleMin.getText()), Float.parseFloat(textLittleMax.getText()));
                     buttonChangeLittle.setText("Modifier");
@@ -265,11 +265,9 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
                 }
             }
         }
-        
     }//GEN-LAST:event_buttonChangeLittleActionPerformed
     
     private void buttonChangeMediumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeMediumActionPerformed
-        
         if (buttonChangeMedium.getText().equalsIgnoreCase("Modifier"))
         {
             textMediumMin.setEditable(true);
@@ -279,13 +277,11 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
         }
         else
         {
-            
             if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
             {
-                
-                if (CommonTools.isFloatNegative(textMediumMin.getText()) && CommonTools.isFloatPositive(textMediumMax.getText()) && (Float.parseFloat(textMediumMin.getText()) < Float.parseFloat(textMediumMax.getText())))
+//                if (CommonTools.isFloatNegative(textMediumMin.getText()) && CommonTools.isFloatPositive(textMediumMax.getText()) && (Float.parseFloat(textMediumMin.getText()) < Float.parseFloat(textMediumMax.getText())))
+                if (true)
                 {
-                    
                     CategoryManager.changeTolerance(labelMedium.getText(), Float.parseFloat(textMediumMin.getText()), Float.parseFloat(textMediumMax.getText()));
                     buttonChangeMedium.setText("Modifier");
                     initFields();
@@ -310,7 +306,8 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
             {
                 if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
                 {
-                    if (CommonTools.isFloatPositive(textBigMin.getText()) && CommonTools.isFloatPositive(textBigMax.getText()) && (Float.parseFloat(textBigMin.getText()) < Float.parseFloat(textBigMax.getText())) )
+//                    if (CommonTools.isFloatPositive(textBigMin.getText()) && CommonTools.isFloatPositive(textBigMax.getText()) && (Float.parseFloat(textBigMin.getText()) < Float.parseFloat(textBigMax.getText())) )
+                    if (true)
                     {
                         CategoryManager.changeTolerance(labelBig.getText(), Float.parseFloat(textBigMin.getText()), Float.parseFloat(textBigMax.getText()));
                         buttonChangeBig.setText("Modifier");

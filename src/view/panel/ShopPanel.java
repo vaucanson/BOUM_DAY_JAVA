@@ -61,8 +61,17 @@ public class ShopPanel extends StylePanel {
             int quantity = (int) this.crateNumberSpinner.getValue();
             String model = ((Model) this.comboModel.getSelectedItem()).getName();
             String category = ((Category) this.comboCategory.getSelectedItem()).toString();
-
-            ((StockTableModel) this.tabStock.getModel()).changeQuantity(model, category, quantity);  
+            
+            if ((dao.StockManager.getQuantity(model, category) + quantity) < 0)
+            {
+                JOptionPane.showMessageDialog(parent, "Seulement " + dao.StockManager.getQuantity(model, category) 
+                        + " caisses sont en stock, vous ne pouvez pas en supprimer " + quantity);
+            }
+            else
+            {
+                ((StockTableModel) this.tabStock.getModel()).changeQuantity(model, category, quantity); 
+            }
+             
 
             // écriture dans l'historique
 
@@ -180,7 +189,7 @@ public class ShopPanel extends StylePanel {
 
         tabStock.setModel(new model.StockTableModel());
         tabStock.setDefaultRenderer(String.class, new renderer.CrateTableStringRenderer());
-        tabStock.setDefaultRenderer(Boolean.class, new renderer.StockTableBooleanRenderer());
+
         tabStock.setDefaultRenderer(Integer.class, new renderer.StockTableIntegerRenderer());
 
         tabStock.getTableHeader().setDefaultRenderer(new DefaultTableCellRenderer()

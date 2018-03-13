@@ -14,12 +14,13 @@ public class CategoryListModel extends AbstractListModel<Category> {
     
     public CategoryListModel()
     {
+        
         cList = new ArrayList<Category>(Arrays.asList(Category.values()));
     }
 
     @Override
     public int getSize() {
-        return cList.size();
+        return cList.size() - 1;
     }
 
     @Override

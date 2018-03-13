@@ -29,7 +29,7 @@ public class Press {
         return id;
     }
 
-    public boolean setId(int id) {
+    private boolean setId(int id) {
         boolean ok = false;
         if (id >= 0)
         {
@@ -43,7 +43,7 @@ public class Press {
         return isFree;
     }
 
-    public void setIsFree(boolean isFree) {
+    private void setIsFree(boolean isFree) {
         this.isFree = isFree;
     }
     

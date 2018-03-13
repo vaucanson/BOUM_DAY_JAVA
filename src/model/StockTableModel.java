@@ -27,12 +27,15 @@ public class StockTableModel extends AbstractTableModel implements ListDataListe
         this.fillStockList();
         
         // on trie par ordre alphabétique des noms de modèle, puis des noms de catégorie
-        Collections.sort(this.stockList, new StockComparator());
-        
+        sort();
         this.columnNames = StockManager.colonnesStock();
         
     }
     
+    private void sort()
+    {
+        Collections.sort(this.stockList, new StockComparator());  
+    }
     /**
      * 
      */
@@ -117,6 +120,7 @@ public class StockTableModel extends AbstractTableModel implements ListDataListe
     @Override
     public void intervalAdded(ListDataEvent e) {
 	this.fireTableRowsInserted(0, this.getRowCount());
+        sort();
     }
 
     /**
@@ -127,6 +131,7 @@ public class StockTableModel extends AbstractTableModel implements ListDataListe
     @Override
     public void intervalRemoved(ListDataEvent e) {
 	this.fireTableRowsDeleted(0, this.getRowCount());
+         sort();
     }
 
     /**
@@ -137,6 +142,7 @@ public class StockTableModel extends AbstractTableModel implements ListDataListe
     @Override
     public void contentsChanged(ListDataEvent e) {
 	this.fireTableRowsUpdated(0, this.getRowCount());
+         sort();
     }
 
     /**
@@ -147,9 +153,13 @@ public class StockTableModel extends AbstractTableModel implements ListDataListe
      */
     public void changeQuantity(String model, String category, int quantity)
     {
+        
+        
         StockManager.changeQuantity(model, category, quantity);
+
         this.fillStockList();
 	this.fireTableRowsUpdated(0, this.getRowCount());
+         sort();
     }
    
     

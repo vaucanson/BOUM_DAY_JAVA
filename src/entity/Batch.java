@@ -19,7 +19,7 @@ public class Batch {
         return id;
     }
     
-    public boolean setId(short id) {
+    private boolean setId(short id) {
         boolean ok = false;
         if (id > 0)
         {
@@ -33,7 +33,7 @@ public class Batch {
         return date;
     }
 
-    public void setDate(Date date) {
+    private void setDate(Date date) {
         this.date = date;
     }
 
@@ -41,7 +41,7 @@ public class Batch {
         return piecesNumber;
     }
     
-    public boolean setPiecesNumber(short piecesNumber) {
+    private boolean setPiecesNumber(short piecesNumber) {
         boolean ok = false;
         if (piecesNumber > 0)
         {
@@ -55,7 +55,7 @@ public class Batch {
         return state;
     }
     
-    public boolean setState(short state) {
+    private boolean setState(short state) {
         boolean ok = false;
         if ((state > 0) && (state < 5))
         {
@@ -78,7 +78,7 @@ public class Batch {
         return model;
     }
 
-    public void setModel(Model model) {
+    private void setModel(Model model) {
         this.model = model;
     }
     

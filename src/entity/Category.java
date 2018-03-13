@@ -18,7 +18,7 @@ public enum Category
         this.maxTolerance = max;
     }
     
-    public void setMinTolerance(float min)
+    private void setMinTolerance(float min)
     {
         // on change la valeur dans l'instance
         this.minTolerance = min;
@@ -26,7 +26,7 @@ public enum Category
         CategoryManager.changeTolerance(this.toString(), this.getMinTolerance(), this.getMaxTolerance());
     }
     
-    public void setMaxTolerance (float max)
+    private void setMaxTolerance (float max)
     {
         this.maxTolerance = max;
         CategoryManager.changeTolerance(this.toString(), this.getMinTolerance(), this.getMaxTolerance());

@@ -441,54 +441,7 @@ public class BatchManager {
         return liste;
     }
     
-    public static ArrayList<Batch> loadBatch()
-    {
-           ArrayList<Batch> liste = new ArrayList<>();
-        try
-        {
- 
-            Connection c;
-            c = Connexion.getInstance("badaroux", "badaroux");
-            
-            try
-            {
-                Statement st = c.createStatement();
-                
-                ResultSet rs = st.executeQuery("SELECT * FROM BATCH ORDER BY ID");
-                
-                while (rs.next())
-                {
-                    Model model = ModelManager.getModel(rs.getString(6));
-                    liste.add(new Batch(rs.getShort(1), rs.getDate(2), rs.getShort(3), rs.getShort(4), rs.getShort(5), model));
-                    
-                }
-                st.close();
-            }
-            catch(Exception ex)
-            {
-                ex.printStackTrace();
-            }
-            finally
-            {
-                try
-                {
-                    c.close();
-                }
-                catch(SQLException ex)
-                {
-                    ex.printStackTrace();
-                }
-            }
-            
-        }
-        catch(SQLException ex)
-        {
-         
-            ex.printStackTrace();
-        }
-        return liste;
-    }
-    
+       
     public static Boolean isLaunched(String modele)
     {
         Boolean result = false;

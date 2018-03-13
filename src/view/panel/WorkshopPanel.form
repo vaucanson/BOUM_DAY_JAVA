@@ -28,27 +28,23 @@
                           <Component id="buttonResearch" pref="209" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labLimitsTitle" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="labQuantitytitle" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labLimitsTitle" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                               <Component id="labQuantityBatch" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="quantitySpinner" min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="labQuantity" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="labLimits" min="-2" pref="36" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="quantitySpinner" min="-2" pref="65" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="labLimits" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="butLaunchBatch" min="-2" pref="114" max="-2" attributes="0"/>
@@ -73,36 +69,28 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="comboModel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labQuantitytitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labQuantity" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="comboCategory" min="-2" pref="23" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="buttonResearch" min="-2" pref="71" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="labQuantity" min="-2" pref="20" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="labLimitsTitle" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labLimits" min="-2" pref="17" max="-2" attributes="0"/>
-                                  <Component id="labQuantityBatch" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="quantitySpinner" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
+                      <Component id="comboCategory" min="-2" pref="23" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="buttonResearch" min="-2" pref="71" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="butLaunchBatch" min="-2" pref="165" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labLimits" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                          <Component id="labLimitsTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="labQuantityBatch" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="quantitySpinner" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace pref="72" max="32767" attributes="0"/>
@@ -177,8 +165,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labQuantity">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="(quantit&#xe9;)"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labLimits">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="(seuil limite)"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="buttonResearch">
       <Properties>

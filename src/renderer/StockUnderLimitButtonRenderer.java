@@ -27,7 +27,7 @@ public class StockUnderLimitButtonRenderer extends DefaultCellEditor{
     
     private JButton button;
     private final ButtonListener bListener = new ButtonListener();
-    ArrayList<Stock> sList = StockManager.loadStockUnderLimit();
+    private ArrayList<Stock> sList = StockManager.loadStockUnderLimit();
     private String nomModel;
     private Model model;
     private static LaunchBatchWorkshopPopUpFrame instance;

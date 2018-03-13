@@ -24,16 +24,14 @@ public class ApplicationPurgeManagementPanel extends StylePanel {
     
     public ApplicationPurgeManagementPanel() {
         initComponents();
-        
-        nbPurge =  PieceManager.getNbPurge();
-        
+              
         initState();
         
        
     }
     private void initState()
     {
-         
+         nbPurge =  PieceManager.getNbPurge();
         if (nbPurge <= 0)
         {
             labelNumberOfPiecesToPurge.setText("Purge impossible :");

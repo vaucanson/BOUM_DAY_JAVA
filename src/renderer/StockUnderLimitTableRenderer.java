@@ -7,9 +7,11 @@ package renderer;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.TableCellRenderer;
 
 /**
@@ -26,9 +28,11 @@ public class StockUnderLimitTableRenderer implements TableCellRenderer{
         JLabel lab = new JLabel(value.toString());
         lab.setOpaque(true);
         
-        /**
-         * le bouton n'apparait que si la colonne état est à false (en rouge)
-         */
+        // centrer le texte
+        lab.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        
+        // le bouton n'apparait que si la colonne état est à false (en rouge)
         if ( column == 4 && table.getModel().getValueAt(row, 5)== Boolean.FALSE)
         {
             button = new JButton("Lancer Lot");
@@ -56,4 +60,3 @@ public class StockUnderLimitTableRenderer implements TableCellRenderer{
         return lab;
     }
 }
-

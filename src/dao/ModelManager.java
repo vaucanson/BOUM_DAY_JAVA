@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import tool.Connexion;
 
 /**
@@ -167,8 +168,20 @@ public abstract class ModelManager
         }
     }
 
-    public static void delete(Model model) 
+     /**
+      * Supprime en bdd le modèle donné
+      * @param model
+      * @return 
+      */
+    public static int delete(Model model) 
      {
+         // le code de retour.
+         // 0 : tout est bien
+         // 1 : erreur en bdd : le nom fourni n'est pas au bon format
+         // 2 : erreur en bdd : le nom fourni n'existe pas
+         // 3 : erreur en bdd : erreur lors de la suppression
+         // 4 : erreur java
+        int ret = 4;   
         try
         {
             Connection c = Connexion.getInstance("badaroux", "badaroux");
@@ -184,13 +197,14 @@ public abstract class ModelManager
                 
                 cs.execute();
                 
-                int ret = cs.getInt(1);
+                ret = cs.getInt(1);
                 String msg = cs.getString(3);
-                System.out.println(ret + " | " + msg);
+                System.out.println(String.format("code retour : %d | message : %s", ret, msg));
                 
-                if (ret == 0)
+                // si le retour n'est pas bon, on affiche un message d'erreur à l'utilisateur
+                if (ret != 0)
                 {
-                    System.out.println(msg);
+                    JOptionPane.showMessageDialog(null, msg, "titre", JOptionPane.ERROR_MESSAGE, null);
                 }
             } 
             catch (Exception e) 
@@ -209,6 +223,8 @@ public abstract class ModelManager
         } catch (SQLException ex) {
            ex.printStackTrace();
         }
+        
+        return ret;
     }
       
       

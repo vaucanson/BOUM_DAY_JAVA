@@ -34,15 +34,22 @@ public class ModelListModel extends AbstractListModel<Model> {
      */
     public void addModel(Model model)
     {
+        ModelManager.add(model);
         this.mList.add(model);
         this.fireIntervalAdded(this, 0, this.mList.size());
-        ModelManager.add(model);
     }
 
     public void removeModel(Model model) 
     {
-        this.mList.remove(model);
-        ModelManager.delete(model);
+        // à faire : si on n'a pas d'erreur ici, on fait le reste, sinon on affiche un message d'erreur
+        if (ModelManager.delete(model) == 0)
+        {
+            this.mList.remove(model); 
+        }
+        else
+        {
+            this.mList = ModelManager.load();
+        }
         this.fireIntervalRemoved(this, 0, this.mList.size());
     }
 }

@@ -1,7 +1,6 @@
 package renderer;
 
 import java.awt.Component;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;

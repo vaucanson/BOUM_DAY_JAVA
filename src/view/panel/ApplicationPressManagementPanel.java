@@ -92,15 +92,16 @@ public class ApplicationPressManagementPanel extends StylePanel {
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
 
         lpm.addPress();
-
     }//GEN-LAST:event_buttonAddActionPerformed
 
     private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveActionPerformed
 
-        
+        if (listPress.getSelectedValue() != null) {
             Press p = (Press) listPress.getSelectedValue();
             lpm.removePress(p);
-       
+        } else {
+            JOptionPane.showMessageDialog(buttonAdd, "Selectionner une presse dans la liste avant de supprimer");
+        }
 
 
     }//GEN-LAST:event_buttonRemoveActionPerformed

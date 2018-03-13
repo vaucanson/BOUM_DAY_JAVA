@@ -4,20 +4,11 @@ import dao.CategoryManager;
 
 public enum Category 
 {
-//    SMALL((float) -0.1, (float) -0.01),
-//    SMALL((float) -0.1, (float) -0.01),
-//    SMALL((float) -0.1, (float) -0.01),
-//    SMALL((float) -0.1, (float) -0.01),
-//    SMALL((float) -0.1, (float) -0.01),
-//    SMALL((float) -0.1, (float) -0.01),
-//    SMALL((float) -0.1, (float) -0.01),
-//    SMALL((float) -0.1, (float) -0.01),
     PETIT(CategoryManager.getTolerance("PETIT")[0], CategoryManager.getTolerance("PETIT")[1]),
     MOYEN(CategoryManager.getTolerance("MOYEN")[0], CategoryManager.getTolerance("MOYEN")[1]),
     GRAND(CategoryManager.getTolerance("GRAND")[0], CategoryManager.getTolerance("GRAND")[1]),
     REBUT(0, 0);
     
-   private String name;
     private float minTolerance;
     private float maxTolerance;
     
@@ -51,6 +42,11 @@ public enum Category
         return maxTolerance;
     }
     
+    /**
+     * Donne la catégorie d'une mesure, d'après l'intervalle donné
+     * @param interval un float
+     * @return la catégorie correspondante
+     */
     public static Category getCorrespondant(float interval)
     {
     	Category cat = Category.REBUT;
@@ -76,25 +72,33 @@ public enum Category
     		cat = REBUT;
     	}
     	
-		return cat;
+	return cat;
     }
     
     
-	public static Category get(float htInterval, float hlInterval, float btInterval, float blInterval)
-	{
-            Category cat = Category.REBUT;
-	    
-	    Category htCat = Category.getCorrespondant(htInterval);
-	    Category hlCat = Category.getCorrespondant(hlInterval);
-	    Category btCat = Category.getCorrespondant(btInterval);
-	    Category blCat = Category.getCorrespondant(blInterval);
-	    
-	    if (htCat == hlCat && hlCat == btCat && btCat == blCat)
-	    {
-	    	cat = htCat;
-	    }
-	    
-		return cat;
-	}
+    /**
+     * Donne la catégorie d'une pièce, d'après les deltas des quatre mesures
+     * @param htInterval
+     * @param hlInterval
+     * @param btInterval
+     * @param blInterval
+     * @return une catégorie
+     */
+    public static Category get(float htInterval, float hlInterval, float btInterval, float blInterval)
+    {
+        Category cat = Category.REBUT;
+
+        Category htCat = Category.getCorrespondant(htInterval);
+        Category hlCat = Category.getCorrespondant(hlInterval);
+        Category btCat = Category.getCorrespondant(btInterval);
+        Category blCat = Category.getCorrespondant(blInterval);
+
+        if (htCat == hlCat && hlCat == btCat && btCat == blCat)
+        {
+            cat = htCat;
+        }
+
+        return cat;
+    }
     
 }

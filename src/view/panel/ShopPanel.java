@@ -28,7 +28,6 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.CategoryComboModel;
-import model.ModelComboModel;
 import model.StockTableModel;
 import renderer.CategoryComboRenderer;
 import renderer.ModelComboRenderer;
@@ -42,6 +41,7 @@ public class ShopPanel extends StylePanel {
 
     private MainFrame parent;
     private String logFileName;
+    private StockTableModel tab = new StockTableModel();
     
     public ShopPanel(MainFrame parent) {
         initComponents();
@@ -65,7 +65,7 @@ public class ShopPanel extends StylePanel {
             if ((dao.StockManager.getQuantity(model, category) + quantity) < 0)
             {
                 JOptionPane.showMessageDialog(parent, "Seulement " + dao.StockManager.getQuantity(model, category) 
-                        + " caisses sont en stock, vous ne pouvez pas en supprimer " + quantity);
+                        + " caisses sont en stock, vous ne pouvez pas en supprimer " + -quantity);
             }
             else
             {
@@ -135,7 +135,7 @@ public class ShopPanel extends StylePanel {
             } 
             catch (Exception e) 
             {
-                
+                e.printStackTrace();
             }
         }
     }
@@ -150,9 +150,9 @@ public class ShopPanel extends StylePanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        comboCategory = new javax.swing.JComboBox<Category>();
+        comboCategory = new javax.swing.JComboBox<>();
         buttonOK = new javax.swing.JButton();
-        comboModel = new javax.swing.JComboBox<Model>();
+        comboModel = new javax.swing.JComboBox<>();
         crateNumberSpinner = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         buttonHistory = new javax.swing.JButton();
@@ -160,6 +160,7 @@ public class ShopPanel extends StylePanel {
         tabStock = new javax.swing.JTable();
         labTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        buttonRefresh = new javax.swing.JButton();
 
         comboCategory.setModel(new CategoryComboModel());
         comboCategory.setRenderer(new CategoryComboRenderer());
@@ -172,9 +173,9 @@ public class ShopPanel extends StylePanel {
             }
         });
 
-        comboModel.setModel(new ModelComboModel());
+        comboModel.setModel(new model.ModelComboModel());
         comboModel.setRenderer(new ModelComboRenderer());
-        comboModel.setSelectedItem(new ModelComboModel());
+        comboModel.setSelectedItem(new model.ModelComboModel());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Nombre de Caisses");
@@ -187,7 +188,7 @@ public class ShopPanel extends StylePanel {
             }
         });
 
-        tabStock.setModel(new model.StockTableModel());
+        tabStock.setModel(tab);
         tabStock.setDefaultRenderer(String.class, new renderer.CrateTableStringRenderer());
 
         tabStock.setDefaultRenderer(Integer.class, new renderer.StockTableIntegerRenderer());
@@ -234,6 +235,13 @@ public class ShopPanel extends StylePanel {
             labTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             labTitle.setText("GESTION DES STOCKS");
 
+            buttonRefresh.setText("Rafraîchir");
+            buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    buttonRefreshActionPerformed(evt);
+                }
+            });
+
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
             this.setLayout(layout);
             layout.setHorizontalGroup(
@@ -255,13 +263,20 @@ public class ShopPanel extends StylePanel {
                             .addGap(43, 43, 43)
                             .addComponent(buttonHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGap(39, 39, 39))
-                .addComponent(labTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(buttonRefresh)
+                    .addGap(75, 75, 75)
+                    .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(41, 41, 41)
@@ -274,7 +289,7 @@ public class ShopPanel extends StylePanel {
                         .addComponent(buttonHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(27, 27, 27)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(79, Short.MAX_VALUE))
+                    .addContainerGap(69, Short.MAX_VALUE))
             );
         }// </editor-fold>//GEN-END:initComponents
 
@@ -287,10 +302,16 @@ public class ShopPanel extends StylePanel {
         this.showHistory();
     }//GEN-LAST:event_buttonHistoryActionPerformed
 
+    private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
+        tab = new StockTableModel();
+        tabStock.setModel(tab);
+    }//GEN-LAST:event_buttonRefreshActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonHistory;
     private javax.swing.JButton buttonOK;
+    private javax.swing.JButton buttonRefresh;
     private javax.swing.JComboBox<Category> comboCategory;
     private javax.swing.JComboBox<Model> comboModel;
     private javax.swing.JSpinner crateNumberSpinner;

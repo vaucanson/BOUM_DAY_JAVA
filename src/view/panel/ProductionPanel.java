@@ -38,7 +38,7 @@ public class ProductionPanel extends StylePanel {
         if ((listBatch.getSelectedValue() != null) && (listPress.getSelectedValue() != null)) {
             if (JOptionPane.showConfirmDialog(null, "Lancer la production ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 sblm.launch((Batch) listBatch.getSelectedValue(), (Press) listPress.getSelectedValue());
-                lpm.removePress((Press) listPress.getSelectedValue());
+              
             }
         }
         else
@@ -59,6 +59,7 @@ public class ProductionPanel extends StylePanel {
         jScrollPaneListPress = new javax.swing.JScrollPane();
         listPress = new javax.swing.JList();
         jSeparator1 = new javax.swing.JSeparator();
+        buttonRefresh = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(900, 500));
 
@@ -90,11 +91,23 @@ public class ProductionPanel extends StylePanel {
         listPress.setCellRenderer(new PressListRenderer());
         jScrollPaneListPress.setViewportView(listPress);
 
+        buttonRefresh.setText("Rafraîchir");
+        buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(buttonRefresh)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
@@ -106,12 +119,16 @@ public class ProductionPanel extends StylePanel {
                         .addComponent(buttonStartBatch, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(buttonRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -135,9 +152,16 @@ public class ProductionPanel extends StylePanel {
         ConfirmStart();
     }//GEN-LAST:event_buttonStartBatchActionPerformed
 
+    private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
+        this.repaint();
+        listPress.repaint();
+        listBatch.repaint();
+    }//GEN-LAST:event_buttonRefreshActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonEndBatch;
+    private javax.swing.JButton buttonRefresh;
     private javax.swing.JButton buttonStartBatch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

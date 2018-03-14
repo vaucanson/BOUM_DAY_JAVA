@@ -36,8 +36,7 @@ public class StockUnderLimitTableRenderer implements TableCellRenderer{
         if ( column == 4 && table.getModel().getValueAt(row, 5)== Boolean.FALSE)
         {
             button = new JButton("Lancer Lot");
-            return button;
-            
+            return button;            
         }
         // défini la couleur des cellules de colonne État
         else if (column == 5)
@@ -46,12 +45,12 @@ public class StockUnderLimitTableRenderer implements TableCellRenderer{
             
             if (value.toString().equalsIgnoreCase("true"))
             {
-                state.setBackground(Color.green);                   // vert si un lot a été lancé pour le modèle associé
+                state.setBackground(Color.green);     // vert si un lot a été lancé pour le modèle associé
                 
             }
             else
             {
-                state.setBackground(Color.red);                     // rouge si aucun lot n'a été lancé pour le modèle associé
+                state.setBackground(Color.red);       // rouge si aucun lot n'a été lancé pour le modèle associé
             }
             return state;
         }
@@ -59,4 +58,5 @@ public class StockUnderLimitTableRenderer implements TableCellRenderer{
         
         return lab;
     }
+ 
 }

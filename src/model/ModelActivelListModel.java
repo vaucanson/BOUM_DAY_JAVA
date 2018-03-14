@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
 /**
- *
+ *  permet de créer un modèle de liste d'objets Model
  * @author mattar
  */
-public class ModelListModel extends AbstractListModel<Model> {
-
+public class ModelActivelListModel extends AbstractListModel<Model> {
+    
     private ArrayList<Model> mList;
 
-    public ModelListModel()
+    public ModelActivelListModel()
     {
-        mList = ModelManager.loadAll();
+        mList = ModelManager.loadActive();
     }
     
     @Override
@@ -34,32 +34,15 @@ public class ModelListModel extends AbstractListModel<Model> {
      */
     public void addModel(Model model)
     {
-        if (ModelManager.add(model) == 0)
-        {
-            this.mList.add(model);
-        }
-        else
-        {
-            this.mList = ModelManager.load();
-        }
+        this.mList.add(model);
         this.fireIntervalAdded(this, 0, this.mList.size());
+        ModelManager.add(model);
     }
 
-    /**
-     * Supprime le modèle donné de la bdd et de la liste
-     * @param model 
-     */
     public void removeModel(Model model) 
     {
-        if (ModelManager.delete(model) == 0)
-        {
-            this.mList.remove(model); 
-        }
-        else
-        {
-            this.mList = ModelManager.load();
-        }
+        this.mList.remove(model);
+        ModelManager.delete(model);
         this.fireIntervalRemoved(this, 0, this.mList.size());
     }
-    
 }

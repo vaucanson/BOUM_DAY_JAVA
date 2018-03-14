@@ -59,7 +59,7 @@ public abstract class ModelManager
       
       
       // permet de remplir une liste de modèles
-      public static ArrayList<Model> load()
+      public static ArrayList<Model> loadActive()
       {
           ArrayList<Model> mList = new ArrayList<>();
           
@@ -75,6 +75,57 @@ public abstract class ModelManager
                 Statement st = c.createStatement();
                 
                 ResultSet rs = st.executeQuery("SELECT * FROM MODEL where active = 1 ORDER BY NAME ");
+                
+                while (rs.next())
+                {
+                   mList.add(new Model(rs.getString(1), rs.getFloat(2)));
+                }
+                st.close();
+            }
+            catch(Exception ex)
+            {
+                ex.printStackTrace();
+            }
+            finally 
+            {
+                if (c != null) 
+                {
+                    try 
+                    {
+                        c.close();
+                    } 
+                    catch (Exception e) 
+                    {
+                        e.printStackTrace();
+                        
+                    }
+                }
+            }
+        }
+        catch(SQLException ex)
+        {
+           ex.printStackTrace();
+        }
+        return mList;
+      }
+      
+      // permet de remplir une liste de modèles
+      public static ArrayList<Model> loadAll()
+      {
+          ArrayList<Model> mList = new ArrayList<>();
+          
+        
+        
+        try
+        {
+            Connection c;
+            c = Connexion.getInstance("badaroux", "badaroux");
+            
+            try
+            {
+                Statement st = c.createStatement();
+                
+                ResultSet rs = st.executeQuery("SELECT * FROM MODEL ORDER BY NAME ");
                 
                 while (rs.next())
                 {

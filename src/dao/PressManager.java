@@ -238,4 +238,51 @@ public class PressManager {
 
             return press;
     }
+    
+    public static boolean isActive(Press p)
+    {       
+        boolean active = false;
+        try
+            {
+
+                Connection c;
+                c = Connexion.getInstance("badaroux", "badaroux");
+
+                try
+                {
+                    Statement st = c.createStatement();
+
+                    ResultSet rs = st.executeQuery("SELECT ACTIVE FROM PRESS WHERE PRESS.ID = '" + p.getId() +"'");
+
+                    if (rs.next())
+                    {
+                        if (rs.getByte(1) == 1){active = true;}
+                    }
+
+                    st.close();
+                }
+                catch(Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+                finally
+                {
+                    try
+                    {
+                        c.close();
+                    }
+                    catch(SQLException ex)
+                    {
+                        ex.printStackTrace();
+                    }
+                }
+
+            }
+            catch(SQLException ex)
+            {
+
+                ex.printStackTrace();
+            }
+            return active;
+    }
 }

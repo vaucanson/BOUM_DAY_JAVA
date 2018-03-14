@@ -8,7 +8,8 @@ package view.panel;
 import dao.ModelManager;
 import entity.Model;
 import javax.swing.JOptionPane;
-import model.ModelListModel;
+import model.ModelActiveComboModel;
+import model.ModelActivelListModel;
 import renderer.ModelListRenderer;
 
 /**
@@ -20,6 +21,8 @@ public class ApplicationModelManagementPanel extends StylePanel {
     /**
      * Creates new form ModelManagementPanel
      */
+    private ModelActivelListModel list = new ModelActivelListModel();
+    
     public ApplicationModelManagementPanel() {
         initComponents();
     }
@@ -96,8 +99,9 @@ public class ApplicationModelManagementPanel extends StylePanel {
         buttonOK = new javax.swing.JButton();
         labTitlle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        buttonRefresh = new javax.swing.JButton();
 
-        listModel.setModel(new ModelListModel());
+        listModel.setModel(list);
         listModel.setCellRenderer(new ModelListRenderer());
         jScrollPane1.setViewportView(listModel);
 
@@ -142,6 +146,13 @@ public class ApplicationModelManagementPanel extends StylePanel {
         labTitlle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labTitlle.setText("GESTION DES MODELES");
 
+        buttonRefresh.setText("Rafraîchir");
+        buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -183,13 +194,19 @@ public class ApplicationModelManagementPanel extends StylePanel {
                         .addGap(18, 18, 18)
                         .addComponent(textDiametre, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(164, 164, 164))))
-            .addComponent(labTitlle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(buttonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labTitlle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(labTitlle, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labTitlle, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                    .addComponent(buttonRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
@@ -228,8 +245,15 @@ public class ApplicationModelManagementPanel extends StylePanel {
     private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
         try
         {
-            ((ModelListModel) this.listModel.getModel()).addModel(this.createModel());
+            if (textName.getText().length() <= 5)
+            {
+            ((ModelActivelListModel) this.listModel.getModel()).addModel(this.createModel());
             this.resetTextFields();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Le nom du modèle ne doit pas dépasser 5 caractères.", "Erreur dans la saisie du nom", JOptionPane.OK_OPTION, null);
+            }
         }
         catch (NumberFormatException e)
         {
@@ -238,12 +262,18 @@ public class ApplicationModelManagementPanel extends StylePanel {
     }//GEN-LAST:event_buttonOKActionPerformed
 
     private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveActionPerformed
-        ((ModelListModel) this.listModel.getModel()).removeModel((Model) listModel.getSelectedValue());
+        ((ModelActivelListModel) this.listModel.getModel()).removeModel((Model) listModel.getSelectedValue());
     }//GEN-LAST:event_buttonRemoveActionPerformed
+
+    private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
+        list = new ModelActivelListModel();
+        listModel.setModel(list);
+    }//GEN-LAST:event_buttonRefreshActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonOK;
+    private javax.swing.JButton buttonRefresh;
     private javax.swing.JButton buttonRemove;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;

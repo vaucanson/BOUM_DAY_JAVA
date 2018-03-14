@@ -39,10 +39,10 @@
                           <Component id="labIdentificationPassword" max="32767" attributes="0"/>
                           <Component id="labIdentificationName" min="-2" pref="160" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="tfIdentificationName" max="32767" attributes="0"/>
-                          <Component id="tfIdentificationPassword" min="-2" pref="358" max="-2" attributes="0"/>
+                      <EmptySpace min="38" pref="38" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="tfIdentificationPassword" min="-2" pref="360" max="-2" attributes="0"/>
+                          <Component id="tfIdentificationName" alignment="0" min="-2" pref="360" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -56,17 +56,20 @@
               <Component id="labIdentificationTitle" min="-2" pref="124" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="29" max="-2" attributes="0"/>
-              <EmptySpace pref="82" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="labIdentificationName" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfIdentificationName" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace pref="78" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="tfIdentificationName" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="labIdentificationName" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfIdentificationPassword" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="labIdentificationPassword" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="labIdentificationPassword" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      <Component id="tfIdentificationPassword" min="-2" pref="35" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" pref="94" max="-2" attributes="0"/>
@@ -95,15 +98,9 @@
           </Border>
         </Property>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="tfIdentificationPassword">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder/>
-          </Border>
-        </Property>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfIdentificationNameActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labIdentificationPassword">
       <Properties>
@@ -142,6 +139,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="tfIdentificationPassword">
     </Component>
   </SubComponents>
 </Form>

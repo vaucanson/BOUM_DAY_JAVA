@@ -10,6 +10,7 @@ import dao.StockManager;
 import entity.Stock;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
+import renderer.StockUnderLimitTableRenderer;
 
 /**
  *
@@ -115,6 +116,5 @@ public class StockUnderLimitTableModel extends AbstractTableModel{
             clas = Boolean.class;
         }
         return clas;
-    }
-
+    }    
 }

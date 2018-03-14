@@ -4,12 +4,12 @@ import entity.Model;
 import javax.swing.ComboBoxModel;
 
 /**
- *
+ * permet de créer un modèle de ComboBox à partir d'une liste de Model
  * @author mattar
  */
-public class ModelComboModel extends ModelListModel implements ComboBoxModel<Model>{
+public class ModelActiveComboModel extends ModelActivelListModel implements ComboBoxModel<Model> {
 
-     private Model selected = null;
+    private Model selected = null;
     
     @Override
     public void setSelectedItem(Object anItem) {
@@ -20,5 +20,4 @@ public class ModelComboModel extends ModelListModel implements ComboBoxModel<Mod
     public Object getSelectedItem() {
         return selected;
     }    
-    
 }

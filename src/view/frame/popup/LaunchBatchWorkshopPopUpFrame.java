@@ -7,6 +7,7 @@ package view.frame.popup;
 
 import entity.Model;
 import java.awt.GridLayout;
+import javax.swing.JTable;
 import view.frame.popup.StylePopUpFrame;
 import view.panel.popup.LaunchBatchWorkshopPopUpPanel;
 
@@ -19,13 +20,16 @@ public class LaunchBatchWorkshopPopUpFrame extends StylePopUpFrame {
     private LaunchBatchWorkshopPopUpPanel lbw;
     private static LaunchBatchWorkshopPopUpFrame instance;
     private Model model;
+    private JTable table;
+
     
-    public LaunchBatchWorkshopPopUpFrame(Model model) 
+    public LaunchBatchWorkshopPopUpFrame(Model model, JTable tab) 
     {
         super();
         setModel(model);
+        this.table = tab;
 
-        lbw = new LaunchBatchWorkshopPopUpPanel(this);
+        lbw = new LaunchBatchWorkshopPopUpPanel(this, table);
         this.add(lbw);
         this.setBounds(700, 300, 500, 400);
     }
@@ -54,7 +58,7 @@ public class LaunchBatchWorkshopPopUpFrame extends StylePopUpFrame {
     }
 
     private LaunchBatchWorkshopPopUpFrame() {
-        new LaunchBatchWorkshopPopUpPanel(this);
+        new LaunchBatchWorkshopPopUpPanel(this, table);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

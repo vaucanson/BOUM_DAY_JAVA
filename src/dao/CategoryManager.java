@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import tool.Connexion;
+import tool.MessageTool;
 
 /**
  *
@@ -97,7 +98,7 @@ public abstract class CategoryManager
                 
             } catch (Exception e) 
             {
-                JOptionPane.showMessageDialog(null, "Erreur  : Veuillez ne mettre qu'un seul chiffre avant la virgule.");
+                MessageTool.popup("Erreur de format", "Erreur  : Veuillez ne mettre qu'un seul chiffre avant la virgule.", 14);
                 e.printStackTrace();
                 
             } finally {

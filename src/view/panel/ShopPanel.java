@@ -5,6 +5,7 @@
  */
 package view.panel;
 
+import dao.StockManager;
 import entity.Category;
 import entity.Model;
 import java.awt.Color;
@@ -31,6 +32,7 @@ import model.CategoryComboModel;
 import model.StockTableModel;
 import renderer.CategoryComboRenderer;
 import renderer.ModelComboRenderer;
+import tool.MessageTool;
 import view.frame.MainFrame;
 
 /**
@@ -64,8 +66,24 @@ public class ShopPanel extends StylePanel {
             
             if ((dao.StockManager.getQuantity(model, category) + quantity) < 0)
             {
-                JOptionPane.showMessageDialog(parent, "Seulement " + dao.StockManager.getQuantity(model, category) 
-                        + " caisses sont en stock, vous ne pouvez pas en supprimer " + -quantity);
+                String message = String.format("Seulement %s caisses sont en stock, vous ne pouvez pas en supprimer %d", 
+                                                    StockManager.getQuantity(model, category), 
+                                                    -quantity); 
+                
+                MessageTool.popup("titre", message, 11);
+                MessageTool.popup("Avertissement", message, 12);
+                MessageTool.popup("Avertissement", message, 13);
+                MessageTool.popup("Avertissement", message, 14);
+                MessageTool.popup("Avertissement", message, 15);
+                MessageTool.popup("Avertissement", message, 21);
+                MessageTool.popup("Avertissement", message, 22);
+                MessageTool.popup("Avertissement", message, 23);
+                MessageTool.popup("Avertissement", message, 24);
+                MessageTool.popup("Avertissement", message, 25);
+                MessageTool.popup("Avertissement", message, 37);
+                
+//                JOptionPane.showMessageDialog(parent, "Seulement " + dao.StockManager.getQuantity(model, category) 
+//                        + " caisses sont en stock, vous ne pouvez pas en supprimer " + -quantity);
             }
             else
             {

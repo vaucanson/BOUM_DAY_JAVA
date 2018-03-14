@@ -97,8 +97,17 @@ public class ApplicationPressManagementPanel extends StylePanel {
     private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveActionPerformed
 
         if (listPress.getSelectedValue() != null) {
-            Press p = (Press) listPress.getSelectedValue();
-            lpm.removePress(p);
+            if (JOptionPane.showConfirmDialog(this, 
+                                                "Supprimer cette presse ? ", 
+                                                "", 
+                                                JOptionPane.OK_CANCEL_OPTION, 
+                                                JOptionPane.WARNING_MESSAGE, 
+                                                null
+                            ) == JOptionPane.OK_OPTION) // si l'utilisateur clique sur OK dans le pop-up de confirmation
+            {
+                Press p = (Press) listPress.getSelectedValue();
+                lpm.removePress(p);
+            }
         } else {
             JOptionPane.showMessageDialog(buttonAdd, "Selectionner une presse dans la liste avant de supprimer");
         }

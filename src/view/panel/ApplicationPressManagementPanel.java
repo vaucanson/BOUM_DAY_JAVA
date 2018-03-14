@@ -10,10 +10,7 @@ import entity.Press;
 import javax.swing.JOptionPane;
 import model.PressListModel;
 
-/**
- *
- * @author boilleau
- */
+
 public class ApplicationPressManagementPanel extends StylePanel {
     
     private model.PressListModel lpm = new PressListModel();
@@ -103,11 +100,20 @@ public class ApplicationPressManagementPanel extends StylePanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
+    /**
+     * Appuyer sur ce bouton appele la méthode du modèle qui ajoute une presse. La création ne demande aucune autre action
+     * @param evt 
+     */
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
-        
+
         lpm.addPress();
     }//GEN-LAST:event_buttonAddActionPerformed
     
+    /**
+     * Le bouton Supprimer presse va vérifier si un élément de la liste est bien selectionné,
+     * que la presse n'a pas déja été supprimé par un autre gestionnaire puis appeler la méthode du modèle qui enleve une presse
+     * @param evt 
+     */
     private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveActionPerformed
         Press p = (Press) listPress.getSelectedValue();
         
@@ -117,18 +123,25 @@ public class ApplicationPressManagementPanel extends StylePanel {
             {
                 if (PressManager.isActive(p))
                 {
+                    if (PressManager.isFree(p))
+                    {
                     lpm.removePress(p);
                     JOptionPane.showMessageDialog(this, "La presse a bien été supprimée.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(this, "Suppression impossible : presse " + p.getId() + " en cours d'utilisation.", "Confirmation", JOptionPane.OK_OPTION);
+                    }
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(this, "La presse a deja été supprimée.", "Erreur", JOptionPane.OK_OPTION, null);
+                    JOptionPane.showMessageDialog(this, "La presse a deja été supprimée.", "Erreur", JOptionPane.OK_OPTION);
                 }
             }
         }
         else
         {
-            JOptionPane.showMessageDialog(this, "Selectionner une presse dans la liste avant de supprimer");
+            JOptionPane.showMessageDialog(this, "Selectionnez une presse dans la liste avant de supprimer");
         }
         
         

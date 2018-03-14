@@ -29,9 +29,11 @@ public class ApplicationPurgeManagementPanel extends StylePanel {
         
        
     }
+    
+    // affiche les informations sur le panel en fonction de la date de création des pièces
     private void initState()
     {
-         nbPurge =  PieceManager.getNbPurge();
+        nbPurge =  PieceManager.getNbPurge(); // récupère le nombre de pièces créees il y a plus d'un an
         if (nbPurge <= 0)
         {
             labelNumberOfPiecesToPurge.setText("Purge impossible :");
@@ -112,16 +114,20 @@ public class ApplicationPurgeManagementPanel extends StylePanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
+       
+        //s'il n'y a aucune pièce à purger
         if (nbPurge <= 0)
         {
             JOptionPane.showMessageDialog(null, "Erreur : toutes les pièces enregistrée dans la base de données datent de moins d'un an.");
         }
-        
+        // demande de confirmation avant de lancer la suppression des pièces concernées en base de donnée
         else if (JOptionPane.showConfirmDialog(null,"Purger la base de donnée ? ", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
         {
             PieceManager.purge();
             JOptionPane.showMessageDialog(null, "La base de donnée à été purgée.");
-            initState();
+            
+            // on actualise le panel pour redonner l'état actuel de la purge
+            initState(); 
         }
     }//GEN-LAST:event_buttonValidateActionPerformed
 

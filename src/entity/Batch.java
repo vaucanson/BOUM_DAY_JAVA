@@ -51,7 +51,6 @@ public class Batch {
         {
             this.state = state;
             ok = true;
-            
         }
         return ok;
     }

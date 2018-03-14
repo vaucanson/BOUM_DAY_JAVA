@@ -23,56 +23,54 @@ public class ApplicationModelManagementPanel extends StylePanel {
      * Creates new form ModelManagementPanel
      */
     private ModelActivelListModel list = new ModelActivelListModel();
-    
+
     public ApplicationModelManagementPanel() {
         initComponents();
     }
-    
+
     /**
-     * INUTILE, À SUPPRIMER
-     * Crée un modèle d'après les données saisies par l'utilisateur
+     * INUTILE, À SUPPRIMER Crée un modèle d'après les données saisies par
+     * l'utilisateur
      */
-    public void addModel()
-    {
-        try
-        {
+    public void addModel() {
+        try {
             String name = textName.getText();
-            Float diameter = Float.parseFloat(textDiametre.getText() );
+            Float diameter = Float.parseFloat(textDiametre.getText());
             int smallMin = Integer.parseInt(textSmall.getText());
             int middleMin = Integer.parseInt(textMedium.getText());
             int bigMin = Integer.parseInt(textBig.getText());
+
         }
         catch (NumberFormatException e)
         {
             MessageTool.popup("Modèles", "Erreur de format d'un des nombres", 14);
+
         }
     }
-    
-    
+
     /**
      * Crée un modèle d'après les données saisies par l'utilisateur
-     * @return 
+     *
+     * @return
      */
-    private Model createModel() throws NumberFormatException
-    {
+    private Model createModel() throws NumberFormatException {
         String name = textName.getText();
-        Float diameter = Float.parseFloat(textDiametre.getText() );
+        Float diameter = Float.parseFloat(textDiametre.getText());
         int smallMin = Integer.parseInt(textSmall.getText());
         int middleMin = Integer.parseInt(textMedium.getText());
         int bigMin = Integer.parseInt(textBig.getText());
         Model tmpModel = new Model(name, diameter, smallMin, middleMin, bigMin);
         return tmpModel;
     }
-    
-    private void resetTextFields()
-    {
+
+    private void resetTextFields() {
         this.textBig.setText("");
         this.textDiametre.setText("");
         this.textMedium.setText("");
         this.textName.setText("");
         this.textSmall.setText("");
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -244,6 +242,7 @@ public class ApplicationModelManagementPanel extends StylePanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
+
         try
         {
             if (textName.getText().length() <= 5)
@@ -263,7 +262,20 @@ public class ApplicationModelManagementPanel extends StylePanel {
     }//GEN-LAST:event_buttonOKActionPerformed
 
     private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveActionPerformed
-        ((ModelActivelListModel) this.listModel.getModel()).removeModel((Model) listModel.getSelectedValue());
+
+        if ((Model) listModel.getSelectedValue() == null) {
+            JOptionPane.showMessageDialog(this, "Veuillez selectionner un modèle à supprimer", "Suppression de modèle", JOptionPane.OK_OPTION);
+        } else {
+            if (JOptionPane.showConfirmDialog(this, "Voulez-vous supprimer le modèle " + ((Model) listModel.getSelectedValue()).getName() + " ?", "Confirmation de suppression", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+
+                if (ModelManager.isActive((Model) listModel.getSelectedValue())) {
+                    ((ModelActivelListModel) this.listModel.getModel()).removeModel((Model) listModel.getSelectedValue());
+                } else {
+                    JOptionPane.showMessageDialog(this, "Erreur : le modèle a deja été supprimé", "Supression de modèle", JOptionPane.OK_OPTION);
+                    buttonRefreshActionPerformed(evt);
+                }
+            }
+        }
     }//GEN-LAST:event_buttonRemoveActionPerformed
 
     private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed

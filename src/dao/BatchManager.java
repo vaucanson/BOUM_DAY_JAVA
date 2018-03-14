@@ -131,6 +131,7 @@ public class BatchManager {
     
     public static void setStateOne(Model model, int quantity)
     {
+        
         try
         {
             Connection c = Connexion.getInstance("badaroux", "badaroux");
@@ -180,6 +181,7 @@ public class BatchManager {
             
         }
     }
+   
     
     public static void setStateThree(Batch b)
     {

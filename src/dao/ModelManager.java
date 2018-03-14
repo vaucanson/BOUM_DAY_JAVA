@@ -216,6 +216,7 @@ public abstract class ModelManager
                 // si le retour n'est pas bon, on affiche un message d'erreur à l'utilisateur
                 if (ret != 0)
                 {
+
                     MessageTool.popup("Erreur à l'insertion", msg, 15);
                 }
             } 
@@ -298,7 +299,52 @@ public abstract class ModelManager
         return ret;
     }
       
-      
+    public static boolean isActive (Model model)
+    {
+        boolean active = false;
+        try
+        {
+            Connection c;
+            c = Connexion.getInstance("badaroux", "badaroux");
+            
+            try
+            {
+                Statement st = c.createStatement();
+                
+                ResultSet rs = st.executeQuery("SELECT * FROM MODEL WHERE ACTIVE = 1 AND NAME = '" + model.getName() +"' ");
+                
+                if (rs.next())
+                {
+                   active = true;
+                }
+                st.close();
+            }
+            catch(Exception ex)
+            {
+                ex.printStackTrace();
+            }
+            finally 
+            {
+                if (c != null) 
+                {
+                    try 
+                    {
+                        c.close();
+                    } 
+                    catch (Exception e) 
+                    {
+                        e.printStackTrace();
+                        
+                    }
+                }
+            }
+        }
+        catch(SQLException ex)
+        {
+           ex.printStackTrace();
+        }
+        return active;
+    }
 }
     
 

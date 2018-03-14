@@ -5,6 +5,8 @@
  */
 package view.panel;
 
+import dao.BatchManager;
+import dao.PressManager;
 import entity.Batch;
 import entity.Press;
 import view.frame.popup.ProductionSetPressFreePopUpFrame;
@@ -153,7 +155,24 @@ public class ProductionPanel extends StylePanel {
     }//GEN-LAST:event_buttonEndBatchActionPerformed
 
     private void buttonStartBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStartBatchActionPerformed
-        ConfirmStart();
+       if ((PressManager.isActive((Press)listPress.getSelectedValue()) && (PressManager.isFree((Press)listPress.getSelectedValue()))))
+       {
+           if (BatchManager.getState((Batch)listBatch.getSelectedValue()) == 1)
+           {
+            ConfirmStart();
+            buttonRefreshActionPerformed(evt);
+           }
+           else
+           {
+                JOptionPane.showMessageDialog(this, "Erreur : l'état du lot selectionné été modifié", "Gestion de Production", JOptionPane.OK_OPTION);
+                buttonRefreshActionPerformed(evt);
+           }
+       }
+       else
+       {
+           JOptionPane.showMessageDialog(this, "Erreur : l'état de la presse selectionnée été modifié", "Gestion de Production", JOptionPane.OK_OPTION);
+           buttonRefreshActionPerformed(evt);
+       }
     }//GEN-LAST:event_buttonStartBatchActionPerformed
 
     /**

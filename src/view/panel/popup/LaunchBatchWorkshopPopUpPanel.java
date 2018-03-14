@@ -35,7 +35,7 @@ public class LaunchBatchWorkshopPopUpPanel extends StylePanel {
         
         
         // permet de faire appel au modèle ciblé par la JTab dans la frame précédente
-        model = ((LaunchBatchWorkshopPopUpFrame) this.parent).getModel();       
+        model = ((LaunchBatchWorkshopPopUpFrame) this.parent).getModel();
         
         // renvoie le String donnant le nom du modèle ciblé
         labModel.setText(model.getName());                     
@@ -145,11 +145,6 @@ public class LaunchBatchWorkshopPopUpPanel extends StylePanel {
        {
           parent.dispose();
        }
-       else
-       {
-           
-       }
-        
     }//GEN-LAST:event_buttonCancelActionPerformed
 
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed

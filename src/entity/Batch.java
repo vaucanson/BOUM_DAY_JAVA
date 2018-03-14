@@ -49,10 +49,8 @@ public class Batch {
         boolean ok = false;
         if ((state > 0) && (state < 5))
         {
-            dao.BatchManager.setStateFour(this);
             this.state = state;
             ok = true;
-            
         }
         return ok;
     }

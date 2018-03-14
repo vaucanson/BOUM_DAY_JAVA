@@ -31,26 +31,7 @@ public class BatchStateTwoListModel extends AbstractListModel<Batch> {
 
     public void launch(Batch batch, Press press) {
         dao.BatchManager.setStateTwo(batch, press);
-        bList.remove(batch);
+   
 
-        remove(batch);
-        //  MARCHE PAS PTN
-
-        fireContentsChanged(this, 0, bList.size());
-
-    }
-
-    public void add(Batch p) {
-        if (p != null) {
-            bList.add(p);
-
-        }
-    }
-
-    public void remove(Batch p) {
-        if (p != null) {
-            bList.remove(p);
-            fireIntervalRemoved(bList, bList.size() - 1, bList.size() - 1);
-        }
     }
 }

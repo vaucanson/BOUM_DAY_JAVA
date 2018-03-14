@@ -32,6 +32,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
     
     private void initFields()
     {
+        //récupère chaque information de l'énumération pour les placer dans les textfields
         smallTolerance[0] = Category.PETIT.getMinTolerance();
         smallTolerance[1] = Category.PETIT.getMaxTolerance();
         mediumTolerance[0] = Category.MOYEN.getMinTolerance();
@@ -41,6 +42,8 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
         
         textLittleMin.setText(Float.toString(smallTolerance[0]));
         textLittleMax.setText(Float.toString(smallTolerance[1]));
+        
+        // permet de changer l'état du textfields en fonction de l'action de l'utilisateur (suite à un changement d'intervalles)
         if (buttonChangeLittle.getText().equalsIgnoreCase("Modifier"))
         {
             textLittleMin.setEditable(false);
@@ -50,6 +53,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
         textMediumMin.setText(Float.toString(mediumTolerance[0]));
         textMediumMax.setText(Float.toString(mediumTolerance[1]));
         
+                // permet de changer l'état du textfields en fonction de l'action de l'utilisateur (suite à un changement d'intervalles)
         if (buttonChangeMedium.getText().equalsIgnoreCase("Modifier"))
         {
             textMediumMin.setEditable(false);
@@ -59,6 +63,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
         textBigMin.setText(Float.toString(bigTolerance[0]));
         textBigMax.setText(Float.toString(bigTolerance[1]));
         
+        // permet de changer l'état du textfields en fonction de l'action de l'utilisateur (suite à un changement d'intervalles)
         if (buttonChangeBig.getText().equalsIgnoreCase("Modifier"))
         {
             textBigMin.setEditable(false);
@@ -239,32 +244,35 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
     }//GEN-LAST:event_textLittleMaxActionPerformed
     
     private void buttonChangeLittleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonChangeLittleActionPerformed
+        
+        // si le bouton s'appel Modifier, alors on rend les textfields editable pour faire une modification
         if (buttonChangeLittle.getText().equalsIgnoreCase("Modifier"))
         {
             textLittleMin.setEditable(true);
             textLittleMax.setEditable(true);
             
-            buttonChangeLittle.setText("Valider");
+            buttonChangeLittle.setText("Valider"); // le bouton change de nom afin de confirmer la prochaine validation
         }
-        else
+        else    // si le bouton s'appel Valider
         {
             if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
             {
-                if (CommonTools.isFloat(textLittleMin.getText()) && 
-                        CommonTools.isFloat(textLittleMax.getText()) && 
-                        (Float.parseFloat(textLittleMin.getText()) < Float.parseFloat(textLittleMax.getText()))
-                        )
+                // vérifie que les intervalles min soit bien négatives et que le MIN est inférieur au MAX
+                if (CommonTools.isFloatNegative(textLittleMin.getText()) && 
+                        CommonTools.isFloatNegative(textLittleMax.getText()) && 
+                        (Float.parseFloat(textLittleMin.getText()) < Float.parseFloat(textLittleMax.getText())))
                 
                 {
+                    // appel la fonction de changement de tolérance pour la ligne concernée
                     CategoryManager.changeTolerance(labelSmall.getText(), Float.parseFloat(textLittleMin.getText()), Float.parseFloat(textLittleMax.getText()));
-                    buttonChangeLittle.setText("Modifier");
+                    buttonChangeLittle.setText("Modifier"); // rétabli le bouton
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux et négatifs. Assurez-vous que la valeur maximale soit supérieure à la valeur minimale.");
+                    JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux et négatifs. Assurez-vous que la valeur maximale soit supérieure à la valeur minimale.", "Modification des Intervalles de Tolérance", JOptionPane.OK_OPTION);
                 }
                 
-                initFields();
+                initFields(); // met a jour le panel en fermant les textfields dont la modification a été validée
             }
         }
     }//GEN-LAST:event_buttonChangeLittleActionPerformed
@@ -280,9 +288,10 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
         else
         {
             if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-            {
-                if (CommonTools.isFloat(textMediumMin.getText()) && 
-                        CommonTools.isFloat(textMediumMax.getText()) && 
+            {   
+                // vérifie que le seuil minimale soit negatif et le maximal positif, et que la valeur minimale soit inférieure à la maximale
+                if (CommonTools.isFloatNegative(textMediumMin.getText()) && 
+                        CommonTools.isFloatPositive(textMediumMax.getText()) && 
                         (Float.parseFloat(textMediumMin.getText()) < Float.parseFloat(textMediumMax.getText()))
                         )
                 
@@ -292,7 +301,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux. Entrer un nombre négatif pour le minimum, et positif pour le maximum.");
+                    JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux. Entrer un nombre négatif pour le minimum, et positif pour le maximum.", "Modification des Intervalles de Tolérance", JOptionPane.OK_OPTION);
                 }
                 initFields();
             }
@@ -311,8 +320,9 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
             {
                 if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
                 {
-                    if (CommonTools.isFloat(textBigMin.getText()) && 
-                            CommonTools.isFloat(textBigMax.getText()) && 
+                    // vérifie que les deux intervalles soient strictement positifs, et que le minimal soit inférieur au maximal
+                    if (CommonTools.isFloatPositive(textBigMin.getText()) && 
+                            CommonTools.isFloatPositive(textBigMax.getText()) && 
                             (Float.parseFloat(textBigMin.getText()) < Float.parseFloat(textBigMax.getText())) 
                             )
                     
@@ -322,7 +332,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux positifs. Assurez-vous que la valeur maximale soit supérieure à la valeur minimale.");
+                        JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux positifs. Assurez-vous que la valeur maximale soit supérieure à la valeur minimale.", "Modification des Intervalles de Tolérance", JOptionPane.OK_OPTION);
                     }
                     initFields();
                 }

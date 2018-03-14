@@ -12,14 +12,12 @@ import entity.Model;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import model.CategoryComboModel;
-import model.ModelActiveComboModel;
 import model.StockUnderLimitTableModel;
 import renderer.CategoryComboRenderer;
 import renderer.ModelComboRenderer;
 import renderer.StockUnderLimitButtonRenderer;
 import view.panel.StylePanel;
 import view.frame.MainFrame;
-import view.panel.popup.LaunchBatchWorkshopPopUpPanel;
 
 /**
  *
@@ -209,11 +207,20 @@ public class WorkshopPanel extends StylePanel {
 
     private void buttonResearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonResearchActionPerformed
         
+        // oblige a selectionner un modèle et une catégorie
+         if ((comboModel.getSelectedIndex() > -1) && (comboCategory.getSelectedIndex() > -1))
+        {
         // appel la fonction getQuantity qui renvoie la quantité de pièces pour un modèle et une catégorie donnée
         labQuantity.setText(Integer.toString(StockManager.getQuantity(nomModel, nomCategory)));
         
         // appel la fonction getLimit qui renvoie le seuil limite de pièces en stock pour un modèle et une catégorie donnée
         labLimits.setText(Integer.toString(StockManager.getLimit(nomModel, nomCategory)));
+        }
+         else
+         {
+             JOptionPane.showMessageDialog(this, "Veuillez selectionner un modèle et une quantité", "Recherche de stock", JOptionPane.WARNING_MESSAGE);
+         }
+        
     }//GEN-LAST:event_buttonResearchActionPerformed
 
     private void comboCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoryActionPerformed
@@ -233,7 +240,8 @@ public class WorkshopPanel extends StylePanel {
 
     private void butLaunchBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butLaunchBatchActionPerformed
        
-         if (comboModel.getSelectedIndex() == -1)
+        // si aucun modèle n'a été saisie dans la comboBox
+        if (comboModel.getSelectedIndex() == -1)
         {
             JOptionPane.showMessageDialog(null, "Veuillez saisir un modèle.");
         }
@@ -255,6 +263,7 @@ public class WorkshopPanel extends StylePanel {
     }//GEN-LAST:event_butLaunchBatchActionPerformed
 
     private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
+        //rafraichi le panel
         tab = new StockUnderLimitTableModel();
         tableStockUnderLimit.setModel(tab); 
     }//GEN-LAST:event_buttonRefreshActionPerformed

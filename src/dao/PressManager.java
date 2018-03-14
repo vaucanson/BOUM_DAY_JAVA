@@ -285,4 +285,44 @@ public class PressManager {
             }
             return active;
     }
+    
+    public static boolean isFree(Press p)
+    {
+        boolean free = false;
+        try {
+
+            Connection c = Connexion.getInstance("badaroux", "badaroux");
+
+            try {
+                Statement st = c.createStatement();
+                ResultSet rs = st.executeQuery("SELECT * FROM nonBusyPresses WHERE ID = '" + p.getId() + "'");
+
+                if (rs.next()) {
+
+                    free = true;
+                }
+
+                st.close();
+            } 
+            catch (Exception e) 
+            {
+                e.printStackTrace();
+
+            } finally {
+                if (c != null) {
+                    try {
+                        c.close();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(PressManager.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+
+        } catch (SQLException ex) {
+          ex.printStackTrace();
+
+        }
+        return free;
+    
+    }
 }

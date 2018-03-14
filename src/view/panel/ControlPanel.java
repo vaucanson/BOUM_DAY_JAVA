@@ -58,7 +58,7 @@ public class ControlPanel extends StylePanel {
             if (currentBatch.getState() == 3)
             {
                 JOptionPane.showMessageDialog(null, "La saisie du lot est terminée.");
-                currentBatch.setState((short) 4);
+                dao.BatchManager.setStateFour(currentBatch);
                 parent.changePanel(new ControlChoosePressPanel(parent));
                 
             }

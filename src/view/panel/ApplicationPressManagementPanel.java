@@ -117,18 +117,25 @@ public class ApplicationPressManagementPanel extends StylePanel {
             {
                 if (PressManager.isActive(p))
                 {
+                    if (PressManager.isFree(p))
+                    {
                     lpm.removePress(p);
                     JOptionPane.showMessageDialog(this, "La presse a bien été supprimée.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(this, "Suppression impossible : presse " + p.getId() + " en cours d'utilisation.", "Confirmation", JOptionPane.OK_OPTION);
+                    }
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(this, "La presse a deja été supprimée.", "Erreur", JOptionPane.OK_OPTION, null);
+                    JOptionPane.showMessageDialog(this, "La presse a deja été supprimée.", "Erreur", JOptionPane.OK_OPTION);
                 }
             }
         }
         else
         {
-            JOptionPane.showMessageDialog(this, "Selectionner une presse dans la liste avant de supprimer");
+            JOptionPane.showMessageDialog(this, "Selectionnez une presse dans la liste avant de supprimer");
         }
         
         

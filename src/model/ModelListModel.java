@@ -40,7 +40,7 @@ public class ModelListModel extends AbstractListModel<Model> {
         }
         else
         {
-            this.mList = ModelManager.load();
+            this.mList = ModelManager.loadAll();
         }
         this.fireIntervalAdded(this, 0, this.mList.size());
     }
@@ -57,7 +57,7 @@ public class ModelListModel extends AbstractListModel<Model> {
         }
         else
         {
-            this.mList = ModelManager.load();
+            this.mList = ModelManager.loadAll();
         }
         this.fireIntervalRemoved(this, 0, this.mList.size());
     }

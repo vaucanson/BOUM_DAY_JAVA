@@ -1,11 +1,13 @@
 #!/usr/bin/bash
-rm src/*/*orig
-rm src/*/*bak
-rm src/*/*/*orig
-rm src/*/*/*bak
-rm src/*/*/*/*orig
-rm src/*/*/*/*bak
+printf "SUPPRESSION DES FICHIERS INDÉSIRÉS :\n"
+rm -vi src/*/*orig
+rm -vi src/*/*bak
+rm -vi src/*/*/*orig
+rm -vi src/*/*/*bak
+rm -vi src/*/*/*/*orig
+rm -vi src/*/*/*/*bak
 
+printf "\nRECHERCHE DE FICHIERS CONTENANT DES ANOMALIES :\n"
 grep "<<" src/*/* 2>/dev/null
 grep "<<" src/*/*/* 2>/dev/null
 grep "<<" src/*/*/*/* 2>/dev/null

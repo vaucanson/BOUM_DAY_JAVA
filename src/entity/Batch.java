@@ -45,7 +45,11 @@ public class Batch {
         return dao.BatchManager.getState(this);
     }
     
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> f42da72d715182aed55c5cf5dff1f96bbaf0101e
     public boolean setState(short state) {
         boolean ok = false;
         if ((state > 0) && (state < 5))

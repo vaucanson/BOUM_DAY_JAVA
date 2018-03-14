@@ -4,42 +4,30 @@ import dao.CategoryManager;
 
 public enum Category 
 {
-    PETIT(CategoryManager.getTolerance("PETIT")[0], CategoryManager.getTolerance("PETIT")[1]),
-    MOYEN(CategoryManager.getTolerance("MOYEN")[0], CategoryManager.getTolerance("MOYEN")[1]),
-    GRAND(CategoryManager.getTolerance("GRAND")[0], CategoryManager.getTolerance("GRAND")[1]),
-    REBUT(0, 0);
-    
-    private float minTolerance;
-    private float maxTolerance;
-    
-    private Category (float min, float max)
-    {
-        this.minTolerance = min;
-        this.maxTolerance = max;
-    }
+    PETIT,
+    MOYEN,
+    GRAND,
+    REBUT;
     
     private void setMinTolerance(float min)
     {
-        // on change la valeur dans l'instance
-        this.minTolerance = min;
         // on enregistre en base de données
         CategoryManager.changeTolerance(this.toString(), this.getMinTolerance(), this.getMaxTolerance());
     }
     
     private void setMaxTolerance (float max)
     {
-        this.maxTolerance = max;
         CategoryManager.changeTolerance(this.toString(), this.getMinTolerance(), this.getMaxTolerance());
     }
     
     public float getMinTolerance()
     {
-        return minTolerance;
+        return CategoryManager.getTolerance(this.toString())[0];
     }
     
     public float getMaxTolerance()
     {
-        return maxTolerance;
+        return CategoryManager.getTolerance(this.toString())[1];
     }
     
     /**

@@ -51,16 +51,18 @@ public class Batch {
         return ok;
     }
 
-    public short getState() {
-        return state;
+    public int getState() {
+        return dao.BatchManager.getState(this);
     }
     
-    private boolean setState(short state) {
+    public boolean setState(short state) {
         boolean ok = false;
         if ((state > 0) && (state < 5))
         {
+            dao.BatchManager.setStateFour(this);
             this.state = state;
             ok = true;
+          
         }
         return ok;
     }

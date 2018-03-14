@@ -22,8 +22,9 @@ public abstract class PieceManager {
      * @param bl
      * @param batchId
      */
-    public static void create(float ht, float hl, float bt, float bl, int batchId)
+    public static int create(float ht, float hl, float bt, float bl, int batchId)
     {
+        int ret = 0;
         String msg = "";
         try {
             Connection c = Connexion.getInstance("badaroux", "badaroux");
@@ -43,11 +44,8 @@ public abstract class PieceManager {
 
                 cs.execute();
 
-                int resultat = cs.getInt(1);
+                ret = cs.getInt(1);
 
-                if (resultat == 0) {
-                    System.out.println(cs.getString(7));
-                }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -68,7 +66,7 @@ public abstract class PieceManager {
             ex.printStackTrace();
 
         }
-         
+        return ret; 
     }
     
     
@@ -91,7 +89,8 @@ public abstract class PieceManager {
             if (rs.next())
             {
                 // création d'une pièce avec les données trouvées
-                Batch batch = BatchManager.get(rs.getInt("batch"));
+              //  Batch batch = BatchManager.get(rs.getInt("batch"));
+                Batch batch = null;
                 newPiece = new Piece(rs.getFloat("ht"), rs.getFloat("hl"), rs.getFloat("bt"), rs.getFloat("bl"), batch);
             }
             st.close();

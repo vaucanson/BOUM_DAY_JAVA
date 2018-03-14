@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package view.panel;
 
 import entity.Batch;
@@ -15,22 +15,22 @@ import view.frame.MainFrame;
  * @author badaroux
  */
 public class ControlPanel extends StylePanel {
-
+    
     private MainFrame parent;
     private Batch currentBatch;
     private int counter = 0;
     int goal;
-
+    
     public ControlPanel(MainFrame frame) {
         initComponents();
         setVisible(true);
         this.parent = frame;
     }
-
+    
     public void initControl() {
         if (parent.getCurrentBatch() != null) {
             setCurrentBatch(parent.getCurrentBatch());
-
+            
             goal = currentBatch.getPiecesNumber();
             labTitle.setText("Lot n°" + Integer.toString(currentBatch.getId()));
             labBatchPiece.setText("Presse n°" + Integer.toString(dao.PressManager.getOne(currentBatch).getId()));
@@ -38,30 +38,30 @@ public class ControlPanel extends StylePanel {
             progress();
         }
     }
-
+    
     public void progress() {
-
+        
         counter = dao.BatchManager.getPieceNumber(currentBatch);
         labProgressing.setText(counter + " pièce controlée(s) sur " + goal);
-
+        
         isEnded();
-
+        
     }
-
+    
     public boolean isEnded() {
         boolean maxReached = false;
-
-        if (counter >= goal) 
+        
+        if (counter >= goal)
         {
-           maxReached = true;
-            if (currentBatch.getState() == 3) 
+            maxReached = true;
+            if (currentBatch.getState() == 3)
             {
                 JOptionPane.showMessageDialog(null, "La saisie du lot est terminée.");
                 currentBatch.setState((short) 4);
                 parent.changePanel(new ControlChoosePressPanel(parent));
                 
-            }  
-             else 
+            }
+            else
             {
                 JOptionPane.showMessageDialog(null, "Attention, la presse n'a pas été libérée correctement. Veuillez en référer à votre supérieur. "
                         + "Attendez son signal avant de terminer le lot");
@@ -73,15 +73,15 @@ public class ControlPanel extends StylePanel {
             JOptionPane.showMessageDialog(null, "Le lot a déja été cloturé, sortie", "Controle panel", JOptionPane.WARNING_MESSAGE);
             maxReached = true;
         }
-            
+        
         
         return maxReached;
     }
-
+    
     public void setCurrentBatch(Batch batch) {
         this.currentBatch = batch;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -252,40 +252,40 @@ public class ControlPanel extends StylePanel {
                 .addGap(66, 66, 66))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
-<<<<<<< HEAD
+        
 // TODO revoir la protection anti zéro
-        if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
-            if ((tool.CommonTools.isFloatPositive(tfHT.getText())) && (tool.CommonTools.isFloatPositive(tfHL.getText())) && (tool.CommonTools.isFloatPositive(tfBT.getText())) && (tool.CommonTools.isFloatPositive(tfBL.getText()))) {
-
-=======
+if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
+    if ((tool.CommonTools.isFloatPositive(tfHT.getText())) && (tool.CommonTools.isFloatPositive(tfHL.getText())) && (tool.CommonTools.isFloatPositive(tfBT.getText())) && (tool.CommonTools.isFloatPositive(tfBL.getText()))) {
+        
+        
         System.out.println(currentBatch.getState());
         if (currentBatch.getState() == 4) {
             System.out.println(currentBatch.getState());
             JOptionPane.showMessageDialog(this, "Le lot a déja été cloturé", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
             parent.changePanel(new ControlChoosePressPanel(parent));
         } else {
-
+            
             if (cbBrokenPiece.isSelected()) {
->>>>>>> master
+                
                 confirmStart();
-
+                
             } else if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
                 if ((tool.CommonTools.isFloatPositive(tfHT.getText())) && (tool.CommonTools.isFloatPositive(tfHL.getText()))
                         && (tool.CommonTools.isFloatPositive(tfBT.getText())) && (tool.CommonTools.isFloatPositive(tfBL.getText()) && (!cbBrokenPiece.isSelected()))) {
-
+                    
                     confirmStart();
-
+                    
                 } else {
-
+                    
                     JOptionPane.showMessageDialog(null, "Veuillez vérifier que les 4 champs de saisie soient bien des entiers positifs", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Erreur : au moins un des champs est à zéro.", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
             }
     }//GEN-LAST:event_buttonValidateActionPerformed
-    }
+        
     private void cbBrokenPieceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBrokenPieceActionPerformed
         if (cbBrokenPiece.isSelected()) {
             tfHT.setEnabled(false);
@@ -294,7 +294,7 @@ public class ControlPanel extends StylePanel {
             tfBL.setEnabled(false);
         }
     }//GEN-LAST:event_cbBrokenPieceActionPerformed
-
+    
     private void buttonStopBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStopBatchActionPerformed
         if (currentBatch.getState() == 3) {
             confirmStop();
@@ -303,28 +303,28 @@ public class ControlPanel extends StylePanel {
                     "Controle de pièce", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_buttonStopBatchActionPerformed
-
+    
     private void buttonBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBreakActionPerformed
         parent.changePanel(new ControlChoosePressPanel(parent));
     }//GEN-LAST:event_buttonBreakActionPerformed
-
+    
     private void tfHLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHLActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfHLActionPerformed
-
+    
     private void tfHTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfHTActionPerformed
-
+    
     /* private void confirmBreak() {
-     if (JOptionPane.showConfirmDialog(null, "Mettre le lot en pause ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-     boolean stop = dao.BatchManager.setBreak(currentBatch, (goal - counter));
-     if (stop) {
-     JOptionPane.showMessageDialog(null, "Le lot a bien été mis en pause.");
-     parent.changePanel(new ControlChoosePressPanel(parent));
-     }
-     }
-     }*/
+    if (JOptionPane.showConfirmDialog(null, "Mettre le lot en pause ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+    boolean stop = dao.BatchManager.setBreak(currentBatch, (goal - counter));
+    if (stop) {
+    JOptionPane.showMessageDialog(null, "Le lot a bien été mis en pause.");
+    parent.changePanel(new ControlChoosePressPanel(parent));
+    }
+    }
+    }*/
     private void confirmStop() {
         if (JOptionPane.showConfirmDialog(null, "Arrêter le lot ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             dao.BatchManager.setStateFour(currentBatch);
@@ -332,14 +332,14 @@ public class ControlPanel extends StylePanel {
             parent.changePanel(new ControlChoosePressPanel(parent));
         }
     }
-
+    
     private void confirmStart() {
-
+        
         if (JOptionPane.showConfirmDialog(null, "Valider la pièce ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if (!isEnded()) {
                 if (cbBrokenPiece.isSelected()) {
                     if (JOptionPane.showConfirmDialog(null, "Attention, vous allez envoyer la pièce au rebut. Continuer ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-
+                        
                         if (dao.PieceManager.create(0, 0, 0, 0, currentBatch.getId()) >= 0) {
                             tfHT.setEnabled(true);
                             tfHL.setEnabled(true);
@@ -348,7 +348,7 @@ public class ControlPanel extends StylePanel {
                             cbBrokenPiece.setSelected(false);
                             progress();
                         }
-
+                        
                     }
                 } else {
                     if (dao.PieceManager.create(
@@ -360,17 +360,17 @@ public class ControlPanel extends StylePanel {
                     ) == 0) {
                         Piece p = new Piece(Float.parseFloat(tfHT.getText()), Float.parseFloat(tfHL.getText()),
                                 Float.parseFloat(tfBT.getText()), Float.parseFloat(tfBL.getText()), currentBatch);
-
+                        
                         JOptionPane.showMessageDialog(this, "Catégorie : " + p.getCategory().toString());
-
+                        
                         tfHT.setText("");
                         tfHL.setText("");
                         tfBT.setText("");
                         tfBL.setText("");
                         progress();
-
+                        
                     }
-
+                    
                 }
             }
         }

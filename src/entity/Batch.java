@@ -14,42 +14,38 @@ public class Batch {
     private short state;
     private short press;
     private Model model;
-
+    
     public short getId() {
         return id;
     }
     
     private void setId(short id) {
-       
+        
         this.id = id;
     }
-
+    
     public Date getDate() {
         return date;
     }
-
+    
     private void setDate(Date date) {
         this.date = date;
     }
-
+    
     public short getPiecesNumber() {
         return piecesNumber;
     }
     
     private void setPiecesNumber(short piecesNumber) {
-    
+        
         this.piecesNumber = piecesNumber;
     }
-
+    
     public int getState() {
         return dao.BatchManager.getState(this);
     }
     
-<<<<<<< HEAD
-    private void setState(short state) {
-        
-        this.state = state;
-=======
+    
     public boolean setState(short state) {
         boolean ok = false;
         if ((state > 0) && (state < 5))
@@ -57,25 +53,24 @@ public class Batch {
             dao.BatchManager.setStateFour(this);
             this.state = state;
             ok = true;
-          
+            
         }
         return ok;
->>>>>>> master
     }
-
-    public short getPress() {
+    public short getPress()
+    {
         return press;
     }
     
-    private void setPress(short press) 
+    private void setPress(short press)
     {
         this.press = press;
     }
-
+    
     public Model getModel() {
         return model;
     }
-
+    
     private void setModel(Model model) {
         this.model = model;
     }
@@ -86,14 +81,14 @@ public class Batch {
         setId(id);
         setDate(date);
         setModel(model);
-        setPiecesNumber(pn); 
-        setPress(press); 
+        setPiecesNumber(pn);
+        setPress(press);
         setState(state);
         
-            
+        
     }
-
-
+    
+    
     
     @Override
     public String toString() {

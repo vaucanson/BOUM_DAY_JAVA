@@ -57,7 +57,7 @@ public class ApplicationPressManagementPanel extends StylePanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("GESTION DES PRESSES");
 
-        buttonRefresh.setText("RafraÃ®chir");
+        buttonRefresh.setText("Rafraîchir");
         buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRefreshActionPerformed(evt);
@@ -116,11 +116,11 @@ public class ApplicationPressManagementPanel extends StylePanel {
             if ((JOptionPane.showConfirmDialog(this, "Supprimer la presse ?", "Valider la suppression de presse", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) && PressManager.isActive(p))
             {
                 lpm.removePress(p);
-                JOptionPane.showMessageDialog(this, "La presse a bien Ã©tÃ© supprimÃ©e.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "La presse a bien été supprimée.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
             } 
             else
             {
-                JOptionPane.showMessageDialog(this, "La presse a deja Ã©tÃ© supprimÃ©e.", "Erreur", JOptionPane.OK_OPTION, null);
+                JOptionPane.showMessageDialog(this, "La presse a deja été supprimée.", "Erreur", JOptionPane.OK_OPTION, null);
             }
         }
         else 

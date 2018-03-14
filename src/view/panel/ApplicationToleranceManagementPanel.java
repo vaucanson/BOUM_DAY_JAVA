@@ -7,9 +7,7 @@ package view.panel;
 
 import dao.CategoryManager;
 import entity.Category;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import tool.CommonTools;
 
 /**
@@ -40,7 +38,7 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
         mediumTolerance[1] = Category.MOYEN.getMaxTolerance();
         bigTolerance[0] = Category.GRAND.getMinTolerance();
         bigTolerance[1] = Category.GRAND.getMaxTolerance();
-         
+        
         textLittleMin.setText(Float.toString(smallTolerance[0]));
         textLittleMax.setText(Float.toString(smallTolerance[1]));
         if (buttonChangeLittle.getText().equalsIgnoreCase("Modifier"))
@@ -252,17 +250,21 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
         {
             if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
             {
-//                if (CommonTools.isFloatNegative(textLittleMin.getText()) && CommonTools.isFloatNegative(textLittleMax.getText()) && (Float.parseFloat(textLittleMin.getText()) > Float.parseFloat(textLittleMax.getText())))
-                if (true)
+                if (CommonTools.isFloat(textLittleMin.getText()) && 
+                        CommonTools.isFloat(textLittleMax.getText()) && 
+                        (Float.parseFloat(textLittleMin.getText()) < Float.parseFloat(textLittleMax.getText()))
+                        )
+                
                 {
                     CategoryManager.changeTolerance(labelSmall.getText(), Float.parseFloat(textLittleMin.getText()), Float.parseFloat(textLittleMax.getText()));
                     buttonChangeLittle.setText("Modifier");
-                    initFields();
                 }
                 else
                 {
                     JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux et négatifs. Assurez-vous que la valeur maximale soit supérieure à la valeur minimale.");
                 }
+                
+                initFields();
             }
         }
     }//GEN-LAST:event_buttonChangeLittleActionPerformed
@@ -279,17 +281,20 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
         {
             if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
             {
-//                if (CommonTools.isFloatNegative(textMediumMin.getText()) && CommonTools.isFloatPositive(textMediumMax.getText()) && (Float.parseFloat(textMediumMin.getText()) < Float.parseFloat(textMediumMax.getText())))
-                if (true)
+                if (CommonTools.isFloat(textMediumMin.getText()) && 
+                        CommonTools.isFloat(textMediumMax.getText()) && 
+                        (Float.parseFloat(textMediumMin.getText()) < Float.parseFloat(textMediumMax.getText()))
+                        )
+                
                 {
                     CategoryManager.changeTolerance(labelMedium.getText(), Float.parseFloat(textMediumMin.getText()), Float.parseFloat(textMediumMax.getText()));
                     buttonChangeMedium.setText("Modifier");
-                    initFields();
                 }
                 else
                 {
                     JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux. Entrer un nombre négatif pour le minimum, et positif pour le maximum.");
                 }
+                initFields();
             }
         }
     }//GEN-LAST:event_buttonChangeMediumActionPerformed
@@ -306,17 +311,20 @@ public class ApplicationToleranceManagementPanel extends StylePanel {
             {
                 if (JOptionPane.showConfirmDialog(null,"Valider les changements d'intervalles ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
                 {
-//                    if (CommonTools.isFloatPositive(textBigMin.getText()) && CommonTools.isFloatPositive(textBigMax.getText()) && (Float.parseFloat(textBigMin.getText()) < Float.parseFloat(textBigMax.getText())) )
-                    if (true)
+                    if (CommonTools.isFloat(textBigMin.getText()) && 
+                            CommonTools.isFloat(textBigMax.getText()) && 
+                            (Float.parseFloat(textBigMin.getText()) < Float.parseFloat(textBigMax.getText())) 
+                            )
+                    
                     {
                         CategoryManager.changeTolerance(labelBig.getText(), Float.parseFloat(textBigMin.getText()), Float.parseFloat(textBigMax.getText()));
                         buttonChangeBig.setText("Modifier");
-                        initFields();
                     }
                     else
                     {
                         JOptionPane.showMessageDialog(this, "Erreur : veuillez entrer des nombres décimaux positifs. Assurez-vous que la valeur maximale soit supérieure à la valeur minimale.");
                     }
+                    initFields();
                 }
             }
     }//GEN-LAST:event_buttonChangeBigActionPerformed

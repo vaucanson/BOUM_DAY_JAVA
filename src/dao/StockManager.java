@@ -42,12 +42,7 @@ public class StockManager {
             {
                 Statement st = c.createStatement();
                 
-
-                ResultSet rs = st.executeQuery("SELECT * FROM STOCKUNDERLIMIT WHERE ISLIMITREACHED = 1 ORDER BY MODEL");
-<<<<<<< HEAD
-=======
-
->>>>>>> master
+                ResultSet rs = st.executeQuery("SELECT * FROM STOCKUNDERLIMIT WHERE ISLIMITREACHED = 1 ");
                 
                 while (rs.next())
                 {

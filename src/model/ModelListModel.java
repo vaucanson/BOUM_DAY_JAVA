@@ -34,15 +34,31 @@ public class ModelListModel extends AbstractListModel<Model> {
      */
     public void addModel(Model model)
     {
-        this.mList.add(model);
+        if (ModelManager.add(model) == 0)
+        {
+            this.mList.add(model);
+        }
+        else
+        {
+            this.mList = ModelManager.load();
+        }
         this.fireIntervalAdded(this, 0, this.mList.size());
-        ModelManager.add(model);
     }
 
+    /**
+     * Supprime le modèle donné de la bdd et de la liste
+     * @param model 
+     */
     public void removeModel(Model model) 
     {
-        this.mList.remove(model);
-        ModelManager.delete(model);
+        if (ModelManager.delete(model) == 0)
+        {
+            this.mList.remove(model); 
+        }
+        else
+        {
+            this.mList = ModelManager.load();
+        }
         this.fireIntervalRemoved(this, 0, this.mList.size());
     }
     

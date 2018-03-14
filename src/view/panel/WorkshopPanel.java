@@ -256,10 +256,7 @@ public class WorkshopPanel extends StylePanel {
           BatchManager.setStateOne(model, (int)quantitySpinner.getValue());
           JOptionPane.showMessageDialog(null, "Un lot contenant " + quantitySpinner.getValue() + " pièces de modèle " + model.getName() + " a bien été lancé.");         
        }
-       else
-       {
-           
-       }
+        buttonRefreshActionPerformed(evt);
     }//GEN-LAST:event_butLaunchBatchActionPerformed
 
     private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed

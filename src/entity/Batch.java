@@ -41,13 +41,26 @@ public class Batch {
         this.piecesNumber = piecesNumber;
     }
 
-    public short getState() {
-        return state;
+    public int getState() {
+        return dao.BatchManager.getState(this);
     }
     
+<<<<<<< HEAD
     private void setState(short state) {
         
         this.state = state;
+=======
+    public boolean setState(short state) {
+        boolean ok = false;
+        if ((state > 0) && (state < 5))
+        {
+            dao.BatchManager.setStateFour(this);
+            this.state = state;
+            ok = true;
+          
+        }
+        return ok;
+>>>>>>> master
     }
 
     public short getPress() {

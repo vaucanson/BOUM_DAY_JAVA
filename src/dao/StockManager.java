@@ -44,6 +44,10 @@ public class StockManager {
                 
 
                 ResultSet rs = st.executeQuery("SELECT * FROM STOCKUNDERLIMIT WHERE ISLIMITREACHED = 1 ORDER BY MODEL");
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
                 
                 while (rs.next())
                 {

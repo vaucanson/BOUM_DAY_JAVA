@@ -50,7 +50,7 @@ public class ControlPanel extends StylePanel {
     
     public boolean isEnded() {
         boolean maxReached = false;
-<<<<<<< HEAD
+        
         
         if (counter >= goal)
         {
@@ -64,34 +64,31 @@ public class ControlPanel extends StylePanel {
             }
             else
             {
-=======
-
-        if (counter >= goal) {
-            maxReached = true;
-            if (currentBatch.getState() == 3) {
-                JOptionPane.showMessageDialog(null, "La saisie du lot est terminée.");
-                currentBatch.setState((short) 4);
-                parent.changePanel(new ControlChoosePressPanel(parent));
-
-            } else {
->>>>>>> f42da72d715182aed55c5cf5dff1f96bbaf0101e
-                JOptionPane.showMessageDialog(null, "Attention, la presse n'a pas été libérée correctement. Veuillez en référer à votre supérieur. "
-                        + "Attendez son signal avant de terminer le lot");
-                buttonValidate.setEnabled(false);
+                
+                
+                if (counter >= goal) {
+                    maxReached = true;
+                    if (currentBatch.getState() == 3) {
+                        JOptionPane.showMessageDialog(null, "La saisie du lot est terminée.");
+                        currentBatch.setState((short) 4);
+                        parent.changePanel(new ControlChoosePressPanel(parent));
+                        
+                    } else {
+                        
+                        JOptionPane.showMessageDialog(null, "Attention, la presse n'a pas été libérée correctement. Veuillez en référer à votre supérieur. "
+                                + "Attendez son signal avant de terminer le lot");
+                        buttonValidate.setEnabled(false);
+                    }
+                } else if (currentBatch.getState() == 4) {
+                    JOptionPane.showMessageDialog(null, "Le lot a déja été cloturé, sortie", "Controle panel", JOptionPane.WARNING_MESSAGE);
+                    maxReached = true;
+                }
+                
+                
             }
-        } else if (currentBatch.getState() == 4) {
-            JOptionPane.showMessageDialog(null, "Le lot a déja été cloturé, sortie", "Controle panel", JOptionPane.WARNING_MESSAGE);
-            maxReached = true;
         }
-<<<<<<< HEAD
-        
-        
-=======
-
->>>>>>> f42da72d715182aed55c5cf5dff1f96bbaf0101e
         return maxReached;
     }
-    
     public void setCurrentBatch(Batch batch) {
         this.currentBatch = batch;
     }
@@ -268,7 +265,7 @@ public class ControlPanel extends StylePanel {
     }// </editor-fold>//GEN-END:initComponents
     
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
-<<<<<<< HEAD
+        
         
 // TODO revoir la protection anti zéro
 if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
@@ -299,43 +296,44 @@ if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equa
             } else {
                 JOptionPane.showMessageDialog(this, "Erreur : au moins un des champs est à zéro.", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
             }
-    }//GEN-LAST:event_buttonValidateActionPerformed
+    }                                              
         
-=======
-
+        
 // TODO revoir la protection anti zéro
-        if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
-            if ((tool.CommonTools.isFloatPositive(tfHT.getText())) && (tool.CommonTools.isFloatPositive(tfHL.getText())) && (tool.CommonTools.isFloatPositive(tfBT.getText())) && (tool.CommonTools.isFloatPositive(tfBL.getText()))) {
-
-                System.out.println(currentBatch.getState());
-                if (currentBatch.getState() == 4) {
-                    System.out.println(currentBatch.getState());
-                    JOptionPane.showMessageDialog(this, "Le lot a déja été cloturé", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
-                    parent.changePanel(new ControlChoosePressPanel(parent));
+if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
+    if ((tool.CommonTools.isFloatPositive(tfHT.getText())) && (tool.CommonTools.isFloatPositive(tfHL.getText())) && (tool.CommonTools.isFloatPositive(tfBT.getText())) && (tool.CommonTools.isFloatPositive(tfBL.getText()))) {
+        
+        System.out.println(currentBatch.getState());
+        if (currentBatch.getState() == 4) {
+            System.out.println(currentBatch.getState());
+            JOptionPane.showMessageDialog(this, "Le lot a déja été cloturé", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
+            parent.changePanel(new ControlChoosePressPanel(parent));
+        } else {
+            
+            if (cbBrokenPiece.isSelected()) {
+                
+                confirmStart();
+                
+            } else if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
+                if ((tool.CommonTools.isFloatPositive(tfHT.getText())) && (tool.CommonTools.isFloatPositive(tfHL.getText()))
+                        && (tool.CommonTools.isFloatPositive(tfBT.getText())) && (tool.CommonTools.isFloatPositive(tfBL.getText()) && (!cbBrokenPiece.isSelected()))) {
+                    
+                    confirmStart();
+                    
                 } else {
-
-                    if (cbBrokenPiece.isSelected()) {
-
-                        confirmStart();
-
-                    } else if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
-                        if ((tool.CommonTools.isFloatPositive(tfHT.getText())) && (tool.CommonTools.isFloatPositive(tfHL.getText()))
-                                && (tool.CommonTools.isFloatPositive(tfBT.getText())) && (tool.CommonTools.isFloatPositive(tfBL.getText()) && (!cbBrokenPiece.isSelected()))) {
-
-                            confirmStart();
-
-                        } else {
-
-                            JOptionPane.showMessageDialog(null, "Veuillez vérifier que les 4 champs de saisie soient bien des entiers positifs", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Erreur : au moins un des champs est à zéro.", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
-                    }
-    }//GEN-LAST:event_buttonValidateActionPerformed
+                    
+                    JOptionPane.showMessageDialog(null, "Veuillez vérifier que les 4 champs de saisie soient bien des entiers positifs", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Erreur : au moins un des champs est à zéro.", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
             }
-        }
+    }//GEN-LAST:event_buttonValidateActionPerformed
     }
->>>>>>> f42da72d715182aed55c5cf5dff1f96bbaf0101e
+}
+    }
+}
+    }
+    
     private void cbBrokenPieceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBrokenPieceActionPerformed
         if (cbBrokenPiece.isSelected()) {
             tfHT.setEnabled(false);

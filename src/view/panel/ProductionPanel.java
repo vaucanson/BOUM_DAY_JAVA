@@ -9,6 +9,7 @@ import entity.Batch;
 import entity.Press;
 import view.frame.popup.ProductionSetPressFreePopUpFrame;
 import javax.swing.JOptionPane;
+import model.BatchListModel;
 import model.PressListModel;
 import model.BatchStateTwoListModel;
 import renderer.BatchListRenderer;
@@ -153,9 +154,11 @@ public class ProductionPanel extends StylePanel {
     }//GEN-LAST:event_buttonStartBatchActionPerformed
 
     private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
-        this.repaint();
-        listPress.repaint();
-        listBatch.repaint();
+        sblm = new BatchStateTwoListModel();
+        lpm = new PressListModel();
+        
+        listBatch.setModel(sblm);
+        listPress.setModel(lpm);
     }//GEN-LAST:event_buttonRefreshActionPerformed
 
 

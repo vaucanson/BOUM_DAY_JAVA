@@ -168,9 +168,9 @@ public class ShopPanel extends StylePanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        comboCategory = new javax.swing.JComboBox<>();
+        comboCategory = new javax.swing.JComboBox<Category>();
         buttonOK = new javax.swing.JButton();
-        comboModel = new javax.swing.JComboBox<>();
+        comboModel = new javax.swing.JComboBox<Model>();
         crateNumberSpinner = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         buttonHistory = new javax.swing.JButton();
@@ -283,11 +283,15 @@ public class ShopPanel extends StylePanel {
                     .addGap(39, 39, 39))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(buttonRefresh)
-                    .addGap(75, 75, 75)
-                    .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE))
-                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(buttonRefresh)
+                            .addGap(75, 75, 75)
+                            .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(144, 144, 144)
+                            .addComponent(jSeparator1))))
             );
             layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

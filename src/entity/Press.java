@@ -18,10 +18,7 @@ public class Press {
 
     public Press(int i) 
     {
-        if (!setId(i))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur : l'ID de la presse doit être un nombre positif.");
-        }
+        setId(i);
         setIsFree(true);
     }
     
@@ -29,14 +26,8 @@ public class Press {
         return id;
     }
 
-    private boolean setId(int id) {
-        boolean ok = false;
-        if (id >= 0)
-        {
-            this.id = id;
-            ok = true;
-        }
-        return ok;
+    private void setId(int id) {
+        this.id = id;
     }
 
         public boolean GetisFree() {

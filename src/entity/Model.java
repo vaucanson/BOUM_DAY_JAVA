@@ -23,23 +23,10 @@ public class Model {
     public Model(String name, float diameter, int smallLimit, int mediumLimit, int bigLimit)
     {
         setName(name);
-        
-        if (!setDiameter(diameter))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur dans la saisie du diamètre (nombre négatif).");
-        }        
-        else if (!setSmallLimit(smallLimit))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur : la limite doit être un nombre positif.");
-        }
-        else if (!setMediumLimit(mediumLimit))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur : la limite doit être un nombre positif.");
-        }
-        else if (!setBigLimit(bigLimit))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur : la limite doit être un nombre positif.");
-        }
+        setDiameter(diameter);
+        setSmallLimit(smallLimit);
+        setMediumLimit(mediumLimit);
+        setBigLimit(bigLimit);
     }
     
     
@@ -79,47 +66,20 @@ public class Model {
         return diameter;
     }
 
-    private boolean setDiameter(Float diameter) {
-        boolean ok = false;
-        if (diameter > 0)
-        {        
-            this.diameter = diameter;
-            ok = true;
-        }
-        
-       return ok;
+    private void setDiameter(Float diameter) {
+       this.diameter = diameter;
     }
 
-    private boolean setSmallLimit(int smallLimit) {
-        boolean ok = false;
-        if (smallLimit >= 0)
-        {
-            this.smallLimit = smallLimit;
-            ok = true;
-        }
-       
-        return ok;
+    private void setSmallLimit(int smallLimit) {
+        this.smallLimit = smallLimit;
     }
 
-    private boolean setMediumLimit(int mediumLimit) {
-         boolean ok = false;
-        if (mediumLimit >= 0)
-        {
-            this.mediumLimit = mediumLimit;
-            ok = true;
-        }
-       
-        return ok;
+    private void setMediumLimit(int mediumLimit) {
+        this.mediumLimit = mediumLimit;
     }
 
-    private boolean setBigLimit(int bigLimit) {
-         boolean ok = false;
-        if (bigLimit >= 0)
-        {
-             this.bigLimit = bigLimit;
-             ok = true;
-        }
-       return ok;
+    private void setBigLimit(int bigLimit) {
+        this.bigLimit = bigLimit;
     }
     
     

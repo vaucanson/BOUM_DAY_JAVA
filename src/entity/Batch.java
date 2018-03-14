@@ -19,14 +19,9 @@ public class Batch {
         return id;
     }
     
-    private boolean setId(short id) {
-        boolean ok = false;
-        if (id > 0)
-        {
-            this.id = id;
-            ok = true;
-        }
-        return ok;
+    private void setId(short id) {
+       
+        this.id = id;
     }
 
     public Date getDate() {
@@ -41,28 +36,18 @@ public class Batch {
         return piecesNumber;
     }
     
-    private boolean setPiecesNumber(short piecesNumber) {
-        boolean ok = false;
-        if (piecesNumber > 0)
-        {
-            this.piecesNumber = piecesNumber;
-            ok = true;
-        }
-        return ok;
+    private void setPiecesNumber(short piecesNumber) {
+    
+        this.piecesNumber = piecesNumber;
     }
 
     public short getState() {
         return state;
     }
     
-    private boolean setState(short state) {
-        boolean ok = false;
-        if ((state > 0) && (state < 5))
-        {
-            this.state = state;
-            ok = true;
-        }
-        return ok;
+    private void setState(short state) {
+        
+        this.state = state;
     }
 
     public short getPress() {
@@ -85,25 +70,14 @@ public class Batch {
     
     public Batch (short id, Date date, short pn, short state, short press, Model model)
     {
+        setId(id);
         setDate(date);
         setModel(model);
-        this.model = model;
-        setPress(press);
+        setPiecesNumber(pn); 
+        setPress(press); 
+        setState(state);
         
-        if (!setPiecesNumber(pn))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur : le nombre de pièces doit être positif.");
-        }
-        else if (!setState(state))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur : l'état du lot doit être compris entre 1 et 4.");
-        }
-        else if (!setId(id))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur : l'ID du lot doit être positif.");
-        }
-        
-        
+            
     }
 
 

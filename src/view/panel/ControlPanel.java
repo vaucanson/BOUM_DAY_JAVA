@@ -243,7 +243,7 @@ public class ControlPanel extends StylePanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
-
+// TODO revoir la protection anti zéro
         if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
             if ((tool.CommonTools.isFloatPositive(tfHT.getText())) && (tool.CommonTools.isFloatPositive(tfHL.getText())) && (tool.CommonTools.isFloatPositive(tfBT.getText())) && (tool.CommonTools.isFloatPositive(tfBL.getText()))) {
 

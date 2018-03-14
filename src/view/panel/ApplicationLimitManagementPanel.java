@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import model.ModelActiveComboModel;
 import renderer.ModelComboRenderer;
 import tool.CommonTools;
+import tool.MessageTool;
 
 /**
  *
@@ -163,7 +164,7 @@ public class ApplicationLimitManagementPanel extends StylePanel{
         
         if (comboModel.getSelectedIndex() == -1)
         {
-            JOptionPane.showMessageDialog(this, "Veuillez choisir un modèle.");
+            MessageTool.popup("Modèle", "Veuillez choisir un modèle", 13);
         }
         else
             {
@@ -196,16 +197,16 @@ public class ApplicationLimitManagementPanel extends StylePanel{
                     StockManager.changeLimit(nomModel, labelMedium.getText(), Integer.parseInt(textMedium.getText()));
                     StockManager.changeLimit(nomModel, labelBig.getText(), Integer.parseInt(textBig.getText()));
 
-                    JOptionPane.showMessageDialog(null, "Le seuil a bien été mis à jour.");
+                    MessageTool.popup("Seuils", "Le seuil a bien été mis à jour", 13);
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(null, "Erreur : Veuillez saisir des nombres positifs");
+                        MessageTool.popup("Seuils", "Erreur : Veuillez saisir des nombres positifs", 14);
                     }
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Erreur : Veuillez saisir un nombre entier et positif." );
+                    MessageTool.popup("Seuils", "Erreur : Veuillez saisir un nombre entier et positif.", 14);
                 }
             }
         }

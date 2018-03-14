@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import model.ModelActiveComboModel;
 import model.ModelActivelListModel;
 import renderer.ModelListRenderer;
+import tool.MessageTool;
 
 /**
  *
@@ -43,7 +44,7 @@ public class ApplicationModelManagementPanel extends StylePanel {
         }
         catch (NumberFormatException e)
         {
-            JOptionPane.showMessageDialog(null, "Erreur de format d'un des nombres");
+            MessageTool.popup("Modèles", "Erreur de format d'un des nombres", 14);
         }
     }
     
@@ -252,12 +253,12 @@ public class ApplicationModelManagementPanel extends StylePanel {
             }
             else
             {
-                JOptionPane.showMessageDialog(this, "Le nom du modèle ne doit pas dépasser 5 caractères.", "Erreur dans la saisie du nom", JOptionPane.OK_OPTION, null);
+                MessageTool.popup("Modèles", "Le nom du modèle ne doit pas dépasser 5 caractères.", 14);
             }
         }
         catch (NumberFormatException e)
         {
-            JOptionPane.showMessageDialog(null, "Erreur de format d'un des nombres saisis");
+            MessageTool.popup("Modèles", "Erreur de format d'un des nombres saisis", 14);
         }
     }//GEN-LAST:event_buttonOKActionPerformed
 

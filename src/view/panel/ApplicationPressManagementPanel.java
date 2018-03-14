@@ -57,7 +57,7 @@ public class ApplicationPressManagementPanel extends StylePanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("GESTION DES PRESSES");
 
-        buttonRefresh.setText("Rafraîchir");
+        buttonRefresh.setText("Rafraï¿½chir");
         buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRefreshActionPerformed(evt);
@@ -111,26 +111,29 @@ public class ApplicationPressManagementPanel extends StylePanel {
     private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveActionPerformed
         Press p = (Press) listPress.getSelectedValue();
         
-        if (listPress.getSelectedValue() != null) 
+        if (listPress.getSelectedValue() != null)
         {
-            if ((JOptionPane.showConfirmDialog(this, "Supprimer la presse ?", "Valider la suppression de presse", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) && PressManager.isActive(p))
+            if ((JOptionPane.showConfirmDialog(this, "Supprimer la presse ?", "Valider la suppression de presse", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION))
             {
-                lpm.removePress(p);
-                JOptionPane.showMessageDialog(this, "La presse a bien été supprimée.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
-            } 
-            else
-            {
-                JOptionPane.showMessageDialog(this, "La presse a deja été supprimée.", "Erreur", JOptionPane.OK_OPTION, null);
+                if (PressManager.isActive(p))
+                {
+                    lpm.removePress(p);
+                    JOptionPane.showMessageDialog(this, "La presse a bien Ã©tÃ© supprimÃ©e.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "La presse a deja Ã©tÃ© supprimÃ©e.", "Erreur", JOptionPane.OK_OPTION, null);
+                }
             }
         }
-        else 
+        else
         {
-                JOptionPane.showMessageDialog(this, "Selectionner une presse dans la liste avant de supprimer");
+            JOptionPane.showMessageDialog(this, "Selectionner une presse dans la liste avant de supprimer");
         }
         
         
     }//GEN-LAST:event_buttonRemoveActionPerformed
-
+    
     private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
         lpm = new PressListModel();
         listPress.setModel(lpm);

@@ -31,9 +31,102 @@ public class BatchManager {
      * TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
      * @return 
      */
-    public static Batch get(int id)
+    public static int getState(Batch batch)
     {
-        return null;
+        int result = 0;
+        int id = batch.getId();
+        
+        try
+        {
+ 
+            Connection c;
+            c = Connexion.getInstance("badaroux", "badaroux");
+            
+            try
+            {
+                Statement st = c.createStatement();
+                
+                ResultSet rs = st.executeQuery("select batch.state from batch where batch.id = " + id);
+                
+                if (rs.next())
+                {
+                    result = rs.getInt(1);
+                }
+                
+                st.close();
+            }
+            catch(Exception ex)
+            {
+                ex.printStackTrace();
+            }
+            finally
+            {
+                try
+                {
+                    c.close();
+                }
+                catch(SQLException ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+            
+        }
+        catch(SQLException ex)
+        {
+          
+            ex.printStackTrace();
+        }
+        return result;
+    }
+    
+    public static int getPieceNumber(Batch batch)
+    {
+       int result = 0;
+        int id = batch.getId();
+        
+        try
+        {
+ 
+            Connection c;
+            c = Connexion.getInstance("badaroux", "badaroux");
+            
+            try
+            {
+                Statement st = c.createStatement();
+                
+                ResultSet rs = st.executeQuery("select COUNT(PIECE.id) from piece join batch on piece.batch = batch.id where batch.id = " + id);
+                
+                if (rs.next())
+                {
+                    result = rs.getInt(1);
+                }
+                
+                st.close();
+            }
+            catch(Exception ex)
+            {
+                ex.printStackTrace();
+            }
+            finally
+            {
+                try
+                {
+                    c.close();
+                }
+                catch(SQLException ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+            
+        }
+        catch(SQLException ex)
+        {
+          
+            ex.printStackTrace();
+        }
+        return result; 
     }
     
     public static void setStateOne(Model model, int quantity)
@@ -233,7 +326,7 @@ public class BatchManager {
             } finally {
                 if (c != null) {
                     try {
-                        c.close();
+                        
                     } catch (Exception e) {
                         e.printStackTrace();
                        

@@ -38,7 +38,7 @@ public class ProductionPanel extends StylePanel {
         if ((listBatch.getSelectedValue() != null) && (listPress.getSelectedValue() != null)) {
             if (JOptionPane.showConfirmDialog(null, "Lancer la production ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 sblm.launch((Batch) listBatch.getSelectedValue(), (Press) listPress.getSelectedValue());
-                lpm.removePress((Press) listPress.getSelectedValue());
+              
             }
         }
         else

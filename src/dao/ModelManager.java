@@ -216,11 +216,8 @@ public abstract class ModelManager
                 // si le retour n'est pas bon, on affiche un message d'erreur à l'utilisateur
                 if (ret != 0)
                 {
-<<<<<<< HEAD
-                    JOptionPane.showMessageDialog(null, msg, "Erreur création modèle", JOptionPane.ERROR_MESSAGE, null);
-=======
+
                     MessageTool.popup("Erreur à l'insertion", msg, 15);
->>>>>>> master
                 }
             } 
             catch (Exception e) 

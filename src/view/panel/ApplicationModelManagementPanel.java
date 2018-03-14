@@ -39,15 +39,12 @@ public class ApplicationModelManagementPanel extends StylePanel {
             int smallMin = Integer.parseInt(textSmall.getText());
             int middleMin = Integer.parseInt(textMedium.getText());
             int bigMin = Integer.parseInt(textBig.getText());
-<<<<<<< HEAD
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Erreur de format d'un des nombres");
-=======
+
         }
         catch (NumberFormatException e)
         {
             MessageTool.popup("Modèles", "Erreur de format d'un des nombres", 14);
->>>>>>> master
+
         }
     }
 
@@ -245,17 +242,7 @@ public class ApplicationModelManagementPanel extends StylePanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
-<<<<<<< HEAD
-        try {
-            if (textName.getText().length() <= 5) {
-                ((ModelActivelListModel) this.listModel.getModel()).addModel(this.createModel());
-                this.resetTextFields();
-            } else {
-                JOptionPane.showMessageDialog(this, "Le nom du modèle ne doit pas dépasser 5 caractères.", "Erreur dans la saisie du nom", JOptionPane.OK_OPTION, null);
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Erreur de format d'un des nombres saisis");
-=======
+
         try
         {
             if (textName.getText().length() <= 5)
@@ -271,7 +258,6 @@ public class ApplicationModelManagementPanel extends StylePanel {
         catch (NumberFormatException e)
         {
             MessageTool.popup("Modèles", "Erreur de format d'un des nombres saisis", 14);
->>>>>>> master
         }
     }//GEN-LAST:event_buttonOKActionPerformed
 

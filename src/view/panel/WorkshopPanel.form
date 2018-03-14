@@ -16,84 +16,99 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="labTitle" alignment="1" pref="1000" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <Component id="buttonRefresh" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="labTitle" max="32767" attributes="0"/>
+          </Group>
           <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
-          <Group type="102" attributes="0">
-              <EmptySpace min="64" pref="64" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Component id="jSeparator3" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="896" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="comboCategory" max="32767" attributes="0"/>
-                          <Component id="comboModel" max="32767" attributes="0"/>
-                          <Component id="buttonResearch" pref="209" max="32767" attributes="0"/>
+                          <Component id="comboCategory" min="-2" pref="209" max="-2" attributes="0"/>
+                          <Component id="comboModel" min="-2" pref="209" max="-2" attributes="0"/>
+                          <Component id="buttonResearch" min="-2" pref="209" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                              <Component id="labQuantityBatch" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="quantitySpinner" min="-2" pref="65" max="-2" attributes="0"/>
+                                  <Component id="labQuantity" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
+                                  <Component id="labLimits" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="labQuantitytitle" min="-2" max="-2" attributes="0"/>
                                   <Component id="labLimitsTitle" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                              <Component id="labQuantityBatch" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="quantitySpinner" min="-2" pref="65" max="-2" attributes="0"/>
-                          <Component id="labQuantity" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                          <Component id="labLimits" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="butLaunchBatch" min="-2" pref="114" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" pref="852" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="36" pref="62" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="labTitle" min="-2" pref="55" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="labTitle" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="buttonRefresh" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="205" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jSeparator3" min="-2" pref="2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="36" pref="36" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="comboModel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labQuantitytitle" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labQuantity" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="comboCategory" min="-2" pref="23" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="buttonResearch" min="-2" pref="71" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="butLaunchBatch" min="-2" pref="165" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labLimits" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
-                          <Component id="labLimitsTitle" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labQuantityBatch" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="quantitySpinner" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="comboModel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labQuantitytitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labQuantity" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="comboCategory" min="-2" pref="23" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Component id="buttonResearch" min="-2" pref="71" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="labLimits" alignment="3" min="-2" pref="17" max="-2" attributes="0"/>
+                                  <Component id="labLimitsTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="labQuantityBatch" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="quantitySpinner" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="72" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -118,7 +133,7 @@
         <Component class="javax.swing.JTable" name="tableStockUnderLimit">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="tableStockUnderLimit.setDefaultRenderer(Object.class, new renderer.StockUnderLimitTableRenderer());&#xa;tableStockUnderLimit.setDefaultRenderer(Boolean.class, new renderer.StockUnderLimitTableRenderer());&#xa;tableStockUnderLimit.getTableHeader().setReorderingAllowed(false);">
-              <Connection code="new StockUnderLimitTableModel()" type="code"/>
+              <Connection code="tab" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0"/>
@@ -191,7 +206,7 @@
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;Model&gt;()"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="comboModel.setRenderer(new ModelComboRenderer());&#xa;comboModel.setModel(new ModelComboModel());"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="comboModel.setRenderer(new ModelComboRenderer());&#xa;comboModel.setModel(new model.ModelActiveComboModel());"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Model&gt;"/>
       </AuxValues>
     </Component>
@@ -207,6 +222,11 @@
       </Events>
     </Component>
     <Component class="javax.swing.JSpinner" name="quantitySpinner">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labQuantityBatch">
       <Properties>
@@ -217,6 +237,16 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator1">
+    </Component>
+    <Component class="javax.swing.JSeparator" name="jSeparator3">
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonRefresh">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Rafra&#xee;chir"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRefreshActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

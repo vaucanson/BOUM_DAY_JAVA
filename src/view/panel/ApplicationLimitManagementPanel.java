@@ -8,7 +8,7 @@ package view.panel;
 import dao.StockManager;
 import entity.Model;
 import javax.swing.JOptionPane;
-import model.ModelComboModel;
+import model.ModelActiveComboModel;
 import renderer.ModelComboRenderer;
 import tool.CommonTools;
 
@@ -72,7 +72,7 @@ public class ApplicationLimitManagementPanel extends StylePanel{
         labelBig.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelBig.setText("Grand");
 
-        comboModel.setModel(new ModelComboModel());
+        comboModel.setModel(new ModelActiveComboModel());
         comboModel.setRenderer(new ModelComboRenderer());
         comboModel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

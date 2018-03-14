@@ -7,10 +7,12 @@ package view.panel.popup;
 
 import dao.BatchManager;
 import entity.Model;
+import java.awt.Component;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import model.StockUnderLimitTableModel;
-import renderer.StockUnderLimitButtonRenderer;
+import renderer.StockUnderLimitTableRenderer;
 import view.frame.popup.LaunchBatchWorkshopPopUpFrame;
 import view.panel.StylePanel;
 
@@ -22,11 +24,15 @@ public class LaunchBatchWorkshopPopUpPanel extends StylePanel {
 
      private JFrame parent;
      private Model model;
+     private JTable table;
+
      
-    public LaunchBatchWorkshopPopUpPanel(JFrame frame) {
+    public LaunchBatchWorkshopPopUpPanel(JFrame frame, JTable tab) {
         this.initComponents();
         this.setVisible(true);
         this.parent = frame;
+        this.table = tab;
+        
         
         // permet de faire appel au modèle ciblé par la JTab dans la frame précédente
         model = ((LaunchBatchWorkshopPopUpFrame) this.parent).getModel();       
@@ -62,6 +68,8 @@ public class LaunchBatchWorkshopPopUpPanel extends StylePanel {
         labModelTitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labModelTitle.setText("Modèle");
 
+        labModel.setText("(modèle)");
+
         labQuantityTitle.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labQuantityTitle.setText("Quantité");
 
@@ -81,30 +89,31 @@ public class LaunchBatchWorkshopPopUpPanel extends StylePanel {
             }
         });
 
+        quantitySpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(labModel)
-                .addGap(104, 104, 104))
             .addComponent(labTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(141, 141, 141)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labModelTitle)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(buttonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonValidate, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createSequentialGroup()
                             .addComponent(labQuantityTitle)
                             .addGap(111, 111, 111)
-                            .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(131, Short.MAX_VALUE))
+                            .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labModelTitle)
+                        .addGap(121, 121, 121)
+                        .addComponent(labModel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,11 +121,11 @@ public class LaunchBatchWorkshopPopUpPanel extends StylePanel {
                 .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(labModel)
-                .addGap(53, 53, 53)
-                .addComponent(labModelTitle)
-                .addGap(32, 32, 32)
+                .addGap(81, 81, 81)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labModelTitle)
+                    .addComponent(labModel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labQuantityTitle)
                     .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -132,7 +141,7 @@ public class LaunchBatchWorkshopPopUpPanel extends StylePanel {
       
         // Demande de confirmation d'annulation pour éviter les fausses manipulations
         
-        if (JOptionPane.showConfirmDialog(null,"Annuler le lancement de lot ? ", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+        if (JOptionPane.showConfirmDialog(null,"Annuler le lancement de lot ? ", "", JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION)
        {
           parent.dispose();
        }
@@ -146,22 +155,19 @@ public class LaunchBatchWorkshopPopUpPanel extends StylePanel {
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
        
         
-       if ((int)quantitySpinner.getValue() == 0)        // permet d'informer l'utilisateur qu'il ne peut lancer un lot de 0 pièces
+       if (((int)quantitySpinner.getValue() == 0) ||  ((int)quantitySpinner.getValue() < 0))       // permet d'informer l'utilisateur qu'il ne peut lancer un lot de 0 pièces
        {
-           JOptionPane.showMessageDialog(null, "Veuillez saisir une quantité.");
+           JOptionPane.showMessageDialog(this, "Veuillez saisir une quantité supérieure à zéro.", "Erreur dans la saisie de quantité", JOptionPane.OK_OPTION, null);
        }
-       
        //demande de confirmation pour éviter les erreurs de manipulation
-       else if (JOptionPane.showConfirmDialog(null,"Lancer le lot ? ", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+       else if (JOptionPane.showConfirmDialog(null,"Lancer le lot ? ", "Confirmation requise", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION)
        {
           BatchManager.setStateOne(model, (int)quantitySpinner.getValue());
           JOptionPane.showMessageDialog(null, "Un lot contenant " + quantitySpinner.getValue() + " pièces de modèle " + model.getName() + " a bien été lancé.");
+          table.setModel(new StockUnderLimitTableModel());
           parent.dispose();         
        }
-       else
-       {
-           
-       }
+  
     }//GEN-LAST:event_buttonValidateActionPerformed
 
 

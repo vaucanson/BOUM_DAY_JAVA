@@ -6,13 +6,10 @@
 package renderer;
 
 import dao.ModelManager;
-import dao.StockManager;
 import entity.Model;
-import entity.Stock;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -27,10 +24,9 @@ public class StockUnderLimitButtonRenderer extends DefaultCellEditor{
     
     private JButton button;
     private final ButtonListener bListener = new ButtonListener();
-    private ArrayList<Stock> sList = StockManager.loadStockUnderLimit();
     private String nomModel;
     private Model model;
-    private static LaunchBatchWorkshopPopUpFrame instance;
+    private LaunchBatchWorkshopPopUpFrame instance;
     
    
     public StockUnderLimitButtonRenderer(JCheckBox checkBox)
@@ -88,9 +84,10 @@ public class StockUnderLimitButtonRenderer extends DefaultCellEditor{
                 {
                     if (instance == null || !instance.isVisible())
                     {
-                        instance = new LaunchBatchWorkshopPopUpFrame(model);
+                        instance = new LaunchBatchWorkshopPopUpFrame(model, table);
                     }
                 }
+                
             }
         }
         

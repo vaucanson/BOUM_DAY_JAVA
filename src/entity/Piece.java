@@ -18,24 +18,11 @@ public class Piece {
     
      public Piece(float ht, float hl, float bt, float bl, Batch batch)
     {
-        if (!setHt(ht))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur : le nombre HT doit être positif.");
-        }
-        else if (!setHl(hl))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur : le nombre HL doit être positif.");
-        }
-        else if (!setBt(bt))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur : le nombre BT doit être positif.");
-        }
-        else if (!setBl(bl))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur : le nombre BL doit être positif.");
-        }
-        
-        this.setBatch(batch);
+        setHt(ht);
+        setHl(hl);
+        setBt(bt);
+        setBl(bl);
+        setBatch(batch);
         
         if ((ht != 0) && (hl !=0) && (bt != 0) && (bl != 0))
         {
@@ -60,75 +47,44 @@ public class Piece {
         return id;
     }
 
-    private boolean setId(int id) {
-        boolean ok = false;
-        
-        if (id >= 0)
-        {
-            this.id = id;
-            ok = true;
-        }
-        return ok;        
+    private void setId(int id) {
+        this.id = id;     
     }
 
     public float getHt() {
         return ht;
     }
 
-    private boolean setHt(float ht) 
+    private void setHt(float ht) 
     {
-        boolean ok = false;
-        if (ht >= 0)
-        {
-            this.ht = ht;
-            ok =true;
-        }
-        return ok;
-        
+        this.ht = ht;
     }
 
     public float getHl() {
         return hl;
     }
 
-    private boolean setHl(float hl) {
-        boolean ok = false;
-        if (hl >= 0)
-        {
-           this.hl = hl;
-            ok =true;
-        }
-        return ok;
-        
+    private void setHl(float hl) {
+ 
+        this.hl = hl;
     }
 
     public float getBt() {
         return bt;
     }
 
-    private boolean setBt(float bt) {
-        boolean ok = false;
-        if (bt >= 0)
-        {
-           this.bt = bt;
-            ok =true;
-        }
-        return ok;
-        
+    private void setBt(float bt) {
+ 
+        this.bt = bt;
     }
 
     public float getBl() {
         return bl;
     }
 
-    private boolean setBl(float bl) {
-        boolean ok = false;
-        if (bl >= 0)
-        {
-            this.bl = bl;
-            ok =true;
-        }
-        return ok;
+    private void setBl(float bl) {
+
+        this.bl = bl;
        
     }
 

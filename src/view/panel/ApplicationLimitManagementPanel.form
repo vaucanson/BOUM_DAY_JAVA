@@ -122,7 +122,7 @@
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox&lt;Model&gt;()"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="comboModel.setModel(new ModelComboModel());&#xa;comboModel.setRenderer(new ModelComboRenderer());"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="comboModel.setModel(new model.ModelActiveComboModel());&#xa;comboModel.setRenderer(new ModelComboRenderer());"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Model&gt;"/>
       </AuxValues>
     </Component>

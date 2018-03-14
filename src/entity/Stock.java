@@ -30,10 +30,7 @@ public class Stock {
         this.category = category;
         this.model = model;
         this.quantity = quantity;
-        if (!setLimit(limit))
-        {
-            JOptionPane.showMessageDialog(null, "Erreur : le seuil minimal doit être un nombre positif.");
-        }
+        setLimit(limit);
         
     }
    
@@ -64,15 +61,9 @@ public class Stock {
         return (this.getQuantity() < this.getLimit());
     }
 
-    private boolean setLimit(int limit)
+    private void setLimit(int limit)
     {
-        boolean ok = false;
-        if (limit > 0)
-        {
-            this.limit = limit;
-            ok = true;
-        }
-        return ok;
+        this.limit = limit;
     }
     
 }

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view.panel.popup;
 
 import entity.Batch;
@@ -35,6 +31,7 @@ public class ProductionSetPressFreePopUpPanel extends StylePanel {
         buttonValidate = new javax.swing.JButton();
         labTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        labInfo = new javax.swing.JLabel();
 
         tablePressBatch.setModel(fptm);
         jScrollPane1.setViewportView(tablePressBatch);
@@ -51,6 +48,9 @@ public class ProductionSetPressFreePopUpPanel extends StylePanel {
         labTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labTitle.setText("DESAFFECTACTION DES LOTS");
 
+        labInfo.setForeground(new java.awt.Color(255, 0, 0));
+        labInfo.setText("Cliquer sur un lot ci-dessus");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,10 +58,15 @@ public class ProductionSetPressFreePopUpPanel extends StylePanel {
             .addComponent(labTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(buttonValidate, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(labInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(buttonValidate, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -71,9 +76,11 @@ public class ProductionSetPressFreePopUpPanel extends StylePanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonValidate, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labInfo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonValidate, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                 .addGap(37, 37, 37))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -81,6 +88,11 @@ public class ProductionSetPressFreePopUpPanel extends StylePanel {
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
         ConfirmStart();
     }//GEN-LAST:event_buttonValidateActionPerformed
+    
+    /**
+     * cette méthode stocke d'abord la celulle selectionné au travers d'une ligne et d'une colonne. Nous vérifions que cette opération est bien effectuée avant de 
+     * demander au responsable de production s'il veut toujours libérer la presse. S'il dit oui, le lot sera passé en état 3.
+     */
     private void ConfirmStart() {
         int row = tablePressBatch.getSelectedRow();
         int column = tablePressBatch.getSelectedColumn();
@@ -107,6 +119,7 @@ public class ProductionSetPressFreePopUpPanel extends StylePanel {
     private javax.swing.JButton buttonValidate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel labInfo;
     private javax.swing.JLabel labTitle;
     private javax.swing.JTable tablePressBatch;
     // End of variables declaration//GEN-END:variables

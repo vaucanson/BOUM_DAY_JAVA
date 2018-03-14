@@ -11,7 +11,6 @@ import entity.Batch;
 import entity.Press;
 import view.frame.popup.ProductionSetPressFreePopUpFrame;
 import javax.swing.JOptionPane;
-import model.BatchListModel;
 import model.PressListModel;
 import model.BatchStateTwoListModel;
 import renderer.BatchListRenderer;
@@ -35,7 +34,7 @@ public class ProductionPanel extends StylePanel {
     }
 
     /**
-     * Choix du lancement de la production.
+     * Choix du lancement de la production. Nous vérifions préalablement qu'une valeur est bien selectionné. 
      */
     private void ConfirmStart() {
         if ((listBatch.getSelectedValue() != null) && (listPress.getSelectedValue() != null)) {
@@ -145,6 +144,10 @@ public class ProductionPanel extends StylePanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Ouvre le popup qui présente tous les lots à libérer
+     * @param evt 
+     */
     private void buttonEndBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEndBatchActionPerformed
         ProductionSetPressFreePopUpFrame.getInstance();
 
@@ -172,6 +175,10 @@ public class ProductionPanel extends StylePanel {
        }
     }//GEN-LAST:event_buttonStartBatchActionPerformed
 
+    /**
+     * Bouton de rafraichissement de la liste, charge un nouveau modèle
+     * @param evt 
+     */
     private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
         sblm = new BatchStateTwoListModel();
         lpm = new PressListModel();

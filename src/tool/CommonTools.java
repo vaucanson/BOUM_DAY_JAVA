@@ -63,5 +63,7 @@ abstract public class CommonTools
 		String pattern="^-([+-]?\\d*\\.?\\d+)?$";
 		return str != null && str.matches(pattern);
 	}
+        
+        
 
 }

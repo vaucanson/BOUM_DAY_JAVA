@@ -1,8 +1,8 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package view.panel;
 
 import entity.Batch;
@@ -15,22 +15,25 @@ import view.frame.MainFrame;
  * @author badaroux
  */
 public class ControlPanel extends StylePanel {
-    
+
     private MainFrame parent;
     private Batch currentBatch;
-    private int counter = 0;
-    int goal;
-    
+    private int counter = 0; // compteur du nombre de pièce ayant déja été controlées
+    int goal; // nombre de pièce dans le lot a controler
+
     public ControlPanel(MainFrame frame) {
         initComponents();
         setVisible(true);
         this.parent = frame;
     }
-    
+
+    /**
+     * Méthode permettant d'initialiser les labels de la fenêtre.
+     */
     public void initControl() {
         if (parent.getCurrentBatch() != null) {
             setCurrentBatch(parent.getCurrentBatch());
-            
+
             goal = currentBatch.getPiecesNumber();
             labTitle.setText("Lot n°" + Integer.toString(currentBatch.getId()));
             labBatchPiece.setText("Presse n°" + Integer.toString(dao.PressManager.getOne(currentBatch).getId()));
@@ -38,61 +41,61 @@ public class ControlPanel extends StylePanel {
             progress();
         }
     }
-    
+
+    /**
+     * Méthode permettant de faire progresser le label d'avancement du controle.
+     * La méthode isEnded() est appelée à la fin afin de vérifier si l'ensemble
+     * des pièces n'a pas été controlé
+     */
     public void progress() {
-        
+
         counter = dao.BatchManager.getPieceNumber(currentBatch);
         labProgressing.setText(counter + " pièce controlée(s) sur " + goal);
-        
         isEnded();
-        
+
     }
-    
+
+    /**
+     * Méthode indiquant l'état de controle du lot. Si l'état de controle arrive
+     * à son terme, la méthode changera l'état du lot et terminera toute
+     * possibilité de controle dessus
+     *
+     * @return un booléen indiquant si le controle du lot est terminé en
+     * s'appuyant sur le nombre de pièce limite à controler
+     */
     public boolean isEnded() {
+
         boolean maxReached = false;
-        
-        
-        if (counter >= goal)
-        {
+
+        // Si l'avancement du controle est inférieur au nombre de pièce du lot et 
+        //que la presse a bien été libéré par le responsable de production, on termine le controle et passe le lot en état 4
+        if (counter >= goal) {
             maxReached = true;
-            if (currentBatch.getState() == 3)
-            {
+            if (currentBatch.getState() == 3) {
                 JOptionPane.showMessageDialog(null, "La saisie du lot est terminée.");
                 dao.BatchManager.setStateFour(currentBatch);
                 parent.changePanel(new ControlChoosePressPanel(parent));
-                
+
+            } // Si le lot n'est pas encore en état 3, un message demande au controleur de soliciter son supérieur afin de libérer informatiquement la presse
+            else {
+
+                JOptionPane.showMessageDialog(null, "Attention, la presse n'a pas été libérée correctement. Veuillez en référer à votre supérieur. "
+                        + "Attendez son signal avant de terminer le lot");
+                buttonValidate.setEnabled(false);
             }
-            else
-            {
-                
-                
-                if (counter >= goal) {
-                    maxReached = true;
-                    if (currentBatch.getState() == 3) {
-                        JOptionPane.showMessageDialog(null, "La saisie du lot est terminée.");
-                        currentBatch.setState((short) 4);
-                        parent.changePanel(new ControlChoosePressPanel(parent));
-                        
-                    } else {
-                        
-                        JOptionPane.showMessageDialog(null, "Attention, la presse n'a pas été libérée correctement. Veuillez en référer à votre supérieur. "
-                                + "Attendez son signal avant de terminer le lot");
-                        buttonValidate.setEnabled(false);
-                    }
-                } else if (currentBatch.getState() == 4) {
-                    JOptionPane.showMessageDialog(null, "Le lot a déja été cloturé, sortie", "Controle panel", JOptionPane.WARNING_MESSAGE);
-                    maxReached = true;
-                }
-                
-                
-            }
+        } // si le controle a été terminé par un autre controleur, il faut également terminer le controle
+        else if (currentBatch.getState() == 4) {
+            JOptionPane.showMessageDialog(null, "Le lot a déja été cloturé, sortie", "Controle panel", JOptionPane.WARNING_MESSAGE);
+            maxReached = true;
         }
+
         return maxReached;
     }
+
     public void setCurrentBatch(Batch batch) {
         this.currentBatch = batch;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -263,77 +266,47 @@ public class ControlPanel extends StylePanel {
                 .addGap(66, 66, 66))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
+/**
+     * Lorsque le controleur appuie sur le bouton valider pièce, de nombreux
+     * controles seront effectués afin de créer la bonne pièce
+     *
+     * @param evt
+     */
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
-        
-        
-// TODO revoir la protection anti zéro
-if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
-    if ((tool.CommonTools.isFloatPositive(tfHT.getText())) && (tool.CommonTools.isFloatPositive(tfHL.getText())) && (tool.CommonTools.isFloatPositive(tfBT.getText())) && (tool.CommonTools.isFloatPositive(tfBL.getText()))) {
-        
-        
-        System.out.println(currentBatch.getState());
+
+        // si le lot est déja en état terminé, le controleur est automatiquement sorti de la fenetre
         if (currentBatch.getState() == 4) {
-            System.out.println(currentBatch.getState());
             JOptionPane.showMessageDialog(this, "Le lot a déja été cloturé", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
             parent.changePanel(new ControlChoosePressPanel(parent));
         } else {
-            
+            // si le lot n'était pas terminé, nous devons regarder si la pièce est déclarée comme cassée. 
+            //Si c'est le cas, nous lancons la procédure de validation de pièce sans effectuer de controles sur les champs de texte
             if (cbBrokenPiece.isSelected()) {
-                
                 confirmStart();
-                
-            } else if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
+
+            } // Si la pièce a été mesurée, nous vérifions l'intégrité de toutes les données saisies avant de lancer la procédure de validation de la pièce
+            else if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
                 if ((tool.CommonTools.isFloatPositive(tfHT.getText())) && (tool.CommonTools.isFloatPositive(tfHL.getText()))
                         && (tool.CommonTools.isFloatPositive(tfBT.getText())) && (tool.CommonTools.isFloatPositive(tfBL.getText()) && (!cbBrokenPiece.isSelected()))) {
-                    
+
                     confirmStart();
-                    
+
                 } else {
-                    
+
                     JOptionPane.showMessageDialog(null, "Veuillez vérifier que les 4 champs de saisie soient bien des entiers positifs", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Erreur : au moins un des champs est à zéro.", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
             }
-    }                                              
-        
-        
-// TODO revoir la protection anti zéro
-if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
-    if ((tool.CommonTools.isFloatPositive(tfHT.getText())) && (tool.CommonTools.isFloatPositive(tfHL.getText())) && (tool.CommonTools.isFloatPositive(tfBT.getText())) && (tool.CommonTools.isFloatPositive(tfBL.getText()))) {
-        
-        System.out.println(currentBatch.getState());
-        if (currentBatch.getState() == 4) {
-            System.out.println(currentBatch.getState());
-            JOptionPane.showMessageDialog(this, "Le lot a déja été cloturé", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
-            parent.changePanel(new ControlChoosePressPanel(parent));
-        } else {
-            
-            if (cbBrokenPiece.isSelected()) {
-                
-                confirmStart();
-                
-            } else if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equals(tfBT.getText())) && (!"0".equals(tfBL.getText()))) {
-                if ((tool.CommonTools.isFloatPositive(tfHT.getText())) && (tool.CommonTools.isFloatPositive(tfHL.getText()))
-                        && (tool.CommonTools.isFloatPositive(tfBT.getText())) && (tool.CommonTools.isFloatPositive(tfBL.getText()) && (!cbBrokenPiece.isSelected()))) {
-                    
-                    confirmStart();
-                    
-                } else {
-                    
-                    JOptionPane.showMessageDialog(null, "Veuillez vérifier que les 4 champs de saisie soient bien des entiers positifs", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Erreur : au moins un des champs est à zéro.", "Controle de pièce", JOptionPane.WARNING_MESSAGE);
-            }
+        }
     }//GEN-LAST:event_buttonValidateActionPerformed
-    }
-}
-    }
-}
-    }
-    
+
+    /**
+     * Si la checkbox cassée a été cochée, tous les champs de saisie sont
+     * désactivés
+     *
+     * @param evt
+     */
     private void cbBrokenPieceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBrokenPieceActionPerformed
         if (cbBrokenPiece.isSelected()) {
             tfHT.setEnabled(false);
@@ -342,7 +315,13 @@ if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equa
             tfBL.setEnabled(false);
         }
     }//GEN-LAST:event_cbBrokenPieceActionPerformed
-    
+
+    /**
+     * Le bouton arreter le lot permet de casser le lot directement en état 4,
+     * sans vue sur l'état du controle des pieces
+     *
+     * @param evt
+     */
     private void buttonStopBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStopBatchActionPerformed
         if (currentBatch.getState() == 3) {
             confirmStop();
@@ -351,28 +330,25 @@ if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equa
                     "Controle de pièce", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_buttonStopBatchActionPerformed
-    
+
+    // le bouton pause permet au controleur de revenir a l'écran de selection des lots, 
+    //tout en gardant en mémoire l'état d'avancement du controle afin de pouvoir le reprendre au meme moment
     private void buttonBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBreakActionPerformed
         parent.changePanel(new ControlChoosePressPanel(parent));
     }//GEN-LAST:event_buttonBreakActionPerformed
-    
+
     private void tfHLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHLActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfHLActionPerformed
-    
+
     private void tfHTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfHTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfHTActionPerformed
-    
-    /* private void confirmBreak() {
-    if (JOptionPane.showConfirmDialog(null, "Mettre le lot en pause ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-    boolean stop = dao.BatchManager.setBreak(currentBatch, (goal - counter));
-    if (stop) {
-    JOptionPane.showMessageDialog(null, "Le lot a bien été mis en pause.");
-    parent.changePanel(new ControlChoosePressPanel(parent));
-    }
-    }
-    }*/
+
+    /**
+     * Cette méthode demandera au controleur s'il est parfaitement certain de
+     * vouloir stopper le lot
+     */
     private void confirmStop() {
         if (JOptionPane.showConfirmDialog(null, "Arrêter le lot ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             dao.BatchManager.setStateFour(currentBatch);
@@ -380,14 +356,21 @@ if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equa
             parent.changePanel(new ControlChoosePressPanel(parent));
         }
     }
-    
+
+    /**
+     * Cette méthode demandera au controleur s'il est certain de vouloir créer
+     * la pièce.
+     */
     private void confirmStart() {
-        
+
         if (JOptionPane.showConfirmDialog(null, "Valider la pièce ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            // Si le controleur souhaite valider la pièce, nous regardons si le controle est bien toujours en cours
             if (!isEnded()) {
+                // Si le lot est toujours en cours, nous regardons si la case pièce cassée a été cochée. 
+                //Si c'est le cas, nous créons une pièce avec 0 dans toutes les mesure ce qui l'enverra directement dans les rebuts
                 if (cbBrokenPiece.isSelected()) {
                     if (JOptionPane.showConfirmDialog(null, "Attention, vous allez envoyer la pièce au rebut. Continuer ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                        
+
                         if (dao.PieceManager.create(0, 0, 0, 0, currentBatch.getId()) >= 0) {
                             tfHT.setEnabled(true);
                             tfHL.setEnabled(true);
@@ -396,9 +379,11 @@ if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equa
                             cbBrokenPiece.setSelected(false);
                             progress();
                         }
-                        
+
                     }
-                } else {
+                } // Si la pièce a été mesurée, nous récupérons toutes les mesures afin de créer 
+                //une nouvelle pièce et de calculer sa catégorie, afin que le controleur puisse la mettre dans la bonne caisse
+                else {
                     if (dao.PieceManager.create(
                             Float.parseFloat(tfHT.getText()),
                             Float.parseFloat(tfHL.getText()),
@@ -408,17 +393,17 @@ if ((!"0".equals(tfHT.getText())) && (!"0".equals(tfHL.getText())) && (!"0".equa
                     ) == 0) {
                         Piece p = new Piece(Float.parseFloat(tfHT.getText()), Float.parseFloat(tfHL.getText()),
                                 Float.parseFloat(tfBT.getText()), Float.parseFloat(tfBL.getText()), currentBatch);
-                        
+
                         JOptionPane.showMessageDialog(this, "Catégorie : " + p.getCategory().toString());
-                        
+
                         tfHT.setText("");
                         tfHL.setText("");
                         tfBT.setText("");
                         tfBL.setText("");
                         progress();
-                        
+
                     }
-                    
+
                 }
             }
         }

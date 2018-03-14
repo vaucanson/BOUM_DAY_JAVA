@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import model.ModelActiveComboModel;
 import model.ModelActivelListModel;
 import renderer.ModelListRenderer;
+import tool.MessageTool;
 
 /**
  *
@@ -38,8 +39,15 @@ public class ApplicationModelManagementPanel extends StylePanel {
             int smallMin = Integer.parseInt(textSmall.getText());
             int middleMin = Integer.parseInt(textMedium.getText());
             int bigMin = Integer.parseInt(textBig.getText());
+<<<<<<< HEAD
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Erreur de format d'un des nombres");
+=======
+        }
+        catch (NumberFormatException e)
+        {
+            MessageTool.popup("Modèles", "Erreur de format d'un des nombres", 14);
+>>>>>>> master
         }
     }
 
@@ -237,6 +245,7 @@ public class ApplicationModelManagementPanel extends StylePanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOKActionPerformed
+<<<<<<< HEAD
         try {
             if (textName.getText().length() <= 5) {
                 ((ModelActivelListModel) this.listModel.getModel()).addModel(this.createModel());
@@ -246,6 +255,23 @@ public class ApplicationModelManagementPanel extends StylePanel {
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Erreur de format d'un des nombres saisis");
+=======
+        try
+        {
+            if (textName.getText().length() <= 5)
+            {
+            ((ModelActivelListModel) this.listModel.getModel()).addModel(this.createModel());
+            this.resetTextFields();
+            }
+            else
+            {
+                MessageTool.popup("Modèles", "Le nom du modèle ne doit pas dépasser 5 caractères.", 14);
+            }
+        }
+        catch (NumberFormatException e)
+        {
+            MessageTool.popup("Modèles", "Erreur de format d'un des nombres saisis", 14);
+>>>>>>> master
         }
     }//GEN-LAST:event_buttonOKActionPerformed
 

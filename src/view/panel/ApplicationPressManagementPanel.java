@@ -10,10 +10,7 @@ import entity.Press;
 import javax.swing.JOptionPane;
 import model.PressListModel;
 
-/**
- *
- * @author boilleau
- */
+
 public class ApplicationPressManagementPanel extends StylePanel {
     
     private model.PressListModel lpm = new PressListModel();
@@ -103,11 +100,20 @@ public class ApplicationPressManagementPanel extends StylePanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
+    /**
+     * Appuyer sur ce bouton appele la méthode du modèle qui ajoute une presse. La création ne demande aucune autre action
+     * @param evt 
+     */
     private void buttonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddActionPerformed
-        
+
         lpm.addPress();
     }//GEN-LAST:event_buttonAddActionPerformed
     
+    /**
+     * Le bouton Supprimer presse va vérifier si un élément de la liste est bien selectionné,
+     * que la presse n'a pas déja été supprimé par un autre gestionnaire puis appeler la méthode du modèle qui enleve une presse
+     * @param evt 
+     */
     private void buttonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoveActionPerformed
         Press p = (Press) listPress.getSelectedValue();
         

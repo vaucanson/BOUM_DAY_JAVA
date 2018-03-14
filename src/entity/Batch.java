@@ -45,11 +45,7 @@ public class Batch {
         return dao.BatchManager.getState(this);
     }
     
-<<<<<<< HEAD
-    private void setState(short state) {
-        
-        this.state = state;
-=======
+
     public boolean setState(short state) {
         boolean ok = false;
         if ((state > 0) && (state < 5))
@@ -60,7 +56,6 @@ public class Batch {
           
         }
         return ok;
->>>>>>> master
     }
 
     public short getPress() {

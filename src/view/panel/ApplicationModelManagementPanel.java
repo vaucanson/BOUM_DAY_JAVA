@@ -8,7 +8,6 @@ package view.panel;
 import dao.ModelManager;
 import entity.Model;
 import javax.swing.JOptionPane;
-import model.ModelActiveComboModel;
 import model.ModelActivelListModel;
 import renderer.ModelListRenderer;
 import tool.MessageTool;

@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import tool.Connexion;
 import tool.MessageTool;
 
@@ -217,7 +216,7 @@ public abstract class ModelManager
                 if (ret != 0)
                 {
 
-                    MessageTool.popup("Erreur à l'insertion", msg, 15);
+                    MessageTool.popup("Ajout de modèle", msg, 13);
                 }
                 else
                 {

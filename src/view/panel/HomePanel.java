@@ -5,16 +5,11 @@
  */
 package view.panel;
 
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import view.frame.MainFrame;
 import tool.Connexion;
@@ -34,7 +29,7 @@ public class HomePanel extends StylePanel {
     private ApplicationPanel ahop;
     private ShopPanel sp;
     private ProductionPanel pp;
-        private boolean isApplicationHeadOf;
+    private boolean isApplicationHeadOf;
     private boolean isProductionHeadOf;
     private boolean isWorkshopHeadOf;
     private boolean isController;
@@ -96,11 +91,9 @@ public class HomePanel extends StylePanel {
         this.parent = parent;   
         try
         {
-        BufferedImage myPicture;
-       
-            myPicture = ImageIO.read(new File("src/img/piston.png"));
-            labLogo.setIcon(new ImageIcon(myPicture));
-
+            // ajout de l'image
+            ImageIcon iconPiston = new ImageIcon(this.getClass().getResource("/img/piston.png"));
+            labLogo.setIcon(iconPiston);
         }
         catch (Exception e)
         {
@@ -212,36 +205,37 @@ public class HomePanel extends StylePanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       
-        try {
-             switch (tfIdentificationName.getText()) {
-            case "c":
-            cpcp = new ControlChoosePressPanel(parent);
-            parent.changePanel(cpcp);
-            break;
-            case "w":
-            wp = new WorkshopPanel(parent);
-            parent.changePanel(wp);
-            break;
-            case "a":
-            ahop = new ApplicationPanel();
-            parent.changePanel(ahop);
-            break;
-            case "s":
-            sp = new ShopPanel(parent);
-            parent.changePanel(sp);
-            break;
-            case "p":
-            pp = new ProductionPanel(parent);
-            parent.changePanel(pp);
-            break;
-            }
-             
-            Connexion.getInstance("badaroux", "badaroux");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        // ceci est le système utilisé pendant le dev
+//        try {
+//             switch (tfIdentificationName.getText()) {
+//            case "c":
+//            cpcp = new ControlChoosePressPanel(parent);
+//            parent.changePanel(cpcp);
+//            break;
+//            case "w":
+//            wp = new WorkshopPanel(parent);
+//            parent.changePanel(wp);
+//            break;
+//            case "a":
+//            ahop = new ApplicationPanel();
+//            parent.changePanel(ahop);
+//            break;
+//            case "s":
+//            sp = new ShopPanel(parent);
+//            parent.changePanel(sp);
+//            break;
+//            case "p":
+//            pp = new ProductionPanel(parent);
+//            parent.changePanel(pp);
+//            break;
+//            }
+//             
+//            Connexion.getInstance("badaroux", "badaroux");
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
         
-            /*  
+           
         String user = this.tfIdentificationName.getText();
         String password = this.tfIdentificationPassword.getText();
         
@@ -283,17 +277,17 @@ public class HomePanel extends StylePanel {
 
         if (this.isApplicationHeadOf)
         {
-            ahop = new ApplicationHeadOfPanel();
+            ahop = new ApplicationPanel();
             parent.changePanel(ahop);
         }
         else if (this.isController)
         {
-            cpcp = new ChoosePressControlePanel(parent);
+            cpcp = new ControlChoosePressPanel(parent);
             parent.changePanel(cpcp);
         }
         else if (this.isProductionHeadOf)
         {
-            pp = new ProdPanel(parent);
+            pp = new ProductionPanel(parent);
             parent.changePanel(pp);
         }
         else if (this.isWorkshopHeadOf)
@@ -305,7 +299,7 @@ public class HomePanel extends StylePanel {
         {
             sp = new ShopPanel(parent);
                 parent.changePanel(sp); 
-        }*/
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tfIdentificationNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIdentificationNameActionPerformed

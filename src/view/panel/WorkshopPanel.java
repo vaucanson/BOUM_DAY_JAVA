@@ -16,6 +16,7 @@ import model.StockUnderLimitTableModel;
 import renderer.CategoryComboRenderer;
 import renderer.ModelComboRenderer;
 import renderer.StockUnderLimitButtonRenderer;
+import renderer.StockUnderLimitTableRenderer;
 import view.panel.StylePanel;
 import view.frame.MainFrame;
 
@@ -30,6 +31,7 @@ public class WorkshopPanel extends StylePanel {
    private String nomCategory;
    private Model model;
    private StockUnderLimitTableModel tab = new StockUnderLimitTableModel();
+   
    
    
     public WorkshopPanel(MainFrame parent) {
@@ -218,7 +220,8 @@ public class WorkshopPanel extends StylePanel {
         }
          else
          {
-             JOptionPane.showMessageDialog(this, "Veuillez selectionner un modèle et une catégorie", "Recherche de stock", JOptionPane.WARNING_MESSAGE);
+             JOptionPane.showMessageDialog(this, "Veuillez selectionner un modèle et une catégorie", "Recherche de stock", JOptionPane.OK_OPTION);
+
          }
         
     }//GEN-LAST:event_buttonResearchActionPerformed
@@ -243,15 +246,15 @@ public class WorkshopPanel extends StylePanel {
         // si aucun modèle n'a été saisie dans la comboBox
         if (comboModel.getSelectedIndex() == -1)
         {
-            JOptionPane.showMessageDialog(null, "Veuillez saisir un modèle.");
+            JOptionPane.showMessageDialog(null, "Veuillez saisir un modèle.", "Lancement de lot", JOptionPane.OK_OPTION);
         }
         else if (((int)quantitySpinner.getValue() == 0) || ((int)quantitySpinner.getValue() < 0))        // permet d'informer l'utilisateur qu'il ne peut lancer un lot de 0 pièces
        {
-           JOptionPane.showMessageDialog(null, "Veuillez saisir une quantité supérieure à zéro.");
+           JOptionPane.showMessageDialog(null, "Veuillez saisir une quantité supérieure à zéro.", "Lancement de lot", JOptionPane.OK_OPTION);
        }
        
        //demande de confirmation pour éviter les erreurs de manipulation
-       else if (JOptionPane.showConfirmDialog(null,"Lancer le lot ? ", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+       else if (JOptionPane.showConfirmDialog(null,"Lancer le lot ? ", "Confirmation de lancement de lot", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION)
        {
           BatchManager.setStateOne(model, (int)quantitySpinner.getValue());
           JOptionPane.showMessageDialog(null, "Un lot contenant " + quantitySpinner.getValue() + " pièces de modèle " + model.getName() + " a bien été lancé.");         
@@ -263,8 +266,13 @@ public class WorkshopPanel extends StylePanel {
         //rafraichi le panel
         tab = new StockUnderLimitTableModel();
         tableStockUnderLimit.setModel(tab); 
-    }//GEN-LAST:event_buttonRefreshActionPerformed
+       
 
+        tableStockUnderLimit.getColumn("Action").setCellEditor(new StockUnderLimitButtonRenderer(new JCheckBox()));
+       
+        
+        
+    }//GEN-LAST:event_buttonRefreshActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton butLaunchBatch;

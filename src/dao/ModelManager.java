@@ -218,6 +218,10 @@ public abstract class ModelManager
 
                     MessageTool.popup("Ajout de modèle", msg, 13);
                 }
+                else
+                {
+                    MessageTool.popup("Ajout de modèle", msg, 13);
+                }
             } 
             catch (Exception e) 
             {
@@ -276,6 +280,10 @@ public abstract class ModelManager
                 if (ret != 0)
                 {
                     MessageTool.popup("Erreur de suppression", msg, 15);
+                }
+                else
+                {
+                    MessageTool.popup("Confirmation de suppression", msg, 13);
                 }
             } 
             catch (Exception e) 

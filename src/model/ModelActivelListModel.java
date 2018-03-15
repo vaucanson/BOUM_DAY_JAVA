@@ -34,15 +34,20 @@ public class ModelActivelListModel extends AbstractListModel<Model> {
      */
     public void addModel(Model model)
     {
-        this.mList.add(model);
-        this.fireIntervalAdded(this, 0, this.mList.size());
-        ModelManager.add(model);
+        if (ModelManager.add(model) == 0)
+        {
+            this.mList.add(model);
+            this.fireIntervalAdded(this, 0, this.mList.size());
+        }
+        
     }
 
     public void removeModel(Model model) 
     {
-        this.mList.remove(model);
-        ModelManager.delete(model);
-        this.fireIntervalRemoved(this, 0, this.mList.size());
+        if (ModelManager.delete(model) == 0)
+        {
+            this.mList.remove(model);
+            this.fireIntervalRemoved(this, 0, this.mList.size());
+        }
     }
 }

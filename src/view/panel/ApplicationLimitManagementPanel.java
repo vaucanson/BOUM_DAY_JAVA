@@ -7,6 +7,7 @@ package view.panel;
 
 import dao.StockManager;
 import entity.Model;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import model.ModelActiveComboModel;
 import renderer.ModelComboRenderer;
@@ -20,7 +21,7 @@ import tool.MessageTool;
 public class ApplicationLimitManagementPanel extends StylePanel{
 
     private String nomModel;
-    
+    private ModelActiveComboModel cModel = new model.ModelActiveComboModel();
     /**
      * Creates new form LimitManagementPanel
      */
@@ -60,6 +61,7 @@ public class ApplicationLimitManagementPanel extends StylePanel{
         buttonOK = new javax.swing.JButton();
         labTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        buttonRefresh = new javax.swing.JButton();
 
         labelModelSelection.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelModelSelection.setText("Selectionnez un modèle");
@@ -73,7 +75,7 @@ public class ApplicationLimitManagementPanel extends StylePanel{
         labelBig.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelBig.setText("Grand");
 
-        comboModel.setModel(new ModelActiveComboModel());
+        comboModel.setModel(cModel);
         comboModel.setRenderer(new ModelComboRenderer());
         comboModel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,11 +101,22 @@ public class ApplicationLimitManagementPanel extends StylePanel{
         labTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labTitle.setText("GESTION DES SEUILS");
 
+        buttonRefresh.setText("Rafraîchir");
+        buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(buttonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -131,7 +144,9 @@ public class ApplicationLimitManagementPanel extends StylePanel{
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(110, 110, 110)
@@ -152,7 +167,7 @@ public class ApplicationLimitManagementPanel extends StylePanel{
                     .addComponent(textBig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addComponent(buttonOK, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -222,9 +237,16 @@ public class ApplicationLimitManagementPanel extends StylePanel{
         textBig.setText(Integer.toString(StockManager.getLimit(nomModel, labelBig.getText())));
     }//GEN-LAST:event_comboModelActionPerformed
 
+    private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
+        cModel = new model.ModelActiveComboModel();
+        comboModel.setModel(cModel);
+        
+    }//GEN-LAST:event_buttonRefreshActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonOK;
+    private javax.swing.JButton buttonRefresh;
     private javax.swing.JComboBox<Model> comboModel;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labTitle;

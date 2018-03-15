@@ -31,7 +31,6 @@ public class ProductionSetPressFreePopUpPanel extends StylePanel {
         buttonValidate = new javax.swing.JButton();
         labTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        labInfo = new javax.swing.JLabel();
 
         tablePressBatch.setModel(fptm);
         jScrollPane1.setViewportView(tablePressBatch);
@@ -48,9 +47,6 @@ public class ProductionSetPressFreePopUpPanel extends StylePanel {
         labTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labTitle.setText("DESAFFECTACTION DES LOTS");
 
-        labInfo.setForeground(new java.awt.Color(255, 0, 0));
-        labInfo.setText("Cliquer sur un lot ci-dessus");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,15 +54,10 @@ public class ProductionSetPressFreePopUpPanel extends StylePanel {
             .addComponent(labTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(buttonValidate, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(buttonValidate, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -77,9 +68,7 @@ public class ProductionSetPressFreePopUpPanel extends StylePanel {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labInfo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(36, 36, 36)
                 .addComponent(buttonValidate, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
                 .addGap(37, 37, 37))
         );
@@ -98,17 +87,23 @@ public class ProductionSetPressFreePopUpPanel extends StylePanel {
         int column = tablePressBatch.getSelectedColumn();
 
         if (row == -1) {
-            JOptionPane.showMessageDialog(null, "Merci de selectionner une celulle lot");
+            JOptionPane.showMessageDialog(null, "Merci de selectionner une cellule lot", "Selection de lot", JOptionPane.OK_OPTION);
         } else {
 
             System.out.println(row);
             if (JOptionPane.showConfirmDialog(null, "Libérer la presse ?", "", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
-                if (tablePressBatch.getValueAt(row, column).getClass() != Batch.class) {
-                    JOptionPane.showMessageDialog(null, "Merci de selectionner une celulle lot");
-                } else {
-                    fptm.launch((Batch) tablePressBatch.getValueAt(row, column));
-                    JOptionPane.showMessageDialog(null, "Le lot a bien été affecté");
+             
+               if (tablePressBatch.getValueAt(row, column).getClass() == Batch.class)
+               {
+                   fptm.launch((Batch) tablePressBatch.getValueAt(row, column));
+                    JOptionPane.showMessageDialog(null, "La presse a bien été libérée");
+                    fptm.fireTableDataChanged();
+                } 
+                    else 
+                {
+                    fptm.launch((Batch) tablePressBatch.getValueAt(row, column+1));
+                    JOptionPane.showMessageDialog(null, "La presse a bien été libérée");
                     fptm.fireTableDataChanged();
                 }
             }
@@ -119,7 +114,6 @@ public class ProductionSetPressFreePopUpPanel extends StylePanel {
     private javax.swing.JButton buttonValidate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel labInfo;
     private javax.swing.JLabel labTitle;
     private javax.swing.JTable tablePressBatch;
     // End of variables declaration//GEN-END:variables

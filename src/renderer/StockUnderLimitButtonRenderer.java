@@ -87,7 +87,7 @@ public class StockUnderLimitButtonRenderer extends DefaultCellEditor{
                         instance = new LaunchBatchWorkshopPopUpFrame(model, table);
                     }
                 }
-                
+                stopCellEditing();
             }
         }
         

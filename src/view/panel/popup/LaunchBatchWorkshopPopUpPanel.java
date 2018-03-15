@@ -8,10 +8,12 @@ package view.panel.popup;
 import dao.BatchManager;
 import entity.Model;
 import java.awt.Component;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import model.StockUnderLimitTableModel;
+import renderer.StockUnderLimitButtonRenderer;
 import renderer.StockUnderLimitTableRenderer;
 import view.frame.popup.LaunchBatchWorkshopPopUpFrame;
 import view.panel.StylePanel;
@@ -159,7 +161,7 @@ public class LaunchBatchWorkshopPopUpPanel extends StylePanel {
        {
           BatchManager.setStateOne(model, (int)quantitySpinner.getValue());
           JOptionPane.showMessageDialog(null, "Un lot contenant " + quantitySpinner.getValue() + " pièces de modèle " + model.getName() + " a bien été lancé.");
-          table.setModel(new StockUnderLimitTableModel());
+          table.getColumn("Action").setCellEditor(new StockUnderLimitButtonRenderer(new JCheckBox()));
           parent.dispose();         
        }
   

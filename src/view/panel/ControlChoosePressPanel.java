@@ -9,6 +9,7 @@ import entity.Batch;
 import javax.swing.JOptionPane;
 import model.BatchStateTwoOrThreeListModel;
 import renderer.BatchListRenderer;
+import tool.MessageTool;
 import view.frame.MainFrame;
 
 /**
@@ -100,21 +101,35 @@ public class ControlChoosePressPanel extends StylePanel {
 
     private void buttonValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidateActionPerformed
         
-        if (listBatch.getSelectedValue() != null)
+        if ( (listBatch.getSelectedValue() != null))
         {
-            parent.setCurrentBatch((Batch) listBatch.getSelectedValue());
-            parent.changePanel(cp);
-            cp.initControl();
+            if ((((Batch)listBatch.getSelectedValue()).getState()) != 4 && (((Batch)listBatch.getSelectedValue()).getState()) != 1 )
+            {
+                parent.setCurrentBatch((Batch) listBatch.getSelectedValue());   
+                parent.changePanel(cp);
+                cp.initControl();
+           
+            }
+            else if ( (((Batch)listBatch.getSelectedValue()).getState()) == 4 )
+            {
+            MessageTool.popup("Erreur lot à contrôler", "Le lot a été arrêté, veuillez en sélectionner un autre.", 15);
+            buttonRefreshActionPerformed(evt);
+            }  
+            else if ( (((Batch)listBatch.getSelectedValue()).getState()) == 1 )
+            {
+            MessageTool.popup("Erreur lot à contrôler", "Le lot n'a pas encore été lancé en production, veuillez-vous rapprocher du Responsable Production", 15);
+            buttonRefreshActionPerformed(evt);
+            }
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Veuillez selectionner un lot");
-        }  
+            MessageTool.popup("Erreur choix du lot", "Veuillez sélectionner un lot pour lancer le contrôle", 15);
+        }
     }//GEN-LAST:event_buttonValidateActionPerformed
 
     private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
-//        lbpm = new BatchStateTwoOrThreeListModel();
-//        listBatch.setModel(lbpm);
+        lbpm = new BatchStateTwoOrThreeListModel();
+        listBatch.setModel(lbpm);
     }//GEN-LAST:event_buttonRefreshActionPerformed
 
 

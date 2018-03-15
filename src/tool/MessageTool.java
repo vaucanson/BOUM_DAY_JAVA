@@ -23,15 +23,15 @@ public abstract class MessageTool
                 break;
             case 15: JOptionPane.showMessageDialog(null, message, title, JOptionPane.ERROR_MESSAGE, null);
                 break;
-            case 21: JOptionPane.showConfirmDialog(null, message, title, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null);
+            case 21: JOptionPane.showConfirmDialog(null, message, title, JOptionPane.OK_OPTION, JOptionPane.PLAIN_MESSAGE, null);
                 break;
-            case 22: JOptionPane.showConfirmDialog(null, message, title, JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null);
+            case 22: JOptionPane.showConfirmDialog(null, message, title, JOptionPane.OK_OPTION, JOptionPane.QUESTION_MESSAGE, null);
                 break;
-            case 23: JOptionPane.showConfirmDialog(null, message, title, JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
+            case 23: JOptionPane.showConfirmDialog(null, message, title, JOptionPane.OK_OPTION, JOptionPane.INFORMATION_MESSAGE, null);
                 break;
-            case 24: JOptionPane.showConfirmDialog(null, message, title, JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE, null);
+            case 24: JOptionPane.showConfirmDialog(null, message, title, JOptionPane.OK_OPTION, JOptionPane.WARNING_MESSAGE, null);
                 break;
-            case 25: JOptionPane.showConfirmDialog(null, message, title, JOptionPane.OK_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE, null);
+            case 25: JOptionPane.showConfirmDialog(null, message, title, JOptionPane.OK_OPTION, JOptionPane.ERROR_MESSAGE, null);
                 break;
             default: JOptionPane.showMessageDialog(null, message, title, JOptionPane.PLAIN_MESSAGE, null);
         }

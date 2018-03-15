@@ -113,8 +113,8 @@ public class ControlChoosePressPanel extends StylePanel {
     }//GEN-LAST:event_buttonValidateActionPerformed
 
     private void buttonRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRefreshActionPerformed
-//        lbpm = new BatchStateTwoOrThreeListModel();
-//        listBatch.setModel(lbpm);
+      lbpm = new BatchStateTwoOrThreeListModel();
+       listBatch.setModel(lbpm);
     }//GEN-LAST:event_buttonRefreshActionPerformed
 
 

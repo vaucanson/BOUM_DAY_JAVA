@@ -86,6 +86,7 @@ public class ControlPanel extends StylePanel {
         } // si le controle a été terminé par un autre controleur, il faut également terminer le controle
         else if (currentBatch.getState() == 4) {
             JOptionPane.showMessageDialog(null, "Le lot a déja été cloturé, sortie", "Controle panel", JOptionPane.WARNING_MESSAGE);
+            parent.changePanel(new ControlChoosePressPanel(parent));
             maxReached = true;
         }
 

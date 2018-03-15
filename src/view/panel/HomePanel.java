@@ -123,7 +123,7 @@ public class HomePanel extends StylePanel {
         labIdentificationName.setLabelFor(tfIdentificationName);
         labIdentificationName.setText("- Identifiant");
 
-        tfIdentificationName.setToolTipText("<html>Saisissez votre <strong>identifiant</strong>");
+        tfIdentificationName.setToolTipText("<html>Saisissez votre <strong>identifiant</strong></html>");
         tfIdentificationName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tfIdentificationName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

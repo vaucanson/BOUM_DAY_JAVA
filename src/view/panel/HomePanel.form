@@ -102,7 +102,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tfIdentificationName">
       <Properties>
-        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;Saisissez votre &lt;strong&gt;identifiant&lt;/strong&gt;"/>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;Saisissez votre &lt;strong&gt;identifiant&lt;/strong&gt;&lt;/html&gt;"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder/>

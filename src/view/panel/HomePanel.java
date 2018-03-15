@@ -96,11 +96,9 @@ public class HomePanel extends StylePanel {
         this.parent = parent;   
         try
         {
-        BufferedImage myPicture;
-       
-            myPicture = ImageIO.read(new File("src/img/piston.png"));
-            labLogo.setIcon(new ImageIcon(myPicture));
-
+            // ajout de l'image
+            ImageIcon iconPiston = new ImageIcon(this.getClass().getResource("/img/piston.png"));
+            labLogo.setIcon(iconPiston);
         }
         catch (Exception e)
         {

@@ -96,6 +96,11 @@ public class Piece {
        this.batch = batch;
     }
     
+    
+    /**
+     * Détermine la catégorie d'une pièce d'après ses quatre mesures et son modèle
+     * @return une valeur de l'enum Category
+     */
     public entity.Category getCategory()
     {
         entity.Category cat = entity.Category.REBUT;

@@ -1,6 +1,7 @@
 package entity;
 
 import dao.CategoryManager;
+import java.util.ArrayList;
 
 public enum Category 
 {
@@ -64,6 +65,45 @@ public enum Category
     }
     
     
+    public static ArrayList<Category> getCategory(float interval)
+    {
+    	ArrayList<Category> cat = new ArrayList<>();
+    	
+    	if (interval < PETIT.getMinTolerance()) // si inférieur à small.min
+    	{
+                cat.add(REBUT);
+    	}
+    	else if (interval < MOYEN.getMinTolerance()) // si entre small.min et medium.min
+    	{
+    		cat.add(PETIT);
+    	}
+        else if (interval < PETIT.getMaxTolerance()) // si entre medium.min et small.max
+        {
+            cat.add(PETIT);
+            cat.add(MOYEN);
+        }
+        else if (interval < GRAND.getMinTolerance()) // si entre small.max et big.min
+        {
+            cat.add(MOYEN);
+        }
+    	else if (interval < MOYEN.getMaxTolerance()) // si entre bix.min et medium.max
+    	{
+    		cat.add(MOYEN);
+                cat.add(GRAND);
+    	}
+    	else if (interval < GRAND.getMaxTolerance()) // si entre medium.max et big.max	
+    	{
+    		cat.add(GRAND);
+    	}
+    	else // si supérieur à big.max
+    	{
+    		cat.add(REBUT);
+    	}
+    	
+	return cat;
+    }
+    
+    
     /**
      * Donne la catégorie d'une pièce, d'après les deltas des quatre mesures
      * @param htInterval
@@ -76,16 +116,35 @@ public enum Category
     {
         Category cat = Category.REBUT;
 
-        Category htCat = Category.getCorrespondant(htInterval);
-        Category hlCat = Category.getCorrespondant(hlInterval);
-        Category btCat = Category.getCorrespondant(btInterval);
-        Category blCat = Category.getCorrespondant(blInterval);
+        ArrayList<Category> htCat = Category.getCategory(htInterval);
+        ArrayList<Category> hlCat = Category.getCategory(hlInterval);
+        ArrayList<Category> btCat = Category.getCategory(btInterval);
+        ArrayList<Category> blCat = Category.getCategory(blInterval);
 
-        if (htCat == hlCat && hlCat == btCat && btCat == blCat)
+//        if (htCat == hlCat && hlCat == btCat && btCat == blCat)
+//        {
+//            cat = htCat;
+//        }
+        
+        // on ne retient dans htCat que les éléments communs à tous les autres
+        htCat.retainAll(hlCat);
+        htCat.retainAll(blCat);
+        htCat.retainAll(btCat);
+        
+        // s'il ne reste rien, c'est qu'aucune catégorie n'était partagée par les quatre mesures
+        if (htCat.isEmpty())
         {
-            cat = htCat;
+            cat = Category.REBUT;
         }
-
+        // s'il reste deux catégories, ça ne peut être que moyen et une autre, auquel cas notre pièce est moyen.
+        else if (htCat.size() == 2)
+        {
+            cat = Category.MOYEN;
+        }
+        // s'il reste une seule catégorie, notre pièce est de celle-là.
+        else cat = htCat.get(0);
+        
+        
         return cat;
     }
     

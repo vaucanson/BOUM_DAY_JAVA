@@ -123,6 +123,7 @@ public class HomePanel extends StylePanel {
         labIdentificationName.setLabelFor(tfIdentificationName);
         labIdentificationName.setText("- Identifiant");
 
+        tfIdentificationName.setToolTipText("<html>Saisissez votre <strong>identifiant</strong></html>");
         tfIdentificationName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tfIdentificationName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +148,8 @@ public class HomePanel extends StylePanel {
         });
 
         jLabel1.setText("c : controleur, w : atelier, a : application, s : magasin, p : production");
+
+        tfIdentificationPassword.setToolTipText("<html>Saisissez votre <strong>mot de passe</strong></html>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

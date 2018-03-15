@@ -234,6 +234,7 @@
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="##.##" subtype="-1" type="5"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;format&#xa0;: quatre chiffres, dont deux apr&#xe8;s la virgule&lt;/html&gt;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="tfHT">
@@ -241,6 +242,7 @@
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="##.##" subtype="-1" type="5"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;format&#xa0;: quatre chiffres, dont deux apr&#xe8;s la virgule&lt;/html&gt;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="tfBL">
@@ -248,6 +250,7 @@
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="##.##" subtype="-1" type="5"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;format&#xa0;: quatre chiffres, dont deux apr&#xe8;s la virgule&lt;/html&gt;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="tfBT">
@@ -255,6 +258,7 @@
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="##.##" subtype="-1" type="5"/>
         </Property>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;format&#xa0;: quatre chiffres, dont deux apr&#xe8;s la virgule&lt;/html&gt;"/>
       </Properties>
     </Component>
   </SubComponents>

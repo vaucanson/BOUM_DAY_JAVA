@@ -58,6 +58,7 @@ public class ControlChoosePressPanel extends StylePanel {
         });
 
         buttonRefresh.setText("Rafraîchir");
+        buttonRefresh.setToolTipText("<html>Mettre à jour la lsite des lots</html>");
         buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRefreshActionPerformed(evt);

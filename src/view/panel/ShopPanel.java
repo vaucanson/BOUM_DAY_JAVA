@@ -254,6 +254,7 @@ public class ShopPanel extends StylePanel {
             labTitle.setText("GESTION DES STOCKS");
 
             buttonRefresh.setText("Rafraîchir");
+            buttonRefresh.setToolTipText("<html>Mettre à jour la liste des stocks</html>");
             buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     buttonRefreshActionPerformed(evt);

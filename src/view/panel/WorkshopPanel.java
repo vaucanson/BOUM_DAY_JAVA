@@ -116,12 +116,13 @@ public class WorkshopPanel extends StylePanel {
             }
         });
 
-        quantitySpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        quantitySpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 
         labQuantityBatch.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labQuantityBatch.setText("Nombre de pièces à créer :");
 
         buttonRefresh.setText("Rafraîchir");
+        buttonRefresh.setToolTipText("<html>Mettre à jour la liste des pièces</html>");
         buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRefreshActionPerformed(evt);

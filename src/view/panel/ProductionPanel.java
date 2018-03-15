@@ -94,6 +94,7 @@ public class ProductionPanel extends StylePanel {
         jScrollPaneListPress.setViewportView(listPress);
 
         buttonRefresh.setText("Rafraîchir");
+        buttonRefresh.setToolTipText("<html>Mettre à jour la liste des lots et la liste des presses</html>");
         buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRefreshActionPerformed(evt);

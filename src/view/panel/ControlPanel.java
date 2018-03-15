@@ -184,24 +184,28 @@ public class ControlPanel extends StylePanel {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfHL.setToolTipText("<html>format : quatre chiffres, dont deux après la virgule</html>");
 
         try {
             tfHT.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfHT.setToolTipText("<html>format : quatre chiffres, dont deux après la virgule</html>");
 
         try {
             tfBL.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfBL.setToolTipText("<html>format : quatre chiffres, dont deux après la virgule</html>");
 
         try {
             tfBT.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfBT.setToolTipText("<html>format : quatre chiffres, dont deux après la virgule</html>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

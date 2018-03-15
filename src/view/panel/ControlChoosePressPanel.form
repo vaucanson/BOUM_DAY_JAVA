@@ -99,6 +99,7 @@
     <Component class="javax.swing.JButton" name="buttonRefresh">
       <Properties>
         <Property name="text" type="java.lang.String" value="Rafra&#xee;chir"/>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;Mettre &#xe0; jour la lsite des lots&lt;/html&gt;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRefreshActionPerformed"/>

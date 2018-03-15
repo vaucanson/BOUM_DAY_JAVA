@@ -145,6 +145,7 @@ public class ApplicationModelManagementPanel extends StylePanel {
         labTitlle.setText("GESTION DES MODELES");
 
         buttonRefresh.setText("Rafraîchir");
+        buttonRefresh.setToolTipText("<html>Mettre à jour la liste des modèles</html>");
         buttonRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRefreshActionPerformed(evt);

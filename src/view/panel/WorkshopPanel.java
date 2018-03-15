@@ -218,7 +218,7 @@ public class WorkshopPanel extends StylePanel {
         }
          else
          {
-             JOptionPane.showMessageDialog(this, "Veuillez selectionner un modèle et une quantité", "Recherche de stock", JOptionPane.WARNING_MESSAGE);
+             JOptionPane.showMessageDialog(this, "Veuillez selectionner un modèle et une catégorie", "Recherche de stock", JOptionPane.WARNING_MESSAGE);
          }
         
     }//GEN-LAST:event_buttonResearchActionPerformed

@@ -13,23 +13,19 @@ import java.util.ArrayList;
 import tool.Connexion;
 
 /**
- *
- * @author mattar
+ * Classe servant à enregistrer et lire en bdd les données concernant le Batch
+ * @see entity.Batch
  */
-public class BatchManager {
+public abstract class BatchManager {
     /*
     procedure stopBatch
        
     */
     
-    private BatchManager()
-    {
-        
-    }
-    
     /**
-     * TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-     * @return 
+     * Récupère le champ batch.state
+     * @param batch le Batch dont on veut connaître le state
+     * @return le state du Batch donné
      */
     public static int getState(Batch batch)
     {
@@ -80,6 +76,12 @@ public class BatchManager {
         return result;
     }
     
+    
+    /**
+     * récupère le nombre de pièces d'un batch donné
+     * @param batch le Batch dont on veut connaître le nombre de pièces
+     * @return le nombre de pièces du Batch donné
+     */
     public static int getPieceNumber(Batch batch)
     {
        int result = 0;
@@ -129,6 +131,12 @@ public class BatchManager {
         return result; 
     }
     
+    
+    /**
+     * Crée un lot en mettant son état à 1, sa quantité à la quantité donnée, et lui affecte le modèle donné
+     * @param model le Model à affecter
+     * @param quantity la quantité à enregistrer
+     */
     public static void setStateOne(Model model, int quantity)
     {
         
@@ -181,9 +189,73 @@ public class BatchManager {
             
         }
     }
+    
+    
+    /**
+     * Met à jour le lot donné : met son état à 2, et lui affecte la presse donnée
+     * @param batch le Batch à mettre à jour
+     * @param press la Press à lui affecter
+     */
+    public static void setStateTwo(Batch batch,Press press)
+    {
+        try {
+            Connection c = Connexion.getInstance("badaroux", "badaroux");
+
+            try {
+
+                CallableStatement cs = c.prepareCall("{?=call setBatchStateTwo (?, ?, ?)}");
+              
+                System.out.println(batch.getId());
+                System.out.println(press.getId());
+                
+                cs.setInt(2, batch.getId());
+                cs.setInt(3, press.getId());
+
+                cs.registerOutParameter(1, java.sql.Types.INTEGER);
+                cs.registerOutParameter(4, java.sql.Types.VARCHAR);
+                
+
+                cs.execute();
+                
+                int ret = cs.getInt(1);
+                String msg = cs.getString(4);
+                
+                if (ret == 0)
+                {
+                    System.out.println(msg);
+                }
+                else
+                {
+                    
+                }
+                  
+            } catch (Exception e) {
+                e.printStackTrace();
+               
+            } finally {
+                if (c != null) {
+                    try {
+                        c.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                       
+                    }
+                }
+            }
+
+        } catch (SQLException ex) {
+
+            
+            ex.printStackTrace();
+        } 
+    }
    
     
-    public static void setStateThree(Batch b)
+    /**
+     * Met à jour le lot donné : met son état à 3
+     * @param batch le Batch à mettre à jour
+     */
+    public static void setStateThree(Batch batch)
     {
         
         try {
@@ -193,10 +265,10 @@ public class BatchManager {
 
                 CallableStatement cs = c.prepareCall("{?=call setBatchStateThree (?, ?)}");
               
-                System.out.println(b.getId());
+                System.out.println(batch.getId());
          
                 
-                cs.setInt(2, b.getId());
+                cs.setInt(2, batch.getId());
 
                 cs.registerOutParameter(1, java.sql.Types.INTEGER);
                 cs.registerOutParameter(3, java.sql.Types.VARCHAR);
@@ -230,80 +302,25 @@ public class BatchManager {
             }
 
         } catch (SQLException ex) {
-
-      
             ex.printStackTrace();
-            
         } 
     }
     
-    public static void setStateTwo(Batch b,Press p)
+    
+    /**
+     * Met à jour le modèle donné : met son état à 4
+     * @param batch le Batch à
+     */
+    public static void setStateFour (Batch batch)
     {
-        
         try {
-            Connection c = Connexion.getInstance("badaroux", "badaroux");
-
-            try {
-
-                CallableStatement cs = c.prepareCall("{?=call setBatchStateTwo (?, ?, ?)}");
-              
-                System.out.println(b.getId());
-                System.out.println(p.getId());
-                
-                cs.setInt(2, b.getId());
-                cs.setInt(3, p.getId());
-
-                cs.registerOutParameter(1, java.sql.Types.INTEGER);
-                cs.registerOutParameter(4, java.sql.Types.VARCHAR);
-                
-
-                cs.execute();
-                
-                int ret = cs.getInt(1);
-                String msg = cs.getString(4);
-                
-                if (ret == 0)
-                {
-                    System.out.println(msg);
-                }
-                else
-                {
-                    
-                }
-                
-                
-                  
-            } catch (Exception e) {
-                e.printStackTrace();
-               
-            } finally {
-                if (c != null) {
-                    try {
-                        c.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                       
-                    }
-                }
-            }
-
-        } catch (SQLException ex) {
-
-            
-            ex.printStackTrace();
-        } 
-    }
-    
-    public static void setStateFour (Batch b)
-    {
- try {
             Connection c = Connexion.getInstance("badaroux", "badaroux");
 
             try {
 
                 CallableStatement cs = c.prepareCall("{?=call setBatchStateFour (?, ?)}");
               
-                cs.setInt(2, b.getId());
+                cs.setInt(2, batch.getId());
 
                 cs.registerOutParameter(1, java.sql.Types.INTEGER);
                 cs.registerOutParameter(3, java.sql.Types.VARCHAR);
@@ -344,6 +361,11 @@ public class BatchManager {
         } 
     }
     
+    
+    /**
+     * Récupère la liste de tous les Batch existants en bdd
+     * @return une Arraylist contenant tous les Batch
+     */
     public static ArrayList<Batch> fillList()
     {
            ArrayList<Batch> liste = new ArrayList<>();
@@ -392,6 +414,11 @@ public class BatchManager {
         return liste;
     }
     
+    
+    /**
+     * Récupère la liste de tous les Batch dont l'état est 1
+     * @return une Arraylist
+     */
     public static ArrayList<Batch> fillListStartBatch()
     {
            ArrayList<Batch> liste = new ArrayList<>();
@@ -440,6 +467,11 @@ public class BatchManager {
         return liste;
     }
     
+    
+    /**
+     * Récupère la liste de tous les Batch en état 2
+     * @return une Arraylist 
+     */
     public static ArrayList<Batch> fillListEndBatch()
     {
            ArrayList<Batch> liste = new ArrayList<>();
@@ -488,6 +520,11 @@ public class BatchManager {
         return liste;
     }
     
+    
+    /**
+     * Récupère la liste de tous les Batch en état 2 ou 3
+     * @return une Arraylist
+     */
     public static ArrayList<Batch> fillListStopBatch()
     {
            ArrayList<Batch> liste = new ArrayList<>();
@@ -537,6 +574,11 @@ public class BatchManager {
     }
     
        
+    /**
+     * Dit si le modèle donné est lancé ou pas.
+     * @param modele le Model dont on veut savoir s'il est lancé
+     * @return un booléen vrai si le modèle est lancé
+     */
     public static Boolean isLaunched(String modele)
     {
         Boolean result = false;
@@ -587,7 +629,14 @@ public class BatchManager {
         return result;
     }
    
-    // TODO TRANSFORMER EN PROCEDURE STOCKEE
+    
+    
+    /**
+     * Affecte au Batch donné le nombre de pièces donné
+     * @param batch le Batch
+     * @param rest le nombre à affecter
+     * @return vrai si l'opération s'est bien passée
+     */
     public static boolean setBreak(Batch batch, int rest)
     {
         Boolean result = false;

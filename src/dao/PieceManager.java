@@ -10,7 +10,8 @@ import java.sql.Statement;
 import tool.Connexion;
 
 /**
- * Classe de dialogue avec la BDD servant à enregistrer une pièce ou la charger
+ * Classe servant à enregistrer et lire en bdd les données concernant la Piece
+ * @see entity.Piece
  */
 public abstract class PieceManager {
     

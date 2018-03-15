@@ -11,8 +11,8 @@ import tool.Connexion;
 import tool.MessageTool;
 
 /**
- *
- * @author boilleau
+ * Classe servant à enregistrer et lire en bdd les données concernant le Model
+ * @see entity.Model
  */
 public abstract class ModelManager 
 {

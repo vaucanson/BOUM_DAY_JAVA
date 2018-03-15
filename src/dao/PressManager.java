@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import entity.Batch;
@@ -18,10 +13,10 @@ import java.util.logging.Logger;
 import tool.Connexion;
 
 /**
- *
- * @author badaroux
+ * Classe servant à enregistrer et lire en bdd les données concernant la Press
+ * @see entity.Press
  */
-public class PressManager {
+public abstract class PressManager {
 
     public PressManager() {
     }

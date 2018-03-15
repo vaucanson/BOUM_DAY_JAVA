@@ -10,8 +10,8 @@ import tool.Connexion;
 import tool.MessageTool;
 
 /**
- *
- * @author boilleau
+ * Classe servant à enregistrer et lire en bdd les données concernant la Category
+ * @see entity.Category
  */
 public abstract class CategoryManager 
 {

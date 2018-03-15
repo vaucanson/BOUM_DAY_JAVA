@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import tool.Connexion;
 
 /**
- *
- * @author mattar
+ * Classe servant à enregistrer et lire en bdd les données concernant le Stock
+ * @see entity.Stock
  */
-public class StockManager {
+public abstract class StockManager {
     
     private StockManager()
     {
